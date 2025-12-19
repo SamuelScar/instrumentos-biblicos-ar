@@ -21,6 +21,6 @@
   },
   "dependencies": {
     "mind-ar": "^1.2.5",
-    "three": "^0.182.0"
+    "three": "0.151.3"
   }
 }

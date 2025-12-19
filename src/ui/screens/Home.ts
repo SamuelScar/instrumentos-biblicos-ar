@@ -1,5 +1,8 @@
 import { goTo } from "../../app/routes";
 import { store } from "../../app/store";
+import { createImageMode } from "../../ar/modes/image/mode";
+import { createWorldMode } from "../../ar/modes/world/mode";
+import type { Availability } from "../../ar/types";
 import { instruments } from "../../domain/instruments";
 
 export function renderHome(root: HTMLElement) {
@@ -22,9 +25,18 @@ export function renderHome(root: HTMLElement) {
     <p>Escolha o modo:</p>
 
     <div style="display:flex; gap:12px; flex-wrap:wrap;">
-      <button id="btn-image">Image Tracking</button>
-      <button id="btn-world">World Tracking (protótipo)</button>
-      <button id="btn-diag">Diagnostics</button>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <button id="btn-image">Image Tracking</button>
+        <small id="status-image" style="min-height:16px; opacity:.8;"></small>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <button id="btn-world">World Tracking (protótipo)</button>
+        <small id="status-world" style="min-height:16px; opacity:.8;"></small>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <button id="btn-diag">Diagnostics</button>
+        <small style="min-height:16px; opacity:.6;">Ajuda para câmera</small>
+      </div>
     </div>
   `;
 
@@ -36,12 +48,47 @@ export function renderHome(root: HTMLElement) {
     if (selected) store.selectedInstrumentId = selected.id;
   };
 
-  el.querySelector<HTMLButtonElement>("#btn-image")!.onclick = () => {
+  const btnImage = el.querySelector<HTMLButtonElement>("#btn-image")!;
+  const btnWorld = el.querySelector<HTMLButtonElement>("#btn-world")!;
+  const statusImage = el.querySelector<HTMLElement>("#status-image")!;
+  const statusWorld = el.querySelector<HTMLElement>("#status-world")!;
+
+  const setAvailability = (
+    button: HTMLButtonElement,
+    statusEl: HTMLElement,
+    availability: Availability
+  ) => {
+    if (availability.available) {
+      button.disabled = false;
+      statusEl.textContent = "";
+    } else {
+      button.disabled = true;
+      statusEl.textContent = availability.reason ?? "Indisponível";
+    }
+  };
+
+  statusImage.textContent = "Verificando...";
+  statusWorld.textContent = "Verificando...";
+
+  void (async () => {
+    const imageMode = createImageMode();
+    const worldMode = createWorldMode();
+
+    const [imageAvailability, worldAvailability] = await Promise.all([
+      imageMode.getAvailability(),
+      worldMode.getAvailability(),
+    ]);
+
+    setAvailability(btnImage, statusImage, imageAvailability);
+    setAvailability(btnWorld, statusWorld, worldAvailability);
+  })();
+
+  btnImage.onclick = () => {
     store.selectedMode = "image";
     goTo("viewer");
   };
 
-  el.querySelector<HTMLButtonElement>("#btn-world")!.onclick = () => {
+  btnWorld.onclick = () => {
     store.selectedMode = "world";
     goTo("viewer");
   };
