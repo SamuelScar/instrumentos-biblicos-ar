@@ -32,7 +32,8 @@ export function renderHome(root: HTMLElement) {
   select.value = store.selectedInstrumentId;
 
   select.onchange = () => {
-    store.selectedInstrumentId = select.value as any;
+    const selected = instruments.find((i) => i.id === select.value);
+    if (selected) store.selectedInstrumentId = selected.id;
   };
 
   el.querySelector<HTMLButtonElement>("#btn-image")!.onclick = () => {
