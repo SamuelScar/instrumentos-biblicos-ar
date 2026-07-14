@@ -1,0 +1,70 @@
+{
+  "id": "sinos",
+  "name": "Sinos",
+  "shortDescription": "Pequenos objetos sonoros associados à veste do sumo sacerdote, tradicionalmente identificados como sinos, embora sua forma exata seja incerta.",
+  "bibleRefs": [
+    {
+      "book": "Êxodo",
+      "chapter": 28,
+      "verse": 33,
+      "endVerse": 35
+    },
+    {
+      "book": "Êxodo",
+      "chapter": 39,
+      "verse": 25,
+      "endVerse": 26
+    },
+    {
+      "book": "Zacarias",
+      "chapter": 14,
+      "verse": 20,
+      "endVerse": null
+    }
+  ],
+  "content": {
+    "biblicalContext": "O principal termo hebraico relacionado aos pequenos objetos sonoros da veste sacerdotal é paamon, no plural paamonim. Em Êxodo 28:33-35, a borda inferior da veste do sumo sacerdote recebe ornamentos em forma de romãs e objetos tradicionalmente traduzidos como “sinos” ou “campainhas” de ouro. O texto descreve uma disposição alternada: um sino de ouro e uma romã, repetidos ao redor da borda da veste. As romãs eram ornamentos distintos e não devem ser apresentadas como sinos. O texto afirma que o som seria ouvido quando o sacerdote entrasse e saísse do santuário, demonstrando que os paamonim tinham uma função sonora, embora não descreva detalhadamente seu mecanismo interno. Êxodo 39:25-26 retoma a confecção da veste e especifica sinos de ouro puro colocados entre as romãs, novamente de forma alternada. A tradução tradicional por “sino” é antiga e plausível, mas a forma física exata do paamon permanece incerta. Alguns estudos sugerem cautela ao imaginar automaticamente um sino moderno com corpo oco e badalo interno, propondo que o termo antigo também possa ter designado um pequeno objeto metálico de tilintar ou um adorno sonoro. Assim, a existência de som é indicada pelo próprio texto, mas detalhes como formato, tamanho e tipo de badalo não são informados. Zacarias 14:20 deve ser analisado separadamente. O termo hebraico empregado ali não é paamon, mas metsillot, na expressão metsillot ha-sus. Muitas traduções apresentam “sinos dos cavalos”, enquanto outras tradições de tradução permitem entender objetos ligados aos arreios, placas, adornos ou peças metálicas do equipamento dos cavalos. A antiga tradução grega, por exemplo, refere-se ao que está sobre o freio do cavalo, mostrando que a identificação como pequenos sinos não é a única interpretação possível. Portanto, Zacarias 14:20 não deve ser usado como prova de que os paamonim sacerdotais e os objetos dos cavalos eram do mesmo tipo. Os paamonim de Êxodo são melhor classificados como objetos sonoros ligados a uma veste ritual e ornamental. Eles não são descritos como grandes sinos, nem como instrumentos musicais tocados de forma independente.",
+    "historicalContext": "Pequenos objetos metálicos capazes de produzir som eram conhecidos em diferentes culturas do Antigo Oriente Próximo. Sinos, campainhas, guizos e outros adornos sonoros podiam ser suspensos, presos a pessoas, animais ou equipamentos e produzir som pelo movimento. Exemplares arqueológicos neoassírios dos séculos VIII e VII a.C., por exemplo, incluem pequenos sinos de liga de cobre com sistemas para suspender um badalo de ferro; um exemplar do British Museum conserva o próprio badalo. Esses objetos demonstram que pequenos sinos metálicos com badalo existiam no antigo Oriente Próximo, mas não são exemplares comprovados dos paamonim da veste sacerdotal e não devem ser usados para definir sua aparência exata. Outros pequenos objetos sonoros antigos podiam funcionar por peças móveis, contato entre elementos metálicos ou impacto externo. Por isso, embora seja possível representar visualmente os paamonim como pequenos sinos suspensos, essa representação deve ser apresentada como uma reconstrução plausível, não como uma reprodução arqueológica comprovada. Pequenos sinos presos a roupas também são funcionalmente diferentes de uma campainha segurada e acionada pela mão, de sinos colocados em animais e dos grandes sinos de torre desenvolvidos em outros contextos históricos. Os paamonim também diferem de instrumentos musicais independentes: em Êxodo, eles fazem parte da veste e seu som resulta do movimento do usuário. A melhor classificação para a aplicação é a de objetos sonoros rituais e ornamentais, pertencentes à ampla família dos idiofones, com a ressalva de que o mecanismo acústico preciso dos exemplares descritos no texto não é conhecido. Zacarias 14:20 apresenta outra categoria possível de objetos ligados ao equipamento dos cavalos; como o vocabulário hebraico é diferente e a tradução é discutida, esses objetos não devem ser identificados automaticamente com os paamonim.",
+    "scientificExplanation": "Em um sino com badalo interno, o som começa quando o movimento faz o badalo atingir a parede metálica. O impacto transfere energia para o corpo do sino, que se deforma de maneira extremamente pequena e começa a vibrar. Essa vibração não acontece de uma única forma: diferentes regiões do metal podem mover-se segundo vários modos de vibração, cada um associado a determinadas frequências. A combinação dessas frequências forma o som característico do sino. Ao contrário de uma corda ideal, muitos sinos produzem componentes sonoros cujas frequências não seguem exatamente uma série harmônica simples; por isso, é mais preciso falar também em modos ou parciais de vibração. Alguns componentes dominam a altura percebida, enquanto outros contribuem para o brilho, a complexidade e o timbre. O tamanho influencia o som: mantidas outras características semelhantes, um sino maior tende a apresentar modos de frequência mais baixa e um som mais grave, enquanto um sino menor tende a soar mais agudo. A espessura das paredes, o perfil do corpo, a abertura, a distribuição da massa e as propriedades do metal também alteram as frequências e a duração das vibrações. Materiais diferentes possuem densidade, rigidez e capacidade de dissipar energia diferentes, modificando o timbre e o tempo durante o qual o som permanece audível. A intensidade depende, entre outros fatores, da energia do impacto: um choque mais energético geralmente produz vibrações de maior amplitude e um som mais intenso. O próprio corpo metálico funciona como o principal elemento ressonante e irradia energia para o ar ao redor. No caso dos paamonim bíblicos, o texto confirma a produção de som pelo movimento da veste, mas não informa se havia exatamente um badalo interno como nos sinos conhecidos hoje. Caso fossem objetos do tipo guizo ou outro adorno sonoro, o impacto entre peças metálicas ou elementos móveis poderia produzir o som por um mecanismo diferente. Por isso, a explicação do sino com badalo descreve um mecanismo historicamente conhecido e acusticamente plausível, mas não deve ser apresentada como a construção comprovada dos paamonim de Êxodo.",
+    "curiosities": [
+      "Os sinos da veste sacerdotal eram pequenos objetos sonoros, não grandes sinos de torre.",
+      "Em Êxodo, os sinos e as romãs eram elementos diferentes colocados alternadamente na borda da veste.",
+      "O texto bíblico diz que o som da veste podia ser ouvido, mas não descreve o formato exato dos sinos.",
+      "Pequenos sinos de metal com badalos já existiam no antigo Oriente Próximo.",
+      "Um sino menor geralmente produz sons mais agudos do que um sino semelhante de tamanho maior.",
+      "Os “sinos dos cavalos” de Zacarias 14:20 podem ser interpretados também como adornos ou peças dos arreios."
+    ]
+  },
+  "assets": {
+    "modelUrl": "/models/sinos/sinos.glb",
+    "coverImageUrl": null,
+    "audioUrl": null
+  },
+  "ar": {
+    "enabled": false,
+    "placement": "floor",
+    "scale": "auto"
+  },
+  "sources": [
+    {
+      "title": "Musical Instruments in the Bible, Part I",
+      "url": "https://translation.bible/wp-content/uploads/2024/06/jones-1986-musical-instruments-in-the-bible-part-i.pdf"
+    },
+    {
+      "title": "bell",
+      "url": "https://www.britishmuseum.org/collection/object/W_N-162"
+    },
+    {
+      "title": "bell",
+      "url": "https://www.britishmuseum.org/collection/object/W_N-155"
+    },
+    {
+      "title": "Translation commentary on Zechariah 14:20",
+      "url": "https://tips.translation.bible/story/translation-commentary-on-zechariah-1420/"
+    },
+    {
+      "title": "Modes of vibration and sound radiation from tuned handbells",
+      "url": "https://pubs.aip.org/asa/jasa/article/68/6/1600/777675/Modes-of-vibration-and-sound-radiation-from-tuned"
+    }
+  ]
+}

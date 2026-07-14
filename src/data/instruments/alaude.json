@@ -1,0 +1,100 @@
+{
+  "id": "alaude",
+  "name": "Alaúde",
+  "shortDescription": "Nome usado por algumas traduções para cordofones bíblicos incertos; alaúdes antigos existiam na região, mas não há identificação bíblica segura.",
+  "bibleRefs": [
+    {
+      "book": "Salmos",
+      "chapter": 57,
+      "verse": 8,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 81,
+      "verse": 2,
+      "endVerse": null
+    },
+    {
+      "book": "Isaías",
+      "chapter": 5,
+      "verse": 12,
+      "endVerse": null
+    },
+    {
+      "book": "Amós",
+      "chapter": 6,
+      "verse": 5,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 150,
+      "verse": 4,
+      "endVerse": null
+    },
+    {
+      "book": "Daniel",
+      "chapter": 3,
+      "verse": 5,
+      "endVerse": null
+    }
+  ],
+  "content": {
+    "biblicalContext": "O nome português “alaúde” não corresponde de modo seguro a um único termo original da Bíblia. Seu aparecimento depende da tradição de tradução. Em versões portuguesas tradicionais, “alaúde” pode ser usado em passagens cujo texto hebraico menciona nevel ou kinnor. Em Salmos 57:8, por exemplo, o hebraico apresenta nevel e kinnor, enquanto algumas traduções portuguesas empregam nomes como “alaúde” e “harpa”. Em Amós 6:5, versões que dizem “alaúde” estão traduzindo nevel. Isso não demonstra que o nevel fosse realmente um alaúde de braço. O kinnor é geralmente identificado pela pesquisa moderna como uma forma de lira, isto é, um instrumento com caixa de ressonância, dois braços e uma travessa, e não como um alaúde no sentido organológico mais comum. O nevel era outro cordofone antigo, mas sua forma exata permanece discutida e já foi interpretada como harpa, lira ou outro instrumento dedilhado. Em Salmos 150:4 aparece o hebraico minim, um termo plural e genérico relacionado a cordas ou instrumentos de cordas; traduções que o substituem pelo nome de um instrumento específico fazem uma escolha interpretativa. Em Daniel 3:5 aparece o aramaico qaytros, relacionado linguisticamente ao grego kitharis ou kithara. Esse termo é normalmente associado à família das liras ou cítaras antigas, não a um alaúde de braço comprovado. O grego kithara também pertence historicamente à família das liras, embora traduções e autores de épocas posteriores tenham usado nomes de cordofones de maneira menos precisa. Assim, não existe um termo hebraico, aramaico ou grego da Bíblia que possa ser identificado com segurança como o mesmo tipo de alaúde europeu medieval, renascentista ou moderno. As referências reunidas aqui são relevantes principalmente porque mostram os termos antigos que, em determinadas traduções, receberam o nome “alaúde”.",
+    "historicalContext": "Em organologia, um alaúde é um cordofone de braço: possui uma caixa de ressonância e um braço que prolonga o comprimento do instrumento, com as cordas passando sobre o corpo e seguindo ao longo desse braço. As cordas podem ser dedilhadas com os dedos ou tocadas com um plectro. Essa estrutura distingue o alaúde da lira ou kinnor, cuja forma típica utiliza dois braços unidos por uma travessa, formando uma armação na qual as cordas são esticadas. Também se distingue da harpa, em que as cordas se estendem entre a caixa de ressonância e um braço ou arco em uma disposição diferente, sem um braço utilizado como escala da maneira característica dos alaúdes. O nevel deve ser tratado separadamente porque sua classificação exata continua debatida. O saltério medieval, por sua vez, era geralmente uma forma de cítara de caixa, com cordas estendidas sobre uma caixa de ressonância e sem o braço característico de um alaúde. Há evidências claras de instrumentos semelhantes a alaúdes no Antigo Oriente Próximo e em regiões vizinhas. Um selo cilíndrico acadiano do terceiro milênio a.C. preservado no British Museum representa uma figura tocando um instrumento descrito pelo museu como semelhante a um alaúde. No Egito do Reino Novo, existem partes preservadas de alaúdes e representações detalhadas de músicos tocando instrumentos com caixa de ressonância, braço, cordas e, em alguns casos, trastes e plectro. Essas evidências demonstram que cordofones de braço existiam no mundo antigo durante períodos relevantes para a história bíblica. Elas, porém, não provam que um termo bíblico específico designasse esse tipo de instrumento nem permitem reconstruir um “alaúde bíblico” único. Os alaúdes europeus medievais e renascentistas pertencem a desenvolvimentos muito posteriores, com características próprias, como corpo arredondado formado por costelas, braço relativamente curto e, frequentemente, várias ordens de cordas. Instrumentos modernos como o oud e diferentes tipos atuais de alaúde também pertencem a tradições históricas posteriores. Eles podem ajudar a explicar a família dos cordofones de braço, mas não devem ser usados como prova da aparência de um instrumento mencionado na Bíblia. Da mesma forma, reconstruções modernas apresentadas como “alaúdes bíblicos” são interpretações contemporâneas e devem ser identificadas como hipóteses ou aproximações visuais, não como reproduções arqueologicamente comprovadas.",
+    "scientificExplanation": "O som de um alaúde começa quando uma corda tensionada é dedilhada ou tocada com um plectro. A corda deslocada de sua posição de equilíbrio começa a vibrar e produz uma frequência fundamental, percebida principalmente como a altura da nota. Essa frequência depende sobretudo do comprimento da parte da corda que está livre para vibrar, de sua tensão e de sua massa por unidade de comprimento. Mantidas as demais condições, uma corda mais curta produz uma frequência mais alta e um som mais agudo; uma tensão maior também tende a elevar a frequência; e uma corda mais espessa ou mais pesada tende a produzir um som mais grave. Em muitos alaúdes, o músico pode pressionar a corda contra o braço ou contra trastes, reduzindo seu comprimento vibrante e produzindo notas diferentes. A corda não vibra em apenas uma frequência: ela também apresenta modos de vibração superiores, que formam um conjunto de componentes harmônicos. A intensidade relativa desses componentes contribui para o timbre. A forma de dedilhar, o material e a espessura das cordas, o ponto onde elas são tocadas e a construção do instrumento alteram esse espectro sonoro. Como uma corda isolada movimenta pouco ar, sua vibração é transmitida ao corpo do instrumento. O tampo e a caixa de ressonância vibram em uma área muito maior, transferindo energia de modo mais eficiente para o ar e aumentando a intensidade do som. O volume, o formato e os materiais da caixa influenciam as frequências reforçadas e, portanto, o timbre. Alaúdes antigos podiam utilizar construções diferentes das modernas, inclusive caixas e tampos de materiais variados, de modo que não é possível atribuir um único timbre a todos os instrumentos antigos dessa família.",
+    "curiosities": [
+      "Uma tradução pode chamar de “alaúde” um instrumento que outra versão chama de “harpa” ou “lira”.",
+      "A principal característica de um alaúde é ter uma caixa de ressonância ligada a um braço por onde passam as cordas.",
+      "Instrumentos semelhantes a alaúdes já existiam no Egito e em outras partes do Oriente Próximo há mais de três mil anos.",
+      "Ao encurtar a parte da corda que pode vibrar, o músico produz uma nota mais aguda.",
+      "O kinnor bíblico é geralmente relacionado à lira e não deve ser confundido automaticamente com um alaúde.",
+      "Uma reconstrução moderna pode ajudar no aprendizado sem ser uma cópia exata de um instrumento do período bíblico."
+    ]
+  },
+  "assets": {
+    "modelUrl": "/models/alaude/alaude.glb",
+    "coverImageUrl": null,
+    "audioUrl": null
+  },
+  "ar": {
+    "enabled": false,
+    "placement": "floor",
+    "scale": "auto"
+  },
+  "sources": [
+    {
+      "title": "INSTRUMENTAL MUSIC OF THE BIBLE",
+      "url": "https://www.cambridge.org/core/books/abs/compendium-of-musical-instruments-and-instrumental-terminology-in-the-bible/instrumental-music-of-the-bible/AEB09E86DB4110C0D8CE5B299CDD8AEA"
+    },
+    {
+      "title": "BIBLICAL MUSICAL INSTRUMENTS IN POST-BIBLICAL SOURCES AND IN BIBLE TRANSLATIONS",
+      "url": "https://www.cambridge.org/core/books/abs/compendium-of-musical-instruments-and-instrumental-terminology-in-the-bible/biblical-musical-instruments-in-postbiblical-sources-and-in-bible-translations/E47FA6EDDB8C2899992965C72EE6236E"
+    },
+    {
+      "title": "The music of Israel during the Iron Age",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-companion-to-jewish-music/music-of-israel-during-the-iron-age/0EE5C1109057819B84F891364213593D"
+    },
+    {
+      "title": "cylinder seal",
+      "url": "https://www.britishmuseum.org/collection/object/W_1888-0512-Bu-770"
+    },
+    {
+      "title": "Section of lute instrument",
+      "url": "https://www.metmuseum.org/art/collection/search/554346"
+    },
+    {
+      "title": "cosmetic-jar",
+      "url": "https://www.britishmuseum.org/collection/object/Y_EA5114"
+    },
+    {
+      "title": "The Lute",
+      "url": "https://www.metmuseum.org/essays/the-lute"
+    },
+    {
+      "title": "Strings, standing waves and harmonics",
+      "url": "https://www.phys.unsw.edu.au/jw/strings.html"
+    }
+  ]
+}

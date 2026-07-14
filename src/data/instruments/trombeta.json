@@ -1,0 +1,110 @@
+{
+  "id": "trombeta",
+  "name": "Trombeta",
+  "shortDescription": "Trombeta metálica associada ao hebraico hatsotsrah, usada para sinais, reuniões, guerra e cerimônias, distinta do shofar de chifre.",
+  "bibleRefs": [
+    {
+      "book": "Números",
+      "chapter": 10,
+      "verse": 2,
+      "endVerse": null
+    },
+    {
+      "book": "Números",
+      "chapter": 10,
+      "verse": 9,
+      "endVerse": null
+    },
+    {
+      "book": "Números",
+      "chapter": 10,
+      "verse": 10,
+      "endVerse": null
+    },
+    {
+      "book": "1 Crônicas",
+      "chapter": 15,
+      "verse": 24,
+      "endVerse": null
+    },
+    {
+      "book": "2 Crônicas",
+      "chapter": 5,
+      "verse": 12,
+      "endVerse": 13
+    },
+    {
+      "book": "Esdras",
+      "chapter": 3,
+      "verse": 10,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 98,
+      "verse": 6,
+      "endVerse": null
+    },
+    {
+      "book": "Mateus",
+      "chapter": 24,
+      "verse": 31,
+      "endVerse": null
+    },
+    {
+      "book": "1 Coríntios",
+      "chapter": 15,
+      "verse": 52,
+      "endVerse": null
+    }
+  ],
+  "content": {
+    "biblicalContext": "Um dos principais termos hebraicos relacionados à trombeta metálica na Bíblia Hebraica é chatsotserah, também transliterado hatsotsrah ou de formas semelhantes. Em Números 10:2, o texto ordena a fabricação de duas trombetas de prata. O capítulo atribui a esses instrumentos diferentes funções de sinalização: convocar a comunidade, orientar movimentos do acampamento, dar o alarme em situação de guerra e soar em dias de alegria, festas estabelecidas e luas novas, inclusive sobre sacrifícios. Números 10:8 associa o toque dessas trombetas aos sacerdotes, filhos de Arão. Em textos posteriores, as trombetas aparecem em cerimônias e atividades relacionadas ao culto, como na condução da arca em 1 Crônicas 15:24, na dedicação do templo em 2 Crônicas 5:12-13 e na cerimônia de fundação do segundo templo em Esdras 3:10. O texto bíblico informa que as trombetas de Números 10 eram de prata, mas não fornece uma descrição completa de suas dimensões, proporções, embocadura ou perfil acústico. Por isso, reconstruções modernas dependem de interpretação e de comparações históricas. A chatsotserah não deve ser confundida com o shofar. O shofar é um instrumento de chifre animal, enquanto a chatsotserah é apresentada como uma trombeta metálica. Salmos 98:6 é especialmente importante porque menciona no mesmo versículo as chatsotserot e o shofar, mostrando que os termos podiam designar instrumentos distintos. Algumas traduções portuguesas usam palavras como “trombeta”, “corneta” ou “buzina” para diferentes termos originais, de modo que o nome português isolado não identifica com segurança o instrumento. No Novo Testamento, o termo grego salpinx é normalmente traduzido como “trombeta”, como em Mateus 24:31 e 1 Coríntios 15:52. A salpinx pertence ao vocabulário grego das trombetas e também foi usada na Septuaginta para traduzir diferentes termos de instrumentos e sinais sonoros. Portanto, a ocorrência de salpinx no Novo Testamento não significa automaticamente que o instrumento fosse uma chatsotserah israelita, um shofar ou um modelo único de trombeta antiga.",
+    "historicalContext": "Trombetas naturais, isto é, instrumentos em que o som é produzido pela vibração dos lábios sem um sistema moderno de válvulas, são conhecidas em diferentes culturas da Antiguidade. Evidências do antigo Egito incluem representações de trompetistas e exemplares metálicos preservados, entre eles as famosas trombetas associadas à tumba de Tutancâmon. Estudos sobre esses instrumentos mostram trombetas alongadas com tubos metálicos e campanas de diferentes formatos. Essas peças egípcias são importantes para demonstrar que trombetas metálicas existiam no antigo Oriente Próximo e em períodos anteriores ou próximos a diferentes fases da história bíblica, mas não são exemplares comprovados da chatsotserah israelita. Evidências iconográficas e textuais de outras regiões do antigo Oriente Próximo também documentam o uso de trombetas, especialmente para comunicação, atividades militares, cerimônias e manifestações públicas. Comparações desse tipo ajudam a compreender a tecnologia disponível, mas não permitem copiar a aparência de um instrumento de outra cultura e apresentá-lo como uma reconstrução exata da trombeta bíblica. A chatsotserah é geralmente interpretada como uma trombeta metálica natural, provavelmente distinta do chifre curvo do shofar, mas detalhes de sua forma precisam ser tratados com cautela. Trombetas militares antigas constituem uma categoria ampla: muitas eram utilizadas para transmitir sinais audíveis a distância, mas a trombeta bíblica de Números 10 não possuía apenas função militar, pois também servia para reunir pessoas, coordenar deslocamentos e participar de ocasiões cerimoniais e cultuais. A salpinx do mundo grego também era uma trombeta natural e frequentemente aparece associada a sinais públicos e militares, mas pertence a outra tradição histórica e não deve ser considerada automaticamente o mesmo instrumento que a chatsotserah. A trombeta moderna é ainda diferente: normalmente possui um tubo dobrado e válvulas que alteram o comprimento efetivo da coluna de ar, permitindo uma escala cromática muito mais acessível. Uma trombeta natural antiga, sem válvulas, dependia principalmente das ressonâncias disponíveis no tubo e do controle do músico para produzir diferentes notas. O modelo 3D utilizado nesta aplicação é uma representação visual de uma trombeta de sinalização e não deve ser considerado uma reprodução arqueologicamente comprovada da chatsotserah bíblica.",
+    "scientificExplanation": "A trombeta pertence à família dos aerofones excitados pelos lábios. O músico mantém os lábios sob tensão e sopra através de uma pequena abertura entre eles. A interação entre a pressão do ar, o movimento dos lábios e as ondas acústicas refletidas pelo instrumento faz os lábios entrarem em vibração periódica. Eles funcionam como uma válvula oscilante que transforma o fluxo relativamente contínuo de ar dos pulmões em pulsos de pressão sonora. Esses pulsos excitam a coluna de ar dentro do tubo. O tubo possui frequências naturais de ressonância, e o sistema formado pelos lábios do músico e pela coluna de ar tende a oscilar próximo a uma dessas ressonâncias. O comprimento e o formato interno do instrumento influenciam essas frequências: em condições comparáveis, um tubo mais longo favorece notas mais graves, enquanto um tubo mais curto favorece notas mais agudas. A forma da campana e as variações do diâmetro do tubo também modificam a distribuição das ressonâncias, a eficiência com que o som é irradiado e o timbre. Em uma trombeta natural sem válvulas, o comprimento principal do tubo permanece fixo. O músico obtém diferentes notas principalmente alterando a embocadura, incluindo a tensão e a configuração dos lábios e as condições do fluxo de ar, para favorecer diferentes modos de ressonância. As notas disponíveis tendem a se organizar aproximadamente segundo a série harmônica do instrumento, de modo que os intervalos possíveis não correspondem ao funcionamento de uma trombeta moderna com válvulas. Na trombeta moderna, pressionar uma válvula acrescenta comprimento ao percurso do ar e cria novos conjuntos de ressonâncias, facilitando a execução de uma escala cromática. A intensidade sonora depende da energia fornecida pelo músico, da pressão do sopro, da amplitude da vibração dos lábios e da eficiência acústica do instrumento. O timbre resulta da combinação entre a frequência fundamental, os diversos harmônicos, o comportamento dos lábios, o formato do tubo, a campana e a maneira como o som é irradiado. Por isso, duas trombetas de comprimentos, materiais ou formatos diferentes podem apresentar características sonoras distintas mesmo quando produzem uma nota de altura semelhante.",
+    "curiosities": [
+      "Números 10 menciona duas trombetas feitas de prata.",
+      "A mesma trombeta podia transmitir sinais diferentes para reunir pessoas ou orientar deslocamentos.",
+      "O shofar e a trombeta metálica aparecem juntos em Salmos 98:6, indicando instrumentos distintos.",
+      "Uma trombeta natural não precisa de válvulas para produzir mais de uma nota.",
+      "O músico muda de nota ajustando os lábios e escolhendo diferentes ressonâncias do tubo.",
+      "Trombetas antigas encontradas no Egito ajudam na comparação histórica, mas não são provas da aparência exata da trombeta israelita."
+    ]
+  },
+  "assets": {
+    "modelUrl": "/models/trombeta/trombeta.glb",
+    "coverImageUrl": null,
+    "audioUrl": null
+  },
+  "ar": {
+    "enabled": false,
+    "placement": "floor",
+    "scale": "auto"
+  },
+  "sources": [
+    {
+      "title": "WIND INSTRUMENTS",
+      "url": "https://resolve.cambridge.org/core/books/compendium-of-musical-instruments-and-instrumental-terminology-in-the-bible/wind-instruments/0FD41A3599E53F6DFD1F9237EA9606C8"
+    },
+    {
+      "title": "Music and Musical Instruments in the Hebrew Bible and Ancient Israel/Palestine",
+      "url": "https://bibleinterp.arizona.edu/articles/Music"
+    },
+    {
+      "title": "Organology and Iconography of Ancient Egypt and the Renaissance",
+      "url": "https://resources.metmuseum.org/resources/metpublications/pdf/Organology_Iconography_Ancient_Egypt_and_Renaissance_The_Metropolitan_Museum_Journal_v_24_1989.pdf"
+    },
+    {
+      "title": "Brass instrument (lip reed) acoustics: an introduction",
+      "url": "https://www.phys.unsw.edu.au/jw/brassacoustics.html"
+    },
+    {
+      "title": "The trumpet in ancient Greek culture",
+      "url": "https://pure.royalholloway.ac.uk/files/27684608/2016bowyercsmphil.pdf.pdf"
+    },
+    {
+      "title": "Musical Instruments in the Bible, Part II",
+      "url": "https://translation.bible/wp-content/uploads/2024/06/jones-1987-musical-instruments-in-the-bible-part-ii.pdf"
+    }
+  ]
+}

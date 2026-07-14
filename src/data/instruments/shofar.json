@@ -47,7 +47,7 @@
     ]
   },
   "assets": {
-    "modelUrl": null,
+    "modelUrl": "/models/shofar/shofar.glb",
     "coverImageUrl": null,
     "audioUrl": null
   },

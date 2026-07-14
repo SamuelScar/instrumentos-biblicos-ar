@@ -1,0 +1,120 @@
+{
+  "id": "flauta",
+  "name": "Flauta",
+  "shortDescription": "Nome de tradução para diferentes aerofones bíblicos, como chalil, ugav e aulos, cujas formas e mecanismos exatos nem sempre são conhecidos.",
+  "bibleRefs": [
+    {
+      "book": "Gênesis",
+      "chapter": 4,
+      "verse": 21,
+      "endVerse": null
+    },
+    {
+      "book": "1 Samuel",
+      "chapter": 10,
+      "verse": 5,
+      "endVerse": null
+    },
+    {
+      "book": "1 Reis",
+      "chapter": 1,
+      "verse": 40,
+      "endVerse": null
+    },
+    {
+      "book": "Isaías",
+      "chapter": 5,
+      "verse": 12,
+      "endVerse": null
+    },
+    {
+      "book": "Jeremias",
+      "chapter": 48,
+      "verse": 36,
+      "endVerse": null
+    },
+    {
+      "book": "Jó",
+      "chapter": 30,
+      "verse": 31,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 150,
+      "verse": 4,
+      "endVerse": null
+    },
+    {
+      "book": "Daniel",
+      "chapter": 3,
+      "verse": 5,
+      "endVerse": null
+    },
+    {
+      "book": "Mateus",
+      "chapter": 9,
+      "verse": 23,
+      "endVerse": null
+    },
+    {
+      "book": "1 Coríntios",
+      "chapter": 14,
+      "verse": 7,
+      "endVerse": null
+    }
+  ],
+  "content": {
+    "biblicalContext": "A palavra portuguesa “flauta” pode representar diferentes termos bíblicos e não identifica, por si só, um único instrumento antigo. Na Bíblia Hebraica, um dos termos mais importantes é chalil, encontrado em passagens como 1 Samuel 10:5, 1 Reis 1:40, Isaías 5:12 e Jeremias 48:36. Ele costuma ser traduzido como “flauta”, “pífaro” ou “tubo”, mas sua construção exata não é conhecida com segurança. Muitos estudiosos o relacionam a um instrumento tubular perfurado e alguns o interpretam como um tubo de palheta ou um instrumento de tubos, possivelmente duplo. Essa identificação é plausível, mas não permite afirmar que todo chalil tivesse exatamente a mesma forma ou mecanismo. Outro termo é ugav, presente em Gênesis 4:21, Jó 30:31 e Salmos 150:4. Ele já foi traduzido como “flauta”, “tubo”, “órgão” e por outros nomes. A tradução antiga “órgão” não significa que o texto descreva o grande instrumento de teclados e tubos conhecido em períodos posteriores. A identidade do ugav é especialmente incerta: provavelmente era algum tipo de aerofone ou tubo musical, mas não há evidência suficiente para classificá-lo com segurança como flauta de bisel, flauta soprada pela extremidade ou instrumento de palheta. Em Daniel 3:5 aparece o aramaico mashroqitha, frequentemente traduzido como “flauta” ou “tubo”. Esse termo ocorre no conjunto de instrumentos da narrativa e sua identificação precisa também é discutida; propostas incluem diferentes tipos de tubos, mas nenhuma forma pode ser tratada como comprovada. No Novo Testamento, o grego aulos aparece em 1 Coríntios 14:7, e palavras da mesma família designam tocadores desse instrumento em passagens como Mateus 9:23. Embora aulos seja frequentemente traduzido como “flauta”, o instrumento greco-romano era normalmente um aerofone de palheta, muitas vezes tocado em pares, e não uma flauta transversal moderna. As passagens mostram instrumentos de sopro em contextos variados: o chalil acompanha um grupo de profetas em 1 Samuel 10:5, participa da celebração pública da ascensão de Salomão em 1 Reis 1:40 e aparece entre instrumentos de festas em Isaías 5:12. Jeremias 48:36 e Jó 30:31 relacionam o som de tubos à lamentação, enquanto Mateus 9:23 menciona tocadores no contexto de luto. Salmos 150:4 inclui o ugav no louvor musical. Essas diferenças de contexto reforçam que “flauta” é uma categoria de tradução ampla e não a descrição segura de um único modelo de instrumento.",
+    "historicalContext": "O Antigo Oriente Próximo conheceu diversos tipos de aerofones feitos de materiais como junco, madeira, osso e metal. Evidências arqueológicas do antigo Egito, por exemplo, incluem flautas sopradas pela extremidade e tubos que podem ter utilizado palhetas. Um exemplar do British Museum classificado como flauta egípcia antiga consiste em um tubo de junco com quatro furos para os dedos e é descrito como uma flauta soprada pela extremidade. Outro objeto egípcio da mesma coleção é classificado como tubo musical e descrito, com cautela, como possivelmente dotado de palheta dupla. Esses objetos demonstram que mecanismos sonoros diferentes coexistiam no mundo antigo, mas não provam que correspondam diretamente ao chalil ou ao ugav bíblicos. Uma flauta soprada pela extremidade produz som quando o músico dirige o ar contra uma borda na abertura do tubo. Uma flauta de bisel, como a flauta doce moderna, utiliza um canal que conduz o ar até uma borda; não há evidência suficiente para afirmar que o chalil ou o ugav possuíssem esse mecanismo específico. Uma flauta transversal moderna é soprada lateralmente sobre um orifício de embocadura e possui uma história construtiva própria, portanto não deve ser usada automaticamente como imagem da “flauta bíblica”. Instrumentos de palheta funcionam de maneira diferente: uma lâmina flexível, simples ou dupla, vibra com a passagem do ar e excita a coluna de ar do tubo. O aulos greco-romano pertencia a essa categoria de instrumentos de palheta e era frequentemente tocado em pares. Apesar de traduções que o chamam de “flauta”, ele não era uma flauta no sentido organológico moderno. Também não se deve identificar automaticamente o chalil com o aulos: a comparação é possível porque ambos pertencem ao amplo universo dos tubos musicais antigos, mas são termos de línguas, períodos e contextos diferentes. O shofar é ainda outro tipo de aerofone: seu som começa com a vibração dos lábios do músico em um chifre animal. As trombetas metálicas antigas também são excitadas pelos lábios e utilizam um tubo ressonante, diferindo das flautas de borda e dos instrumentos de palheta. Assim, o nome “flauta” nesta aplicação deve ser entendido como uma categoria educacional para diferentes instrumentos bíblicos traduzidos dessa maneira, e qualquer modelo 3D deve ser apresentado como aproximação visual de um tipo antigo de aerofone, não como reprodução exata e comprovada do chalil, do ugav, da mashroqitha ou do aulos.",
+    "scientificExplanation": "Instrumentos traduzidos como “flauta” podem produzir som por mecanismos diferentes, mas todos dependem da vibração e da ressonância de uma coluna de ar. Em uma flauta de borda, seja soprada pela extremidade, transversalmente ou por meio de um canal como o de uma flauta de bisel, um jato de ar interage com uma borda. O fluxo torna-se instável e alterna sua direção, fornecendo energia às oscilações do ar dentro do tubo. Em um instrumento de palheta, o processo começa de outra forma: uma palheta simples ou duas lâminas formando uma palheta dupla vibram com a passagem do ar e controlam pulsos de fluxo que excitam a coluna de ar. O aulos antigo pertence ao grupo dos instrumentos de palheta, enquanto uma verdadeira flauta pertence à família dos instrumentos excitados por jato de ar contra uma borda. Depois que a coluna de ar é excitada, o tubo favorece determinadas frequências de ressonância. Em termos gerais, tubos mais longos tendem a produzir frequências fundamentais mais baixas e sons mais graves, enquanto um comprimento efetivo menor tende a produzir frequências mais altas e sons mais agudos. Os furos para os dedos modificam o comprimento acústico efetivo do instrumento: ao abrir um furo, o músico cria uma nova região pela qual a coluna de ar interage com o exterior, permitindo a produção de outras notas. A posição e o tamanho dos furos também influenciam a afinação. O formato interno do tubo, sua largura, seções cilíndricas ou cônicas e as condições de suas extremidades alteram as frequências de ressonância e a distribuição dos harmônicos. A frequência fundamental contribui principalmente para a altura percebida da nota, enquanto as frequências superiores ajudam a formar o timbre. Uma flauta de borda e um tubo de palheta podem tocar notas de altura semelhante e ainda soar muito diferentes porque seus mecanismos de excitação produzem combinações distintas de harmônicos e ruído de sopro. A intensidade depende da energia fornecida pelo músico, da pressão e velocidade do ar e da eficiência com que o instrumento mantém suas oscilações. Soprar com maior força pode aumentar a intensidade e, em alguns instrumentos, favorecer outro modo de ressonância, produzindo uma nota de registro mais alto. Como chalil, ugav e outros termos antigos podem ter designado instrumentos de mecanismos diferentes, não é cientificamente correto atribuir a todos eles um único modo de produção sonora.",
+    "curiosities": [
+      "A palavra “flauta” na Bíblia pode esconder mais de um tipo de instrumento de sopro.",
+      "O aulos antigo era geralmente um instrumento de palheta, mesmo sendo muitas vezes traduzido como “flauta”.",
+      "Alguns tubos antigos eram feitos de junco, um material leve e naturalmente oco.",
+      "Abrir e fechar os furos muda o comprimento acústico do tubo e permite tocar notas diferentes.",
+      "Um tubo mais longo tende a produzir sons mais graves do que um tubo semelhante mais curto.",
+      "As antigas traduções que dizem “órgão” para ugav não estão descrevendo necessariamente um órgão moderno."
+    ]
+  },
+  "assets": {
+    "modelUrl": "/models/flauta/flauta.glb",
+    "coverImageUrl": null,
+    "audioUrl": null
+  },
+  "ar": {
+    "enabled": false,
+    "placement": "floor",
+    "scale": "auto"
+  },
+  "sources": [
+    {
+      "title": "WIND INSTRUMENTS",
+      "url": "https://www.cambridge.org/core/books/abs/compendium-of-musical-instruments-and-instrumental-terminology-in-the-bible/wind-instruments/0FD41A3599E53F6DFD1F9237EA9606C8"
+    },
+    {
+      "title": "Music and Musical Instruments in the Hebrew Bible and Ancient Israel/Palestine",
+      "url": "https://bibleinterp.arizona.edu/articles/Music"
+    },
+    {
+      "title": "flute",
+      "url": "https://www.britishmuseum.org/collection/object/Y_EA6385"
+    },
+    {
+      "title": "musical pipe",
+      "url": "https://www.britishmuseum.org/collection/object/Y_EA6388"
+    },
+    {
+      "title": "Illusions of Grandeur: The Instruments of Daniel 3 Reconsidered",
+      "url": "https://jewish-music.huji.ac.il/media/2381/download?attachment="
+    },
+    {
+      "title": "The Brauron aulos",
+      "url": "https://www.cambridge.org/core/journals/annual-of-the-british-school-at-athens/article/brauron-aulos/CA7947AB9B05321CD0B83D45B8ACB53E"
+    },
+    {
+      "title": "Flute acoustics: an introduction",
+      "url": "https://www.phys.unsw.edu.au/jw/fluteacoustics.html"
+    }
+  ]
+}

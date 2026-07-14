@@ -1,0 +1,104 @@
+{
+"id": "lira",
+"name": "Lira",
+"shortDescription": "Cordofone antigo relacionado ao hebraico kinnor, provavelmente uma forma de lira, embora sua aparência exata permaneça incerta.",
+"bibleRefs": [
+{
+"book": "Gênesis",
+"chapter": 4,
+"verse": 21,
+"endVerse": null
+},
+{
+"book": "1 Samuel",
+"chapter": 10,
+"verse": 5,
+"endVerse": null
+},
+{
+"book": "1 Samuel",
+"chapter": 16,
+"verse": 16,
+"endVerse": null
+},
+{
+"book": "1 Samuel",
+"chapter": 16,
+"verse": 23,
+"endVerse": null
+},
+{
+"book": "2 Samuel",
+"chapter": 6,
+"verse": 5,
+"endVerse": null
+},
+{
+"book": "1 Crônicas",
+"chapter": 13,
+"verse": 8,
+"endVerse": null
+},
+{
+"book": "Salmos",
+"chapter": 33,
+"verse": 2,
+"endVerse": null
+},
+{
+"book": "Salmos",
+"chapter": 137,
+"verse": 2,
+"endVerse": null
+}
+],
+"content": {
+"biblicalContext": "O instrumento geralmente relacionado à lira nos textos da Bíblia Hebraica é o kinnor. Ele aparece já em Gênesis 4:21 e é mencionado em diferentes contextos de execução musical, incluindo a narrativa de Davi em 1 Samuel 16 e celebrações coletivas como a de 2 Samuel 6:5. Dependendo da tradução bíblica, kinnor pode aparecer em português como \"harpa\", \"lira\" ou outro nome de instrumento de cordas. Essas escolhas de tradução não devem ser tomadas como identificações arqueológicas definitivas, pois os nomes de instrumentos mudaram de significado ao longo dos séculos e os tradutores frequentemente utilizaram termos familiares ao público de sua própria época. A identificação do kinnor como uma forma de lira é amplamente aceita na pesquisa moderna, apoiada pela comparação entre os textos e as evidências iconográficas do antigo Levante e de regiões vizinhas, mas os detalhes de seu formato, tamanho, número de cordas e construção não são conhecidos com completa segurança. O kinnor também aparece ao lado do nevel em algumas passagens, como 1 Samuel 10:5, 2 Samuel 6:5 e Salmos 33:2, indicando que os dois termos provavelmente designavam instrumentos distintos. O nevel já foi frequentemente identificado como uma harpa, mas essa interpretação é discutida e não existe consenso absoluto sobre sua classificação. Portanto, não é correto usar os termos kinnor, nevel, lira e harpa como se fossem simplesmente nomes intercambiáveis.",
+"historicalContext": "A lira é um tipo de cordofone normalmente reconhecido por uma estrutura formada por uma caixa de ressonância, dois braços que se elevam a partir do corpo e uma travessa que une esses braços na parte superior. As cordas são estendidas entre a região da caixa de ressonância e essa travessa, formando uma estrutura semelhante a um quadro. Essa organização diferencia a lira de uma harpa: na harpa, as cordas são dispostas entre o corpo ressonante e um braço ou pescoço, sem a travessa sustentada por dois braços que caracteriza a lira. Liras são documentadas no Antigo Oriente Próximo muitos séculos antes e durante o período associado aos textos bíblicos. Os famosos instrumentos encontrados no Cemitério Real de Ur, na Mesopotâmia, demonstram a longa história dessa família de cordofones, mas são instrumentos sumérios do terceiro milênio a.C. e não devem ser apresentados como exemplares do kinnor israelita. Evidências de Israel, da Palestina antiga e de regiões vizinhas incluem representações de músicos com liras, permitindo comparações históricas, embora materiais perecíveis como madeira e cordas raramente sobrevivam de forma completa. Por isso, grande parte do conhecimento depende da combinação de textos, imagens, restos arqueológicos e comparação regional. O nevel deve ser mantido como uma categoria distinta no conteúdo educacional: embora muitas obras o chamem de harpa, sua identificação exata continua debatida. O saltério medieval também é diferente. O instrumento conhecido por esse nome na Europa medieval era frequentemente uma cítara de caixa, com cordas estendidas sobre uma caixa de ressonância, e não possuía necessariamente a estrutura de dois braços e travessa de uma lira. A existência desse saltério muitos séculos depois não demonstra a aparência do kinnor bíblico. Da mesma forma, reconstruções modernas chamadas de \"lira de Davi\", \"harpa bíblica\" ou \"kinnor bíblico\" são interpretações contemporâneas baseadas em diferentes conjuntos de evidências e escolhas dos construtores. Elas podem ser úteis para experimentação e educação, mas não devem ser apresentadas como reproduções exatas de um instrumento cuja forma original é conhecida em todos os detalhes.",
+"scientificExplanation": "O som de uma lira começa quando uma corda tensionada é dedilhada ou posta em vibração. A frequência fundamental da corda, percebida principalmente como a altura da nota, depende sobretudo de três fatores: o comprimento da parte que pode vibrar, a tensão aplicada e a massa por unidade de comprimento da corda. Mantidas as demais condições, uma corda mais curta tende a produzir uma frequência mais alta e, portanto, um som mais agudo. Aumentar a tensão também tende a elevar a frequência. Já uma corda mais espessa ou mais pesada tende a produzir frequências mais baixas e sons mais graves. Quando uma corda vibra, ela não produz somente uma frequência: diferentes modos de vibração podem ocorrer ao mesmo tempo, gerando a frequência fundamental e componentes superiores relacionados aos harmônicos. A combinação e a intensidade relativa desses componentes contribuem para o timbre, que é a qualidade sonora que permite distinguir instrumentos mesmo quando tocam notas de altura semelhante. A corda sozinha movimenta relativamente pouco ar. Sua vibração é transmitida à estrutura do instrumento, especialmente por meio dos pontos de apoio e da caixa de ressonância. O corpo ressonante possui uma área maior e consegue movimentar mais ar, aumentando a intensidade sonora percebida. O formato da caixa, seus materiais, sua espessura e seus próprios modos de vibração podem reforçar algumas frequências mais do que outras, modificando o timbre. A força usada ao dedilhar influencia a amplitude inicial da vibração e, portanto, a intensidade do som, enquanto o local e a maneira de dedilhar também podem alterar a proporção dos harmônicos produzidos.",
+"curiosities": [
+"O kinnor é um dos instrumentos musicais mencionados mais cedo na narrativa bíblica.",
+"Davi é descrito em 1 Samuel tocando o instrumento chamado kinnor no texto hebraico.",
+"Uma lira possui normalmente dois braços ligados por uma travessa acima da caixa de ressonância.",
+"Liras já eram tocadas no Antigo Oriente Próximo milhares de anos atrás.",
+"Uma corda mais tensionada tende a produzir uma nota mais aguda.",
+"As chamadas \"liras bíblicas\" construídas hoje são reconstruções modernas, não cópias exatas comprovadas do kinnor."
+]
+},
+"assets": {
+"modelUrl": "/models/lira/lira.glb",
+"coverImageUrl": null,
+"audioUrl": null
+},
+"ar": {
+"enabled": false,
+"placement": "floor",
+"scale": "auto"
+},
+"sources": [
+{
+"title": "The music of Israel during the Iron Age",
+"url": "https://www.cambridge.org/core/books/abs/cambridge-companion-to-jewish-music/music-of-israel-during-the-iron-age/0EE5C1109057819B84F891364213593D"
+},
+{
+"title": "The Biblical NEBEL",
+"url": "https://jewish-music.huji.ac.il/en/yuval/22772"
+},
+{
+"title": "Music and Musical Instruments in the Hebrew Bible and Ancient Israel/Palestine",
+"url": "https://bibleinterp.arizona.edu/articles/Music"
+},
+{
+"title": "lyre",
+"url": "https://www.britishmuseum.org/collection/object/W_1928-1010-1-a"
+},
+{
+"title": "Psaltery",
+"url": "https://caslabs.case.edu/medren/medieval-instruments/psaltery/"
+},
+{
+"title": "Strings, standing waves and harmonics",
+"url": "https://www.phys.unsw.edu.au/jw/strings.html"
+}
+]
+}

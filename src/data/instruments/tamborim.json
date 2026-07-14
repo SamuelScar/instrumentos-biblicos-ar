@@ -48,7 +48,7 @@
     ]
   },
   "assets": {
-    "modelUrl": null,
+    "modelUrl": "/models/tamborim/tamborim.glb",
     "coverImageUrl": null,
     "audioUrl": null
   },

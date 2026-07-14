@@ -1,9 +1,23 @@
+import alaudeData from "../data/instruments/alaude.json";
+import flautaData from "../data/instruments/flauta.json";
 import harpaData from "../data/instruments/harpa.json";
+import liraData from "../data/instruments/lira.json";
 import salterioData from "../data/instruments/salterio.json";
 import shofarData from "../data/instruments/shofar.json";
+import sinosData from "../data/instruments/sinos.json";
 import tamborimData from "../data/instruments/tamborim.json";
+import trombetaData from "../data/instruments/trombeta.json";
 
-export type InstrumentId = "shofar" | "harpa" | "tamborim" | "salterio";
+export type InstrumentId =
+  | "alaude"
+  | "flauta"
+  | "shofar"
+  | "harpa"
+  | "lira"
+  | "sinos"
+  | "tamborim"
+  | "salterio"
+  | "trombeta";
 
 export type BibleRef = {
   book: string;
@@ -51,7 +65,17 @@ type InstrumentData = Omit<Instrument, "id" | "ar"> & {
 };
 
 function isInstrumentId(id: string): id is InstrumentId {
-  return id === "shofar" || id === "harpa" || id === "tamborim" || id === "salterio";
+  return (
+    id === "alaude" ||
+    id === "flauta" ||
+    id === "shofar" ||
+    id === "harpa" ||
+    id === "lira" ||
+    id === "sinos" ||
+    id === "tamborim" ||
+    id === "salterio" ||
+    id === "trombeta"
+  );
 }
 
 function parseInstrument(data: InstrumentData): Instrument {
@@ -78,9 +102,17 @@ function parseInstrument(data: InstrumentData): Instrument {
   };
 }
 
-export const instruments: Instrument[] = [shofarData, harpaData, tamborimData, salterioData].map(
-  parseInstrument,
-);
+export const instruments: Instrument[] = [
+  shofarData,
+  harpaData,
+  liraData,
+  alaudeData,
+  flautaData,
+  tamborimData,
+  salterioData,
+  trombetaData,
+  sinosData,
+].map(parseInstrument);
 
 export function findInstrumentById(id: string | null | undefined): Instrument | undefined {
   return instruments.find((instrument) => instrument.id === id);
