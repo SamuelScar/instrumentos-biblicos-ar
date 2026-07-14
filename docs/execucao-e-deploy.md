@@ -40,8 +40,8 @@ O estágio final do `Dockerfile` gera o projeto e serve `dist` com Nginx. Ele pe
 O `nginx.conf` redireciona rotas que não correspondem a arquivos para `index.html`, permitindo abrir diretamente endereços como `/instrumentos/harpa`.
 
 ```bash
-docker build -t instrumentos-biblicos-ar .
-docker run --rm -p 8080:80 instrumentos-biblicos-ar
+docker build -t instrumentos-mundo-biblico .
+docker run --rm -p 8080:80 instrumentos-mundo-biblico
 ```
 
 ## Vercel

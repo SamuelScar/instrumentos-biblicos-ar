@@ -1,0 +1,78 @@
+{
+  "id": "harpa",
+  "name": "Harpa",
+  "shortDescription": "Nome usado em traduções bíblicas para antigos cordofones, especialmente kinnor e nevel, que não devem ser confundidos com a harpa moderna.",
+  "bibleRefs": [
+    {
+      "book": "Gênesis",
+      "chapter": 4,
+      "verse": 21,
+      "endVerse": null
+    },
+    {
+      "book": "1 Samuel",
+      "chapter": 10,
+      "verse": 5,
+      "endVerse": null
+    },
+    {
+      "book": "1 Samuel",
+      "chapter": 16,
+      "verse": 23,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 33,
+      "verse": 2,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 150,
+      "verse": 3,
+      "endVerse": null
+    }
+  ],
+  "content": {
+    "biblicalContext": "Em muitas traduções da Bíblia, a palavra “harpa” representa mais de um termo hebraico, especialmente kinnor e nevel. O kinnor aparece ligado a Jubal, a Davi, ao louvor e a diferentes situações musicais. O nevel também aparece em contextos de música, culto e celebração. Em alguns textos, kinnor e nevel são citados lado a lado, por isso não é seguro tratá-los automaticamente como o mesmo instrumento. As traduções ajudam o leitor moderno, mas os nomes antigos não correspondem de maneira perfeita às categorias atuais de instrumentos.",
+    "historicalContext": "O kinnor é geralmente interpretado pelos estudiosos como um tipo de lira antiga, embora sua forma possa ter variado ao longo do tempo e não exista um único modelo preservado que resolva todas as dúvidas. Uma lira costuma ter uma caixa de ressonância, dois braços e uma travessa à qual as cordas se ligam, estrutura diferente da grande harpa de concerto moderna. A identificação do nevel é menos segura: ele é traduzido como “harpa” ou “lira” em diferentes estudos e versões, mas sua forma exata continua discutida. O antigo Oriente Próximo possuía diversos tipos de liras e harpas, conhecidos por textos, imagens e alguns achados arqueológicos. Esses paralelos ajudam a formular hipóteses, mas não provam que todo kinnor ou nevel bíblico tivesse exatamente a mesma construção de um exemplar encontrado em outra região.",
+    "scientificExplanation": "O som é produzido quando uma corda é puxada e solta. A corda vibra rapidamente e transmite parte dessa vibração para a estrutura do instrumento. A caixa de ressonância e o ar ao redor respondem a essas vibrações e ajudam o som a ficar mais forte e audível. A altura da nota depende principalmente do comprimento da parte vibrante da corda, de sua tensão e de sua massa por comprimento. Mantendo os outros fatores parecidos, uma corda mais curta ou mais esticada tende a produzir um som mais agudo. Um toque mais forte faz a corda vibrar com maior amplitude e normalmente aumenta a intensidade do som. Esses princípios valem para liras e harpas, mesmo que a afinação exata dos instrumentos bíblicos não seja conhecida.",
+    "curiosities": [
+      "O kinnor costuma ser entendido como uma espécie de lira antiga.",
+      "Davi é associado ao kinnor no livro de 1 Samuel.",
+      "A forma exata do nevel ainda é discutida pelos estudiosos.",
+      "Kinnor e nevel aparecem juntos em alguns textos bíblicos.",
+      "A harpa de concerto moderna não é um retrato exato dos instrumentos bíblicos.",
+      "O som nasce da vibração das cordas."
+    ]
+  },
+  "assets": {
+    "modelUrl": "/models/harpa/harpa.glb",
+    "coverImageUrl": null,
+    "audioUrl": null
+  },
+  "ar": {
+    "enabled": true,
+    "placement": "floor",
+    "scale": "auto"
+  },
+  "sources": [
+    {
+      "title": "Music and Musical Instruments in the Hebrew Bible and Ancient Israel/Palestine",
+      "url": "https://bibleinterp.arizona.edu/articles/Music"
+    },
+    {
+      "title": "Distinctions among Canaanite, Philistine, and Israelite Lyres, and Their Global Lyrical Contexts",
+      "url": "https://www.jstor.org/stable/1357602"
+    },
+    {
+      "title": "The Musical Instruments from Ur and Ancient Mesopotamian Music",
+      "url": "https://www.penn.museum/sites/expedition/the-musical-instruments-from-ur-and-ancient-mesopotamian-music/"
+    },
+    {
+      "title": "The Motif of the Nevel (Harp/Lyre) in the Poetry of the Jewish Enlightenment (Haskalah) Period",
+      "url": "https://biupress.org/index.php/lyre/article/view/73"
+    }
+  ]
+}

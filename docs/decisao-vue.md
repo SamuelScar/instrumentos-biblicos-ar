@@ -12,14 +12,17 @@ Adotar:
 - Vue Router para navegação;
 - componentes `.vue` para a interface;
 - composables para lógica de interface com ciclo de vida;
-- TypeScript puro para o domínio dos instrumentos.
+- arquivos JSON para o conteúdo dos instrumentos;
+- TypeScript para tipos, validação e funções de consulta.
 
 Não adotar nesta fase:
 
 - Pinia, porque não existe estado global complexo;
 - Nuxt ou renderização no servidor;
-- biblioteca de componentes visuais;
+- biblioteca completa de componentes visuais ou design system externo;
 - backend ou banco de dados.
+
+A biblioteca Lucide é usada somente para ícones e não determina a estrutura ou o estilo dos componentes.
 
 ## Consequências
 
@@ -38,4 +41,3 @@ Para suportar acesso direto às rotas:
 
 - a Vercel usa o rewrite definido em `vercel.json`;
 - o Nginx usa `try_files` com fallback para `index.html`.
-

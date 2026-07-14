@@ -1,0 +1,78 @@
+{
+  "id": "tamborim",
+  "name": "Tamborim",
+  "shortDescription": "Nome usado aqui para o tof bíblico, provavelmente um tambor de moldura tocado à mão, diferente do tamborim brasileiro e do pandeiro moderno.",
+  "bibleRefs": [
+    {
+      "book": "Êxodo",
+      "chapter": 15,
+      "verse": 20,
+      "endVerse": null
+    },
+    {
+      "book": "Juízes",
+      "chapter": 11,
+      "verse": 34,
+      "endVerse": null
+    },
+    {
+      "book": "1 Samuel",
+      "chapter": 18,
+      "verse": 6,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 81,
+      "verse": 2,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 150,
+      "verse": 4,
+      "endVerse": null
+    }
+  ],
+  "content": {
+    "biblicalContext": "O instrumento frequentemente traduzido como “tamborim”, “tambor” ou “adufe” está relacionado ao termo hebraico tof. Ele aparece em celebrações, danças, procissões e comemorações de vitória. Miriã é apresentada com o tof após a travessia do mar, e outros relatos mostram mulheres saindo com esses instrumentos para cantar e celebrar. Nos Salmos, o instrumento também aparece associado ao louvor e à dança. Essas passagens mostram um instrumento de ritmo ligado à participação coletiva, e não apenas a uma apresentação musical formal.",
+    "historicalContext": "O tof é geralmente identificado como um tambor de moldura ou tambor de mão: uma membrana esticada sobre uma armação rasa, frequentemente representada em forma circular. Imagens e pequenas figuras do antigo Oriente Próximo mostram pessoas, muitas vezes mulheres, segurando tambores de moldura, mas a relação de cada objeto arqueológico com o tof bíblico precisa ser tratada com cautela. O instrumento não deve ser confundido com o tamborim brasileiro moderno, que costuma ser pequeno e tocado com baqueta, nem deve ser imaginado automaticamente como um pandeiro com platinelas metálicas. As evidências disponíveis sustentam melhor a comparação com um tambor de moldura tocado principalmente com as mãos.",
+    "scientificExplanation": "Quando a mão bate na pele esticada, a membrana se deforma e começa a vibrar. Essa vibração empurra o ar ao redor e cria ondas sonoras. A própria membrana, a armação e o ar próximo participam das ressonâncias que dão ao instrumento seu som característico. Bater perto do centro ou mais perto da borda pode destacar modos de vibração diferentes e mudar o timbre. Uma membrana mais tensionada tende a favorecer sons mais agudos, enquanto uma batida mais forte aumenta a amplitude da vibração e, em geral, a intensidade do som.",
+    "curiosities": [
+      "O tof provavelmente era tocado principalmente com as mãos.",
+      "Ele era usado em festas, danças e celebrações de vitória.",
+      "Miriã aparece com esse instrumento em Êxodo.",
+      "O tof não era o mesmo instrumento que o tamborim brasileiro moderno.",
+      "Não é seguro imaginar que ele sempre tivesse platinelas metálicas.",
+      "A pele esticada produz som quando vibra."
+    ]
+  },
+  "assets": {
+    "modelUrl": null,
+    "coverImageUrl": null,
+    "audioUrl": null
+  },
+  "ar": {
+    "enabled": false,
+    "placement": "floor",
+    "scale": "auto"
+  },
+  "sources": [
+    {
+      "title": "Music and Musical Instruments in the Hebrew Bible and Ancient Israel/Palestine",
+      "url": "https://bibleinterp.arizona.edu/articles/Music"
+    },
+    {
+      "title": "The music of Israel during the Iron Age",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-companion-to-jewish-music/music-of-israel-during-the-iron-age/0EE5C1109057819B84F891364213593D"
+    },
+    {
+      "title": "The Hand Drum (תף) and Israelite Women’s Musical Tradition",
+      "url": "https://scholarsarchive.byu.edu/studiaantiqua/vol13/iss1/2/"
+    },
+    {
+      "title": "stela",
+      "url": "https://www.britishmuseum.org/collection/object/W_2002-0114-1"
+    }
+  ]
+}

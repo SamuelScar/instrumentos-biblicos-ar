@@ -1,89 +1,87 @@
-# Ciência e Fé – Instrumentos Bíblicos em Realidade Aumentada
+# Instrumentos do Mundo Bíblico
 
-Aplicação web educacional que utiliza **Realidade Aumentada (AR)** para apresentar
-**instrumentos históricos mencionados na Bíblia**, permitindo que crianças
-visualizem, explorem e compreendam esses artefatos por meio da tecnologia atual.
+Aplicação web educacional para explorar instrumentos mencionados em contextos bíblicos por meio de conteúdo histórico, referências, ciência do som e modelos 3D.
 
-O projeto integra **fé, história e ciência**, promovendo aprendizado visual,
-interativo e acessível.
+O conteúdo e a exploração 3D formam a experiência principal. A realidade aumentada será aprimorada posteriormente como uma extensão opcional, sem impedir o acesso às informações em dispositivos incompatíveis.
 
-## 📚 Documentação
+## Objetivo
 
-As decisões de produto, arquitetura, roadmap e execução estão organizadas em
-[`docs/`](./docs/README.md).
+O projeto busca:
 
-## 🧱 Tecnologias
+- tornar o estudo dos instrumentos do mundo bíblico mais visual e interativo;
+- relacionar Bíblia, história, música e ciência em linguagem acessível;
+- explicar como diferentes instrumentos produzem som;
+- estimular curiosidade e aprendizado ativo;
+- oferecer uma experiência funcional em computadores, tablets e celulares.
 
-- Vue 3 e Vue Router
-- TypeScript e Vite
-- `<model-viewer>` e Three.js
-- Docker para desenvolvimento e portabilidade
-- Vercel para hospedagem estática
+## Experiência atual
 
----
+A aplicação possui:
 
-## 🎯 Objetivo do Projeto
+- catálogo de instrumentos;
+- páginas com contexto bíblico, histórico e científico;
+- referências, curiosidades e fontes consultadas;
+- visualização e manipulação do modelo 3D da Harpa;
+- estrutura de dados independente da interface;
+- temas do sistema, claro e escuro;
+- layout fluido para diferentes tamanhos de tela;
+- execução local com Node.js ou Docker;
+- publicação estática compatível com a Vercel.
 
-O objetivo deste projeto é:
+Shofar e Tamborim já possuem conteúdo educacional, mas ainda aguardam modelos 3D, imagens de capa e áudios demonstrativos. Os textos e as fontes também precisam passar por revisão factual antes da publicação definitiva.
 
-- Tornar o ensino bíblico mais **visual e interativo** para crianças  
-- Demonstrar como a **tecnologia moderna** pode ser usada como ferramenta educacional  
-- Criar analogias entre **ciência, história e fé** de forma simples e didática  
-- Estimular curiosidade, aprendizado ativo e engajamento  
+## Tecnologias
 
----
+- Vue 3 e Vue Router;
+- TypeScript e Vite;
+- `<model-viewer>` e Three.js;
+- Lucide para ícones;
+- JSON para o conteúdo dos instrumentos;
+- CSS com temas e layout responsivo;
+- Docker e Nginx;
+- Vercel para hospedagem estática.
 
-## 👧 Público-alvo
+## Execução local
 
-- Crianças, Intermediarios e Adolescentes
-- Educadores
-- Projetos educacionais cristãos
-- Igrejas e iniciativas do programa **Ciência e Fé**
+Com Node.js:
+
+```bash
+npm install
+npm run dev
+```
+
+Com Docker:
+
+```bash
+docker compose up --build
+```
+
+Consulte [Execução e deploy](./docs/execucao-e-deploy.md) para detalhes sobre desenvolvimento, imagem de produção e publicação na Vercel.
+
+## Documentação
+
+As decisões de produto, arquitetura, design, roadmap e tarefas estão organizadas em [`docs/`](./docs/README.md).
+
+## Público
+
+- crianças e adolescentes;
+- famílias e educadores;
+- projetos educacionais cristãos;
+- igrejas e iniciativas do programa **Ciência e Fé**;
+- pessoas interessadas em Bíblia, história, música e ciência.
 
 Não é necessário conhecimento técnico para utilizar a aplicação.
 
----
+## Licença
 
-## 🧠 Conceito Educacional
+O conteúdo deste repositório — incluindo código-fonte, modelos 3D, textos, imagens e áudios — está licenciado sob a **Creative Commons Attribution–NonCommercial 4.0 International (CC BY-NC 4.0)**.
 
-Cada instrumento apresentado no aplicativo busca responder três perguntas:
+- uso permitido para fins educacionais e não comerciais;
+- crédito obrigatório aos autores;
+- uso comercial somente mediante autorização prévia.
 
-1. **O que é?**  
-   Contexto histórico e bíblico do instrumento.
+Mais informações em [creativecommons.org/licenses/by-nc/4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
-2. **Como funcionava?**  
-   Materiais, forma e princípio físico (som, vibração, ar, impacto).
-
-3. **O que a ciência explica?**  
-   Curiosidades simples sobre acústica, física ou materiais.
-
-Tudo apresentado em linguagem acessível ao público infantil.
-
----
-
-## 📄 Licença
-
-Todo o conteúdo deste repositório — incluindo **código-fonte, modelos 3D, textos,
-imagens e áudios** — está licenciado sob a licença:
-
-**Creative Commons Attribution–NonCommercial 4.0 International (CC BY-NC 4.0)**
-
-- Uso permitido apenas para fins **educacionais e não comerciais**
-- **Crédito obrigatório** aos autores
-- Uso comercial somente mediante autorização prévia
-
-Mais informações:  
-https://creativecommons.org/licenses/by-nc/4.0/
-
----
-
-## 🤝 Contribuições
-
-Contribuições poderão ser avaliadas futuramente.  
-Qualquer adaptação ou redistribuição deve respeitar os termos da licença.
-
----
-
-## 👤 Autoria
+## Autoria
 
 Projeto idealizado e desenvolvido no contexto do programa **Ciência e Fé**.

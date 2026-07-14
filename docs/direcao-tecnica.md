@@ -6,7 +6,8 @@
 - **Vue Router:** navegação da SPA e identificação do instrumento pela URL.
 - **TypeScript e Vite:** tipagem, servidor de desenvolvimento e build estático.
 - **HTML e CSS:** interface leve, priorizando celulares e acessibilidade.
-- **Dados estruturados:** centralizar textos, referências, curiosidades e caminhos dos arquivos de cada instrumento em uma estrutura de domínio.
+- **Lucide:** ícones usados nos controles de tema.
+- **Dados estruturados:** manter textos, referências, curiosidades, fontes e caminhos dos arquivos em um JSON próprio para cada instrumento.
 
 Vue substitui a criação manual de elementos, listeners e rotas. A aplicação continua sendo compilada para arquivos estáticos e não depende de renderização no servidor.
 
@@ -41,7 +42,8 @@ O MindAR também foi retirado do build ativo. O arquivo de marcadores foi preser
 src/
 ├── components/      # componentes visuais reutilizáveis
 ├── composables/     # lógica de interface com ciclo de vida
-├── domain/          # dados estruturados dos instrumentos
+├── data/            # conteúdo e configuração de cada instrumento em JSON
+├── domain/          # tipos, validação e funções de consulta dos dados
 ├── views/           # páginas associadas às rotas
 ├── ui/              # estilos compartilhados
 ├── App.vue          # raiz da aplicação
@@ -61,16 +63,19 @@ Os arquivos públicos poderão ser organizados por tipo:
 
 ```text
 public/
+├── favicon.ico
 ├── models/
 ├── images/
 ├── audio/
-└── targets/
+└── targets.mind
 ```
 
-Os dados de domínio deverão relacionar cada instrumento aos seus arquivos e conteúdos, evitando caminhos e textos espalhados pelas telas.
+Os dados de cada instrumento relacionam seus arquivos e conteúdos, evitando caminhos e textos espalhados pelas telas. O TypeScript fica responsável apenas pelos tipos, pela validação básica dos JSONs e pelas funções de consulta.
+
+Imagens compartilhadas pela interface, como a ilustração do catálogo, ficam em `public/images`. Imagens específicas de um instrumento devem ser associadas pelo respectivo arquivo JSON.
 
 ## Backend
 
-A aplicação não possui backend. Textos e configurações ficam no domínio TypeScript, enquanto modelos, imagens, áudios e marcadores são arquivos estáticos.
+A aplicação não possui backend. Textos e configurações ficam nos arquivos JSON em `src/data/instruments`, enquanto modelos, imagens, áudios e marcadores são arquivos estáticos.
 
 O build gerado pelo Vite pode ser publicado na Vercel ou servido pela imagem Docker sem alterar o código da aplicação.

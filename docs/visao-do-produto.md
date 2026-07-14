@@ -10,6 +10,8 @@ A aplicação será uma experiência educacional para apresentar instrumentos hi
 
 A realidade aumentada será uma extensão da experiência, e não um requisito para acessar o conteúdo.
 
+O nome **Instrumentos do Mundo Bíblico** reforça que traduções modernas nem sempre correspondem exatamente à forma ou à classificação dos instrumentos antigos. A aplicação deve apresentar hipóteses históricas com cuidado e diferenciar reconstruções de evidências confirmadas.
+
 ## Experiência planejada
 
 O fluxo principal proposto é:
@@ -35,4 +37,6 @@ Cada instrumento poderá conter:
 - referências bíblicas;
 - explicação científica;
 - curiosidades e atividades.
+- fontes consultadas.
 
+Textos, referências e fontes ficam separados dos componentes da interface em um arquivo JSON próprio para cada instrumento.

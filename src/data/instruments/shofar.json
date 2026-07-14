@@ -1,0 +1,77 @@
+{
+  "id": "shofar",
+  "name": "Shofar",
+  "shortDescription": "Instrumento de sopro feito de chifre animal, usado na Bíblia em sinais, cerimônias, anúncios e momentos de guerra.",
+  "bibleRefs": [
+    {
+      "book": "Êxodo",
+      "chapter": 19,
+      "verse": 16,
+      "endVerse": 19
+    },
+    {
+      "book": "Josué",
+      "chapter": 6,
+      "verse": 4,
+      "endVerse": 5
+    },
+    {
+      "book": "Juízes",
+      "chapter": 7,
+      "verse": 18,
+      "endVerse": 22
+    },
+    {
+      "book": "Levítico",
+      "chapter": 25,
+      "verse": 9,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 98,
+      "verse": 6,
+      "endVerse": null
+    }
+  ],
+  "content": {
+    "biblicalContext": "O shofar aparece na Bíblia principalmente como instrumento de sinalização e cerimônia. Seu som acompanha a manifestação no Sinai, participa da narrativa de Jericó, é usado por Gideão e seus homens como sinal em combate e também aparece em anúncios religiosos e no louvor. Por isso, ele não deve ser entendido apenas como um instrumento para tocar melodias: em muitos relatos, sua função principal é chamar a atenção, reunir pessoas, marcar um momento importante ou transmitir um sinal.",
+    "historicalContext": "O shofar é um aerofone natural feito de chifre animal preparado para ser soprado, tradicionalmente associado de modo especial ao chifre de carneiro. Como materiais orgânicos se preservam mal, não é possível reconstruir com certeza o formato exato de todos os shofares usados nos diferentes períodos bíblicos. Exemplares e tradições posteriores ajudam a compreender sua construção, mas não são cópias comprovadas de um único modelo bíblico. Diferentemente de uma trombeta moderna de metal, o shofar não possui pistões, válvulas ou chaves. A Bíblia também menciona outros tipos de trombeta, inclusive instrumentos metálicos, que não devem ser confundidos automaticamente com o shofar.",
+    "scientificExplanation": "O som começa quando a pessoa sopra fazendo os lábios vibrarem, como um pequeno zumbido. Essa vibração coloca o ar dentro do chifre em movimento. O tubo do shofar favorece certas vibrações do ar, chamadas ressonâncias, e isso reforça o som. Como ele não tem válvulas nem furos para mudar o comprimento do tubo, o músico altera as notas principalmente mudando a tensão dos lábios e a forma de soprar, escolhendo diferentes ressonâncias naturais. Soprar com mais energia e fazer os lábios vibrarem com maior amplitude pode aumentar a intensidade do som. O comprimento e o formato do chifre também influenciam quais alturas são mais fáceis de produzir.",
+    "curiosities": [
+      "O shofar não possui válvulas nem teclas.",
+      "O som começa com a vibração dos lábios.",
+      "Na Bíblia, ele podia anunciar tanto uma celebração quanto um perigo.",
+      "Seu formato natural varia de um chifre para outro.",
+      "Nem toda trombeta mencionada na Bíblia era um shofar."
+    ]
+  },
+  "assets": {
+    "modelUrl": null,
+    "coverImageUrl": null,
+    "audioUrl": null
+  },
+  "ar": {
+    "enabled": false,
+    "placement": "floor",
+    "scale": "auto"
+  },
+  "sources": [
+    {
+      "title": "Shofar - European - The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/500995"
+    },
+    {
+      "title": "shofar",
+      "url": "https://omeka-s.grinnell.edu/s/MusicalInstruments/item/8040"
+    },
+    {
+      "title": "The Origins of the Shofar",
+      "url": "https://www.myjewishlearning.com/article/the-origins-of-the-shofar/"
+    },
+    {
+      "title": "Music and Musical Instruments in the Hebrew Bible and Ancient Israel/Palestine",
+      "url": "https://bibleinterp.arizona.edu/articles/Music"
+    }
+  ]
+}
