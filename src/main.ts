@@ -1,4 +1,6 @@
-import "./style.css";
-import { bootstrap } from "./app/bootstrap";
+import "./ui/styles/index.css";
+import { createApp } from "vue";
+import App from "./App.vue";
+import { router } from "./router";
 
-bootstrap();
+createApp(App).use(router).mount("#app");

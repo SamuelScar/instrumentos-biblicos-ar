@@ -1,0 +1,280 @@
+.hero {
+  max-width: 760px;
+  padding: 48px 0 28px;
+}
+
+.hero h1 {
+  margin-bottom: 18px;
+  font-size: clamp(2.35rem, 7vw, 4.8rem);
+  letter-spacing: -0.045em;
+}
+
+.hero__description {
+  max-width: 650px;
+  color: var(--color-muted);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+}
+
+.catalog > h2 {
+  margin: 24px 0;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.instrument-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.instrument-card__preview {
+  display: grid;
+  min-height: 180px;
+  place-items: center;
+  color: rgb(255 255 255 / 85%);
+  background:
+    radial-gradient(circle at 65% 25%, rgb(255 255 255 / 20%), transparent 28%),
+    linear-gradient(135deg, #9b6a3f, #4f2a15);
+  font-size: 4.5rem;
+  font-weight: 800;
+}
+
+.instrument-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 255px;
+  padding: 22px;
+}
+
+.instrument-card h3 {
+  margin: 18px 0 8px;
+  font-size: 1.5rem;
+}
+
+.instrument-card p {
+  flex: 1;
+  color: var(--color-muted);
+}
+
+.technical-tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 28px;
+}
+
+.instrument-page {
+  padding-top: 12px;
+}
+
+.instrument-header {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.instrument-header h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+}
+
+.instrument-header > p:last-child {
+  color: var(--color-muted);
+  font-size: 1.1rem;
+}
+
+.instrument-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  align-items: start;
+  gap: 28px;
+}
+
+.instrument-visual {
+  position: sticky;
+  top: 24px;
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  background: linear-gradient(145deg, #efe4d2, #fffdf8);
+  box-shadow: var(--shadow-card);
+}
+
+.instrument-model-shell {
+  position: relative;
+  width: 100%;
+  height: 560px;
+}
+
+.instrument-model {
+  display: block;
+  width: 100%;
+  height: 560px;
+  background: transparent;
+}
+
+.model-ar-button {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+}
+
+.model-loading {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  left: 18px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgb(255 253 248 / 90%);
+  color: var(--color-muted);
+}
+
+.instrument-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.content-section {
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  background: var(--color-surface);
+}
+
+.content-section h2 {
+  margin-bottom: 12px;
+  font-size: 1.15rem;
+}
+
+.content-section p:last-child {
+  margin-bottom: 0;
+}
+
+.content-section--secondary {
+  background: #f3e7d3;
+}
+
+.content-section audio {
+  width: 100%;
+}
+
+.diagnostics-page {
+  padding-top: 12px;
+}
+
+.ar-container {
+  position: relative;
+  height: 75vh;
+  min-height: 480px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: #161616;
+  color: #fff;
+}
+
+.ar-container > p {
+  padding: 20px;
+}
+
+.diagnostics-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.diagnostics-page details {
+  margin-top: 16px;
+}
+
+.diagnostics-page summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.diagnostics-output {
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  white-space: pre-wrap;
+}
+
+.diagnostics-output--dark {
+  color: #e8e8e8;
+  background: #1b1b1b;
+}
+
+.camera-preview {
+  max-width: 620px;
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: #111;
+}
+
+.camera-preview video {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .instrument-card {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.3fr);
+  }
+
+  .instrument-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .instrument-visual {
+    position: static;
+  }
+}
+
+@media (max-width: 580px) {
+  .hero {
+    padding-top: 30px;
+  }
+
+  .instrument-card {
+    display: block;
+  }
+
+  .instrument-card__preview {
+    min-height: 130px;
+  }
+
+  .instrument-visual,
+  .instrument-model-shell,
+  .instrument-model {
+    min-height: 420px;
+    height: 420px;
+  }
+
+  .page-navigation {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ar-container {
+    height: 70vh;
+    min-height: 420px;
+  }
+}

@@ -7,6 +7,19 @@ visualizem, explorem e compreendam esses artefatos por meio da tecnologia atual.
 O projeto integra **fé, história e ciência**, promovendo aprendizado visual,
 interativo e acessível.
 
+## 📚 Documentação
+
+As decisões de produto, arquitetura, roadmap e execução estão organizadas em
+[`docs/`](./docs/README.md).
+
+## 🧱 Tecnologias
+
+- Vue 3 e Vue Router
+- TypeScript e Vite
+- `<model-viewer>` e Three.js
+- Docker para desenvolvimento e portabilidade
+- Vercel para hospedagem estática
+
 ---
 
 ## 🎯 Objetivo do Projeto
@@ -74,4 +87,3 @@ Qualquer adaptação ou redistribuição deve respeitar os termos da licença.
 ## 👤 Autoria
 
 Projeto idealizado e desenvolvido no contexto do programa **Ciência e Fé**.
-
