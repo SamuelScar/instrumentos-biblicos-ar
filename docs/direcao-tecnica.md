@@ -59,6 +59,10 @@ O diagnóstico da câmera usa um composable. Recursos de navegador devem ser adq
 
 Os modelos deverão ser preparados para uso web, com atenção ao tamanho do arquivo, quantidade de polígonos e resolução das texturas.
 
+Os modelos publicados seguem a convenção `public/models/<instrumento>/<instrumento>.glb`. Cada
+JSON aponta para seu arquivo por meio de `assets.modelUrl`. O catálogo possui atualmente modelos
+para Alaúde, Flauta, Harpa, Lira, Saltério, Shofar, Sinos, Tamborim e Trombeta.
+
 Os arquivos públicos poderão ser organizados por tipo:
 
 ```text

@@ -12,7 +12,14 @@ O cabeçalho é compartilhado por toda a aplicação e reúne o nome do projeto,
 
 O catálogo possui uma ilustração própria com Shofar, lira e tambor de moldura. Essa arte apresenta visualmente o tema do projeto, enquanto o favicon permanece um ativo menor e independente.
 
-No catálogo, os cards usam uma grade com `auto-fit`, permitindo que a quantidade de colunas seja determinada pelo espaço disponível. Todo o card funciona como link para evitar ações pequenas ou ambíguas.
+No catálogo, os cards usam uma grade flexível que varia de uma coluna no celular até cinco colunas
+em telas grandes. A largura ampliada de até 1500 pixels é exclusiva do catálogo; páginas de leitura
+mantêm uma medida menor. Linhas incompletas ficam centralizadas e todo o card funciona como link
+para evitar ações pequenas ou ambíguas.
+
+O catálogo permite manter a ordem sugerida ou ordenar os instrumentos por nome, quantidade de
+referências bíblicas e quantidade de fontes. Em páginas longas, um botão flutuante discreto aparece
+depois da rolagem para permitir o retorno ao topo.
 
 Na página de um instrumento, o conteúdo está dividido em quatro áreas:
 

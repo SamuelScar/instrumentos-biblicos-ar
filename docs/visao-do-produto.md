@@ -40,3 +40,9 @@ Cada instrumento poderá conter:
 - fontes consultadas.
 
 Textos, referências e fontes ficam separados dos componentes da interface em um arquivo JSON próprio para cada instrumento.
+
+## Catálogo atual
+
+A primeira coleção reúne Alaúde, Flauta, Harpa, Lira, Saltério, Shofar, Sinos, Tamborim e Trombeta.
+Os nomes funcionam como categorias educacionais e de tradução; os textos devem deixar explícito
+quando a identificação histórica de um termo ou modelo for incerta.

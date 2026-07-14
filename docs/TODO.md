@@ -1,91 +1,84 @@
 # TODO
 
-## Prioridade atual: revisão de conteúdo e ativos
+## Estado atual
 
-- [x] Criar uma estrutura de dados separada do código da interface.
-- [x] Criar um arquivo de dados para cada instrumento:
-  - [x] Shofar;
+- [x] Manter a aplicação totalmente frontend, com dados em JSON e ativos estáticos.
+- [x] Criar catálogo e páginas individuais em Vue 3 e Vue Router.
+- [x] Separar conteúdo, tipos, componentes e estilos.
+- [x] Criar arquivos de dados para:
+  - [x] Alaúde;
+  - [x] Flauta;
   - [x] Harpa;
+  - [x] Lira;
+  - [x] Saltério;
+  - [x] Shofar;
+  - [x] Sinos;
   - [x] Tamborim;
-  - [x] Saltério.
-- [x] Manter no TypeScript apenas os tipos e as funções usadas para consultar os dados.
-- [x] Definir para todos os instrumentos os seguintes campos:
-  - [x] identificador e nome;
-  - [x] descrição curta em linguagem infantil;
-  - [x] referências bíblicas;
-  - [x] contexto bíblico;
-  - [x] contexto histórico;
-  - [x] explicação científica sobre a produção do som;
-  - [x] curiosidades em linguagem infantil;
-  - [x] caminho do modelo 3D;
-  - [x] caminho da imagem de capa;
-  - [x] caminho do áudio demonstrativo;
-  - [x] fontes consultadas.
-- [x] Produzir o conteúdo bíblico, histórico e científico do Shofar.
-- [x] Produzir o conteúdo bíblico, histórico e científico da Harpa.
-- [x] Produzir o conteúdo bíblico, histórico e científico do Tamborim.
-- [ ] Produzir o conteúdo bíblico, histórico e científico do Saltério.
-- [ ] Revisar as referências, as afirmações e as fontes do Shofar.
-- [ ] Revisar as referências, as afirmações e as fontes da Harpa.
-- [ ] Revisar as referências, as afirmações e as fontes do Tamborim.
-- [ ] Revisar as referências, as afirmações e as fontes do Saltério.
-- [x] Adicionar curiosidades infantis para os três instrumentos.
-- [x] Atualizar os componentes Vue para consumir somente a nova estrutura de dados.
+  - [x] Trombeta.
+- [x] Preencher descrição, referências bíblicas, contextos, ciência do som, curiosidades e fontes.
+- [x] Adicionar um modelo GLB para cada instrumento.
+- [x] Padronizar modelos como `public/models/<instrumento>/<instrumento>.glb`.
+- [x] Permitir rotação e zoom dos modelos.
+- [x] Implementar temas do sistema, claro e escuro.
+- [x] Criar layout responsivo do catálogo e páginas internas.
+- [x] Adicionar ordenação ao catálogo.
+- [x] Adicionar retorno flutuante ao topo em páginas longas.
+- [x] Preparar execução local, Docker, Nginx e deploy estático na Vercel.
 
-## Ativos visuais e sonoros
+## Próxima entrega: consolidação do catálogo 3D
 
-- [ ] Adicionar uma imagem de capa para a Harpa.
-- [ ] Adicionar uma imagem de capa para o Shofar.
-- [ ] Adicionar uma imagem de capa para o Tamborim.
-- [ ] Adicionar um áudio demonstrativo da Harpa.
-- [ ] Adicionar um áudio demonstrativo do Shofar.
-- [ ] Adicionar um áudio demonstrativo do Tamborim.
-- [ ] Exibir as imagens de capa no catálogo e na página do instrumento.
-- [x] Exibir o reprodutor de áudio somente quando o arquivo estiver disponível.
+- [ ] Validar todos os campos dos JSONs com um esquema de dados, além das verificações atuais de id e RA.
+- [ ] Auditar peso, quantidade de polígonos e resolução das texturas dos nove modelos.
+- [ ] Otimizar primeiro os modelos acima de 10 MiB:
+  - [ ] Trombeta, aproximadamente 14,6 MiB;
+  - [ ] Saltério, aproximadamente 13,6 MiB;
+  - [ ] Shofar, aproximadamente 12,1 MiB.
+- [ ] Avaliar também a Flauta, aproximadamente 6,9 MiB, em aparelhos mais simples.
+- [ ] Confirmar enquadramento, orientação, materiais e controles de cada modelo.
+- [ ] Validar tempo de carregamento e consumo de memória em celulares.
+- [ ] Definir um estado visual consistente para carregamento e falha dos modelos.
+- [ ] Gerar uma imagem de capa ou pôster para cada instrumento.
+- [x] Exibir capas no catálogo quando `coverImageUrl` estiver preenchido.
+- [x] Usar a capa como pôster do visualizador quando estiver disponível.
 
-## Design e temas
+## Revisão editorial e procedência
 
-- [x] Criar tokens semânticos para cores, superfícies, bordas e sombras.
-- [x] Implementar as preferências de tema do sistema, claro e escuro.
-- [x] Salvar a preferência de tema no navegador.
-- [x] Criar um cabeçalho compartilhado com o seletor de tema.
-- [x] Tornar a grade do catálogo fluida.
-- [x] Reorganizar a página do instrumento para separar exploração e leitura.
-- [x] Exibir curiosidades e fontes na página do instrumento.
-- [x] Respeitar a preferência por movimentos reduzidos.
-- [x] Adicionar uma ilustração própria ao hero do catálogo.
-- [x] Configurar o favicon da aplicação.
-- [ ] Validar contraste e navegação por teclado nos dois temas.
-- [ ] Validar o layout em diferentes tamanhos de tela.
+- [ ] Revisar referências bíblicas, afirmações históricas e explicações científicas dos nove instrumentos.
+- [ ] Abrir e verificar todas as URLs registradas como fontes.
+- [ ] Padronizar transliterações e o modo de apresentar termos hebraicos, aramaicos e gregos.
+- [ ] Evitar que modelos comparativos sejam apresentados como reconstruções comprovadas.
+- [ ] Registrar para cada modelo sua origem, autoria, URL, licença e alterações realizadas.
+- [ ] Revisar a atribuição dos ativos antes da publicação definitiva.
+- [ ] Deixar explícito quando um ativo de terceiro possuir termos diferentes da licença do projeto.
 
-## Experiência 3D
+## Áudio e conteúdo complementar
 
-- [x] Adicionar o modelo 3D da Harpa.
-- [x] Adicionar o primeiro modelo 3D do Saltério.
-- [x] Permitir rotação e zoom no modelo 3D.
-- [ ] Encontrar e adicionar um modelo 3D do Shofar.
-- [ ] Encontrar e adicionar um modelo 3D do Tamborim.
-- [ ] Otimizar os modelos para carregamento em celulares quando necessário.
-- [ ] Reduzir o modelo do Saltério, atualmente com aproximadamente 13,6 MiB.
-- [ ] Padronizar nomes, pastas e formato GLB dos modelos publicados.
-- [ ] Confirmar visualmente o enquadramento e a orientação de cada modelo.
-- [ ] Validar a interface 3D em telas menores e celulares.
+- [ ] Definir critérios para escolher gravações demonstrativas historicamente cuidadosas.
+- [ ] Adicionar um áudio demonstrativo para cada instrumento quando houver material adequado.
+- [x] Exibir o reprodutor somente quando `audioUrl` estiver preenchido.
+- [ ] Avaliar pequenas atividades ou perguntas educativas para cada instrumento.
 
-> A adequação histórica dos modelos será verificada durante a escolha de cada arquivo antes de ele ser adicionado ao projeto.
+## Design, acessibilidade e dispositivos
+
+- [ ] Validar contraste nos temas claro e escuro.
+- [ ] Percorrer todo o fluxo usando somente teclado.
+- [ ] Verificar rótulos e leitura por tecnologia assistiva.
+- [ ] Validar catálogo, páginas internas e visualizador em celular, tablet, notebook e tela ampla.
+- [ ] Testar o visualizador 3D em navegadores reais com diferentes capacidades gráficas.
+- [ ] Revisar o acesso às ferramentas técnicas para decidir se devem permanecer visíveis ao público.
 
 ## Realidade aumentada: etapa futura
 
-- [ ] Retomar a experiência **Ver no meu espaço** depois que a experiência 3D estiver completa.
-- [ ] Ajustar a escala física de cada modelo para uso em realidade aumentada.
-- [ ] Validar o posicionamento dos modelos no ambiente.
-- [ ] Testar a experiência em aparelhos Android compatíveis.
-- [ ] Testar a experiência em aparelhos iOS compatíveis.
-- [ ] Definir mensagens de indisponibilidade para aparelhos sem suporte.
-- [ ] Reavaliar o MindAR para atividades com cartões ou materiais impressos.
+- [ ] Retomar **Ver no meu espaço** depois que a experiência 3D estiver consolidada.
+- [ ] Definir dimensões e escala física de cada modelo.
+- [ ] Validar posicionamento em aparelhos Android compatíveis.
+- [ ] Preparar os ativos necessários e validar a experiência em iOS compatível.
+- [ ] Criar mensagens para dispositivos sem suporte.
+- [ ] Reavaliar o MindAR somente para atividades com cartões ou materiais impressos.
+- [ ] Remover `targets.mind` caso o rastreamento por imagem seja definitivamente descartado.
 
-## Pendências sem prioridade atual
+## Evoluções sem prioridade atual
 
-- [ ] Registrar origem, autoria e licença dos modelos antes da publicação definitiva.
-- [ ] Revisar acessibilidade da interface.
 - [ ] Avaliar funcionamento offline como PWA.
-- [ ] Avaliar atividades educacionais conduzidas por professores ou responsáveis.
+- [ ] Avaliar atividades conduzidas por professores ou responsáveis.
+- [ ] Considerar busca e filtros quando o catálogo crescer além da coleção atual.

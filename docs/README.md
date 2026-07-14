@@ -15,3 +15,9 @@ Esta pasta reúne as decisões, os objetivos e a evolução do projeto **Instrum
 ## Princípio central
 
 O conteúdo educacional e a exploração 3D serão o núcleo da aplicação. A realidade aumentada será uma extensão da experiência, e não um requisito para acessar o conteúdo.
+
+## Momento atual
+
+A primeira coleção reúne nove instrumentos com conteúdo e modelos 3D. O foco atual é consolidar
+desempenho, revisão editorial, acessibilidade, capas, áudio e procedência dos ativos antes de ampliar
+novamente o catálogo ou avançar na realidade aumentada.

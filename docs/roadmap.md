@@ -2,50 +2,65 @@
 
 ## Estado atual
 
-A Harpa é o primeiro piloto da experiência 3D porque seu modelo foi recuperado do projeto anterior.
+A aplicação já possui uma primeira coleção funcional com nove instrumentos:
+
+- Alaúde;
+- Flauta;
+- Harpa;
+- Lira;
+- Saltério;
+- Shofar;
+- Sinos;
+- Tamborim;
+- Trombeta.
 
 Já foram concluídos:
 
 1. [x] migração da interface para Vue 3 e Vue Router;
-2. [x] catálogo e páginas individuais dos instrumentos;
-3. [x] estrutura de dados em JSON separada da interface;
-4. [x] conteúdo inicial de Shofar, Harpa e Tamborim;
-5. [x] associação da Harpa ao modelo GLB;
-6. [x] rotação e zoom do modelo no navegador;
-7. [x] primeiro modelo 3D do Saltério, ainda sem otimização;
-8. [x] layout fluido e temas do sistema, claro e escuro;
-9. [x] identidade visual inicial, favicon e ilustração do catálogo;
-10. [x] execução estática compatível com Vercel e Docker.
+2. [x] catálogo responsivo com ordenação e páginas individuais;
+3. [x] conteúdo de cada instrumento em um arquivo JSON próprio;
+4. [x] conteúdo bíblico, histórico, científico, curiosidades e fontes para os nove instrumentos;
+5. [x] associação de todos os instrumentos a modelos GLB padronizados;
+6. [x] visualização, rotação e zoom no navegador;
+7. [x] temas do sistema, claro e escuro;
+8. [x] identidade visual, favicon e ilustração do catálogo;
+9. [x] execução estática compatível com Vercel e Docker;
+10. [x] estrutura inicial para imagens de capa, áudios e realidade aumentada opcional.
 
 ## Próxima entrega
 
-O objetivo da próxima entrega é consolidar conteúdo, mídia e experiência 3D antes de avançar na realidade aumentada:
+O próximo marco é transformar a coleção funcional em uma versão 3D consolidada, adequada para
+avaliação editorial e testes com usuários. A prioridade deixa de ser adicionar instrumentos e passa
+a ser melhorar a qualidade do que já existe.
 
-1. revisar as referências, fontes e afirmações dos três instrumentos já preenchidos;
-2. produzir e revisar o conteúdo educacional do Saltério;
-3. adicionar imagens de capa;
-4. adicionar áudios demonstrativos;
-5. encontrar modelos adequados para Shofar e Tamborim;
-6. otimizar e padronizar os arquivos GLB, começando pelo Saltério;
-7. validar enquadramento, controles e carregamento em diferentes telas;
-8. revisar contraste, navegação por teclado e acessibilidade;
-9. registrar origem, autoria e licença dos ativos usados na publicação.
+1. auditar e otimizar os modelos 3D, começando por Trombeta, Saltério e Shofar;
+2. fortalecer a validação estrutural dos arquivos JSON;
+3. validar carregamento, enquadramento e interação em celulares e computadores reais;
+4. gerar capas ou pôsteres coerentes para os nove instrumentos;
+5. revisar referências, fontes, termos originais e afirmações históricas;
+6. registrar origem, autoria e licença de todos os ativos;
+7. validar contraste, teclado e tecnologia assistiva;
+8. adicionar áudios somente quando existirem gravações adequadas e licenciadas;
+9. atualizar a documentação sempre que a coleção ou o estado dos ativos mudar.
 
 ## Realidade aumentada
 
-O `<model-viewer>` já oferece uma entrada experimental para posicionamento no ambiente, mas essa capacidade não é o foco da entrega atual.
+O `<model-viewer>` já oferece uma entrada experimental para posicionamento no ambiente, atualmente
+habilitada apenas onde a configuração do instrumento permite. Essa capacidade continua fora do
+foco da próxima entrega.
 
-Depois que a experiência 3D estiver consolidada, será necessário:
+Depois da consolidação da experiência 3D, será necessário:
 
-- definir a escala física dos modelos;
+- definir dimensões e escala física dos modelos;
 - validar posicionamento em Android e iOS compatíveis;
+- preparar os formatos e ativos exigidos por cada plataforma;
 - criar mensagens para dispositivos sem suporte;
-- decidir se a entrada experimental pode ser apresentada como recurso estável;
+- decidir se a experiência pode ser apresentada como recurso estável;
 - reavaliar o MindAR somente para atividades com cartões ou materiais impressos.
 
 ## Evoluções posteriores
 
-- adicionar novos instrumentos ao catálogo;
+- adicionar busca, categorias e filtros quando o catálogo crescer;
 - criar atividades conduzidas por educadores;
 - avaliar funcionamento offline como aplicação web instalável;
 - aprimorar desempenho e compatibilidade em dispositivos reais;

@@ -18,18 +18,20 @@ O projeto busca:
 
 A aplicação possui:
 
-- catálogo de instrumentos;
+- catálogo com nove instrumentos, ordenação e layout responsivo;
 - páginas com contexto bíblico, histórico e científico;
 - referências, curiosidades e fontes consultadas;
-- visualização e manipulação do modelo 3D da Harpa;
-- primeiro modelo 3D do Saltério, ainda aguardando otimização e conteúdo educacional;
+- visualização e manipulação de modelos 3D de Alaúde, Flauta, Harpa, Lira, Saltério,
+  Shofar, Sinos, Tamborim e Trombeta;
 - estrutura de dados independente da interface;
 - temas do sistema, claro e escuro;
-- layout fluido para diferentes tamanhos de tela;
+- layout fluido para diferentes tamanhos de tela e retorno rápido ao topo;
 - execução local com Node.js ou Docker;
 - publicação estática compatível com a Vercel.
 
-Shofar e Tamborim já possuem conteúdo educacional, mas ainda aguardam modelos 3D, imagens de capa e áudios demonstrativos. O Saltério possui um primeiro modelo 3D, mas ainda aguarda conteúdo. Os textos e as fontes também precisam passar por revisão factual antes da publicação definitiva.
+Todos os instrumentos cadastrados possuem conteúdo educacional e modelo 3D. As próximas etapas são
+otimizar os arquivos mais pesados, revisar textos e fontes, validar acessibilidade e dispositivos reais,
+registrar a procedência dos ativos e adicionar imagens de capa e áudios demonstrativos.
 
 ## Tecnologias
 
@@ -75,7 +77,9 @@ Não é necessário conhecimento técnico para utilizar a aplicação.
 
 ## Licença
 
-O conteúdo deste repositório — incluindo código-fonte, modelos 3D, textos, imagens e áudios — está licenciado sob a **Creative Commons Attribution–NonCommercial 4.0 International (CC BY-NC 4.0)**.
+O código e o conteúdo autoral deste repositório estão licenciados sob a **Creative Commons
+Attribution–NonCommercial 4.0 International (CC BY-NC 4.0)**. Ativos obtidos de terceiros devem
+respeitar também suas licenças de origem, que precisam ser registradas antes da publicação definitiva.
 
 - uso permitido para fins educacionais e não comerciais;
 - crédito obrigatório aos autores;
