@@ -22,13 +22,14 @@ A aplicação possui:
 - páginas com contexto bíblico, histórico e científico;
 - referências, curiosidades e fontes consultadas;
 - visualização e manipulação do modelo 3D da Harpa;
+- primeiro modelo 3D do Saltério, ainda aguardando otimização e conteúdo educacional;
 - estrutura de dados independente da interface;
 - temas do sistema, claro e escuro;
 - layout fluido para diferentes tamanhos de tela;
 - execução local com Node.js ou Docker;
 - publicação estática compatível com a Vercel.
 
-Shofar e Tamborim já possuem conteúdo educacional, mas ainda aguardam modelos 3D, imagens de capa e áudios demonstrativos. Os textos e as fontes também precisam passar por revisão factual antes da publicação definitiva.
+Shofar e Tamborim já possuem conteúdo educacional, mas ainda aguardam modelos 3D, imagens de capa e áudios demonstrativos. O Saltério possui um primeiro modelo 3D, mas ainda aguarda conteúdo. Os textos e as fontes também precisam passar por revisão factual antes da publicação definitiva.
 
 ## Tecnologias
 

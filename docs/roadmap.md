@@ -12,22 +12,24 @@ Já foram concluídos:
 4. [x] conteúdo inicial de Shofar, Harpa e Tamborim;
 5. [x] associação da Harpa ao modelo GLB;
 6. [x] rotação e zoom do modelo no navegador;
-7. [x] layout fluido e temas do sistema, claro e escuro;
-8. [x] identidade visual inicial, favicon e ilustração do catálogo;
-9. [x] execução estática compatível com Vercel e Docker.
+7. [x] primeiro modelo 3D do Saltério, ainda sem otimização;
+8. [x] layout fluido e temas do sistema, claro e escuro;
+9. [x] identidade visual inicial, favicon e ilustração do catálogo;
+10. [x] execução estática compatível com Vercel e Docker.
 
 ## Próxima entrega
 
 O objetivo da próxima entrega é consolidar conteúdo, mídia e experiência 3D antes de avançar na realidade aumentada:
 
-1. revisar as referências, fontes e afirmações dos três instrumentos;
-2. adicionar imagens de capa;
-3. adicionar áudios demonstrativos;
-4. encontrar modelos adequados para Shofar e Tamborim;
-5. otimizar e padronizar os arquivos GLB;
-6. validar enquadramento, controles e carregamento em diferentes telas;
-7. revisar contraste, navegação por teclado e acessibilidade;
-8. registrar origem, autoria e licença dos ativos usados na publicação.
+1. revisar as referências, fontes e afirmações dos três instrumentos já preenchidos;
+2. produzir e revisar o conteúdo educacional do Saltério;
+3. adicionar imagens de capa;
+4. adicionar áudios demonstrativos;
+5. encontrar modelos adequados para Shofar e Tamborim;
+6. otimizar e padronizar os arquivos GLB, começando pelo Saltério;
+7. validar enquadramento, controles e carregamento em diferentes telas;
+8. revisar contraste, navegação por teclado e acessibilidade;
+9. registrar origem, autoria e licença dos ativos usados na publicação.
 
 ## Realidade aumentada
 

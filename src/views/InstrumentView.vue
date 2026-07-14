@@ -51,11 +51,12 @@ const instrument = computed(() => {
         <section class="overview-section">
           <p class="eyebrow">Referências</p>
           <h2>Onde aparece na Bíblia?</h2>
-          <ul class="reference-list">
+          <ul v-if="instrument.bibleRefs.length" class="reference-list">
             <li v-for="reference in instrument.bibleRefs" :key="formatBibleRef(reference)">
               {{ formatBibleRef(reference) }}
             </li>
           </ul>
+          <p v-else>Referências em preparação.</p>
         </section>
 
         <section class="overview-section overview-section--soft">

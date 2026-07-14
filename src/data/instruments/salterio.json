@@ -1,0 +1,104 @@
+{
+  "id": "salterio",
+  "name": "Saltério",
+  "shortDescription": "Nome tradicional de traduções bíblicas para antigos instrumentos de cordas, sobretudo o nevel, cuja forma exata permanece discutida.",
+  "bibleRefs": [
+    {
+      "book": "1 Samuel",
+      "chapter": 10,
+      "verse": 5,
+      "endVerse": null
+    },
+    {
+      "book": "2 Samuel",
+      "chapter": 6,
+      "verse": 5,
+      "endVerse": null
+    },
+    {
+      "book": "1 Crônicas",
+      "chapter": 13,
+      "verse": 8,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 33,
+      "verse": 2,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 71,
+      "verse": 22,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 81,
+      "verse": 2,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 92,
+      "verse": 3,
+      "endVerse": null
+    },
+    {
+      "book": "Salmos",
+      "chapter": 150,
+      "verse": 3,
+      "endVerse": null
+    }
+  ],
+  "content": {
+    "biblicalContext": "A palavra portuguesa “saltério” pertence à história das traduções da Bíblia e não funciona, por si só, como uma identificação arqueológica precisa. Em muitas passagens do Antigo Testamento, traduções tradicionais empregaram “saltério” para representar o hebraico nevel, um instrumento de cordas cuja forma exata continua discutida. O nevel aparece várias vezes ao lado do kinnor, o que indica que os dois nomes normalmente designavam instrumentos distintos, embora ambos fossem cordofones e suas traduções variem entre “harpa”, “lira”, “saltério” e outros termos conforme a versão bíblica. O kinnor é geralmente relacionado por estudiosos a algum tipo de lira antiga, enquanto a classificação exata do nevel é menos segura e já foi proposta como harpa, lira ou outro instrumento dedilhado. O grego psaltērion também designava um instrumento de cordas dedilhadas e influenciou palavras posteriores como “saltério” e “psaltério”. Nas antigas tradições de tradução, porém, termos gregos podiam ser usados para aproximar instrumentos semíticos de categorias conhecidas pelos leitores gregos. Por isso, uma tradução que diga “saltério” não prova que o instrumento bíblico tivesse a mesma forma dos saltérios conhecidos na Europa medieval ou em reconstruções modernas.",
+    "historicalContext": "No antigo Oriente Próximo existiam diversos instrumentos de cordas, entre eles liras e harpas, conhecidos por textos, representações artísticas e alguns restos arqueológicos. Uma lira possui, de modo geral, uma caixa ou corpo ressonante ligado a dois braços que sustentam uma travessa, à qual as cordas são presas. A harpa organiza as cordas de maneira diferente, estendendo-as entre o corpo ressonante e um braço ou pescoço, sem a travessa característica da lira. No contexto do antigo Israel, o kinnor é frequentemente identificado como uma forma de lira, enquanto o nevel é mais difícil de reconstruir com segurança. Algumas classificações o tratam como harpa e outras como um tipo de lira ou cordofone dedilhado diferente do kinnor. O fato de nevel e kinnor aparecerem juntos em diversas passagens favorece a ideia de que não eram simplesmente dois nomes para o mesmo instrumento. O termo grego psaltērion tinha uso próprio no mundo grego para instrumentos de cordas tocados por dedilhado, mas seu emprego em tradições de tradução não permite concluir que todos os instrumentos bíblicos assim nomeados tivessem uma única forma. Séculos depois, na Europa medieval, “saltério” passou a designar especialmente instrumentos do tipo cítara, com várias cordas estendidas sobre uma caixa de ressonância, frequentemente de formato trapezoidal ou semelhante. Esses saltérios medievais, assim como saltérios modernos, instrumentos tocados com arco e reconstruções contemporâneas, não devem ser tratados automaticamente como reproduções do nevel, do kinnor ou do psaltērion da Antiguidade. O modelo 3D desta aplicação é apenas uma reconstrução visual de um saltério e não constitui prova da aparência de um instrumento bíblico específico.",
+    "scientificExplanation": "Em um instrumento de cordas, o som começa quando uma corda é puxada e solta ou colocada em vibração de outra maneira. A altura da nota depende principalmente do comprimento da parte que vibra, da tensão e da massa por unidade de comprimento da corda. Em condições semelhantes, uma corda mais curta tende a produzir um som mais agudo; uma corda mais tensionada também tende a produzir um som mais agudo; e uma corda mais espessa ou mais pesada tende a produzir um som mais grave. A corda não vibra em apenas uma frequência: junto com a frequência fundamental surgem modos de vibração superiores, chamados harmônicos. A combinação e a intensidade desses componentes ajudam a formar o timbre, isto é, a qualidade que faz dois instrumentos soarem diferentes mesmo quando produzem a mesma nota. O ponto em que a corda é dedilhada, o material da corda e a construção do instrumento também modificam esse conjunto de frequências. Sozinha, uma corda movimenta pouco ar e produz um som relativamente fraco. Quando sua vibração é transmitida a um tampo ou a uma caixa de ressonância, uma área maior passa a vibrar e o som pode ser irradiado com maior intensidade. O formato, o volume interno, os materiais e as aberturas do corpo ressonante influenciam quais frequências são reforçadas e, portanto, também afetam o timbre. A intensidade percebida depende da amplitude das vibrações e da eficiência com que o instrumento transfere energia para o ar.",
+    "curiosities": [
+      "A palavra “saltério” pode esconder instrumentos diferentes dependendo da época e da tradução.",
+      "Nevel e kinnor aparecem juntos em várias passagens, indicando que provavelmente não eram o mesmo instrumento.",
+      "Os estudiosos ainda discutem se o nevel era mais parecido com uma harpa, uma lira ou outro cordofone.",
+      "Saltérios medievais famosos surgiram muitos séculos depois do período de grande parte dos textos bíblicos.",
+      "Cordas mais curtas ou mais tensionadas costumam produzir notas mais agudas.",
+      "Uma caixa de ressonância ajuda a transformar a pequena vibração das cordas em um som mais forte."
+    ]
+  },
+  "assets": {
+    "modelUrl": "/models/salterio/Salterio_texturizado.glb",
+    "coverImageUrl": null,
+    "audioUrl": null
+  },
+  "ar": {
+    "enabled": false,
+    "placement": "floor",
+    "scale": "auto"
+  },
+  "sources": [
+    {
+      "title": "Music and Musical Instruments in the Hebrew Bible and Ancient Israel/Palestine",
+      "url": "https://bibleinterp.arizona.edu/articles/Music"
+    },
+    {
+      "title": "The music of Israel during the Iron Age",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-companion-to-jewish-music/music-of-israel-during-the-iron-age/0EE5C1109057819B84F891364213593D"
+    },
+    {
+      "title": "Biblical Musical Instruments in Post-Biblical Sources and in Bible Translations",
+      "url": "https://www.cambridge.org/core/books/abs/compendium-of-musical-instruments-and-instrumental-terminology-in-the-bible/biblical-musical-instruments-in-postbiblical-sources-and-in-bible-translations/E47FA6EDDB8C2899992965C72EE6236E"
+    },
+    {
+      "title": "Psaltery",
+      "url": "https://caslabs.case.edu/medren/medieval-instruments/psaltery/"
+    },
+    {
+      "title": "ψαλτήριον",
+      "url": "https://logeion.uchicago.edu/%CF%88%CE%B1%CE%BB%CF%84%CE%AE%CF%81%CE%B9%CE%BF%CE%BD"
+    },
+    {
+      "title": "Strings, standing waves and harmonics",
+      "url": "https://www.phys.unsw.edu.au/jw/strings.html"
+    }
+  ]
+}

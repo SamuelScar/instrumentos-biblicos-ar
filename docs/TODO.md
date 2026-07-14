@@ -6,7 +6,8 @@
 - [x] Criar um arquivo de dados para cada instrumento:
   - [x] Shofar;
   - [x] Harpa;
-  - [x] Tamborim.
+  - [x] Tamborim;
+  - [x] Saltério.
 - [x] Manter no TypeScript apenas os tipos e as funções usadas para consultar os dados.
 - [x] Definir para todos os instrumentos os seguintes campos:
   - [x] identificador e nome;
@@ -23,9 +24,11 @@
 - [x] Produzir o conteúdo bíblico, histórico e científico do Shofar.
 - [x] Produzir o conteúdo bíblico, histórico e científico da Harpa.
 - [x] Produzir o conteúdo bíblico, histórico e científico do Tamborim.
+- [ ] Produzir o conteúdo bíblico, histórico e científico do Saltério.
 - [ ] Revisar as referências, as afirmações e as fontes do Shofar.
 - [ ] Revisar as referências, as afirmações e as fontes da Harpa.
 - [ ] Revisar as referências, as afirmações e as fontes do Tamborim.
+- [ ] Revisar as referências, as afirmações e as fontes do Saltério.
 - [x] Adicionar curiosidades infantis para os três instrumentos.
 - [x] Atualizar os componentes Vue para consumir somente a nova estrutura de dados.
 
@@ -58,10 +61,12 @@
 ## Experiência 3D
 
 - [x] Adicionar o modelo 3D da Harpa.
+- [x] Adicionar o primeiro modelo 3D do Saltério.
 - [x] Permitir rotação e zoom no modelo 3D.
 - [ ] Encontrar e adicionar um modelo 3D do Shofar.
 - [ ] Encontrar e adicionar um modelo 3D do Tamborim.
 - [ ] Otimizar os modelos para carregamento em celulares quando necessário.
+- [ ] Reduzir o modelo do Saltério, atualmente com aproximadamente 13,6 MiB.
 - [ ] Padronizar nomes, pastas e formato GLB dos modelos publicados.
 - [ ] Confirmar visualmente o enquadramento e a orientação de cada modelo.
 - [ ] Validar a interface 3D em telas menores e celulares.
