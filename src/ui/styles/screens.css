@@ -64,12 +64,57 @@
 }
 
 .catalog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
+  --catalog-gap: clamp(1rem, 2vw, 1.5rem);
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--catalog-gap);
+}
+
+.catalog-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  padding-bottom: 2px;
+}
+
+.catalog-heading__description {
+  max-width: 620px;
+  margin: 10px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.94rem;
+}
+
+.catalog-toolbar label {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.catalog-toolbar select {
+  min-height: 44px;
+  padding: 0 42px 0 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  outline: none;
+  color: var(--color-text);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+.catalog-toolbar select:hover {
+  border-color: var(--color-border-strong);
+}
+
+.catalog-toolbar select:focus-visible {
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 22%, transparent);
 }
 
 .instrument-card {
+  flex: 0 1 100%;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--color-border);
@@ -80,6 +125,38 @@
     border-color 180ms ease,
     box-shadow 180ms ease,
     transform 180ms ease;
+}
+
+@media (min-width: 681px) {
+  .catalog-grid .instrument-card {
+    flex-basis: calc(50% - 0.75rem);
+  }
+
+  .catalog-grid .instrument-card__preview {
+    min-height: clamp(175px, 18vw, 220px);
+  }
+
+  .catalog-grid .instrument-card__content {
+    min-height: 230px;
+  }
+}
+
+@media (min-width: 901px) {
+  .catalog-grid .instrument-card {
+    flex-basis: calc(33.333% - 1rem);
+  }
+}
+
+@media (min-width: 1201px) {
+  .catalog-grid .instrument-card {
+    flex-basis: calc(25% - 1.125rem);
+  }
+}
+
+@media (min-width: 1651px) {
+  .catalog-grid .instrument-card {
+    flex-basis: calc(20% - 1.2rem);
+  }
 }
 
 .instrument-card:hover {
@@ -527,6 +604,18 @@
 
   .instrument-card__content {
     min-height: 240px;
+  }
+
+  .catalog-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding-bottom: 0;
+  }
+
+  .catalog-toolbar select {
+    width: 100%;
   }
 
   .instrument-visual {

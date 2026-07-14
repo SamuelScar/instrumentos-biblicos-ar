@@ -1,16 +1,40 @@
 <script setup lang="ts">
-import { Moon, Palette, Sun } from "@lucide/vue";
-import { ref } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { ArrowUp, Moon, Palette, Sun } from "@lucide/vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
+import { RouterLink, RouterView, useRoute } from "vue-router";
 import { useTheme, type ThemePreference } from "./composables/useTheme";
 
+const route = useRoute();
 const { themePreference } = useTheme();
 const themeMenu = ref<HTMLDetailsElement>();
+const showScrollTop = ref(false);
+
+function updateScrollTopVisibility(): void {
+  showScrollTop.value = window.scrollY > 500;
+}
+
+function scrollToTop(): void {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  window.scrollTo({
+    top: 0,
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+  });
+}
 
 function selectTheme(preference: ThemePreference): void {
   themePreference.value = preference;
   themeMenu.value?.removeAttribute("open");
 }
+
+onMounted(() => {
+  updateScrollTopVisibility();
+  window.addEventListener("scroll", updateScrollTopVisibility, { passive: true });
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", updateScrollTopVisibility);
+});
 </script>
 
 <template>
@@ -69,9 +93,20 @@ function selectTheme(preference: ThemePreference): void {
       </div>
     </header>
 
-    <main class="screen-root">
+    <main class="screen-root" :class="{ 'screen-root--catalog': route.name === 'catalog' }">
       <RouterView />
     </main>
+
+    <button
+      v-if="showScrollTop"
+      class="scroll-top-button"
+      type="button"
+      aria-label="Voltar ao topo"
+      title="Voltar ao topo"
+      @click="scrollToTop"
+    >
+      <ArrowUp :size="20" aria-hidden="true" />
+    </button>
 
     <footer class="app-footer">
       <p>Ciência, história e fé em uma experiência interativa.</p>
