@@ -56,7 +56,7 @@
   "assets": {
     "modelUrl": "/models/alaude/alaude.glb",
     "coverImageUrl": null,
-    "audioUrl": null
+    "audioUrl": "/audio/alaude/alaude.mp3"
   },
   "ar": {
     "enabled": false,

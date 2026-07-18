@@ -25,7 +25,8 @@ Já foram concluídos:
 7. [x] temas do sistema, claro e escuro;
 8. [x] identidade visual, favicon e ilustração do catálogo;
 9. [x] execução estática compatível com Vercel e Docker;
-10. [x] estrutura inicial para imagens de capa, áudios e realidade aumentada opcional.
+10. [x] demonstrações sonoras em MP3 com player próprio para os nove instrumentos;
+11. [x] estrutura inicial para imagens de capa e realidade aumentada opcional.
 
 ## Próxima entrega
 
@@ -40,7 +41,7 @@ a ser melhorar a qualidade do que já existe.
 5. revisar referências, fontes, termos originais e afirmações históricas;
 6. registrar origem, autoria e licença de todos os ativos;
 7. validar contraste, teclado e tecnologia assistiva;
-8. adicionar áudios somente quando existirem gravações adequadas e licenciadas;
+8. revisar procedência, licença, adequação e compressão dos áudios adicionados;
 9. atualizar a documentação sempre que a coleção ou o estado dos ativos mudar.
 
 ## Realidade aumentada

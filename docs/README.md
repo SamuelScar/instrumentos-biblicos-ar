@@ -19,5 +19,5 @@ O conteúdo educacional e a exploração 3D serão o núcleo da aplicação. A r
 ## Momento atual
 
 A primeira coleção reúne nove instrumentos com conteúdo e modelos 3D. O foco atual é consolidar
-desempenho, revisão editorial, acessibilidade, capas, áudio e procedência dos ativos antes de ampliar
+desempenho, revisão editorial, acessibilidade, capas e procedência dos ativos antes de ampliar
 novamente o catálogo ou avançar na realidade aumentada.

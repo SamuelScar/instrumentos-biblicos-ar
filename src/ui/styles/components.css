@@ -15,7 +15,11 @@
   justify-content: space-between;
   gap: 24px;
   margin: 0 auto;
-  padding: 10px clamp(1rem, 4vw, 2rem);
+  padding: 10px var(--layout-inline-padding);
+}
+
+.app-header__inner--wide {
+  width: min(var(--wide-content-width), 100%);
 }
 
 .brand {
@@ -131,12 +135,16 @@
 }
 
 .app-footer {
-  width: min(var(--content-width), calc(100% - 2rem));
+  width: min(var(--content-width), 100%);
   margin: 0 auto;
-  padding: 24px 0 30px;
+  padding: 24px var(--layout-inline-padding) 30px;
   border-top: 1px solid var(--color-border);
   color: var(--color-text-muted);
   font-size: 0.85rem;
+}
+
+.app-footer--wide {
+  width: min(var(--wide-content-width), 100%);
 }
 
 .app-footer p {

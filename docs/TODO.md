@@ -19,6 +19,8 @@
 - [x] Adicionar um modelo GLB para cada instrumento.
 - [x] Padronizar modelos como `public/models/<instrumento>/<instrumento>.glb`.
 - [x] Permitir rotação e zoom dos modelos.
+- [x] Adicionar demonstrações sonoras em MP3 para os nove instrumentos.
+- [x] Criar um player de áudio próprio e integrado aos temas.
 - [x] Implementar temas do sistema, claro e escuro.
 - [x] Criar layout responsivo do catálogo e páginas internas.
 - [x] Adicionar ordenação ao catálogo.
@@ -54,8 +56,11 @@
 ## Áudio e conteúdo complementar
 
 - [ ] Definir critérios para escolher gravações demonstrativas historicamente cuidadosas.
-- [ ] Adicionar um áudio demonstrativo para cada instrumento quando houver material adequado.
+- [x] Adicionar um áudio demonstrativo para cada instrumento.
 - [x] Exibir o reprodutor somente quando `audioUrl` estiver preenchido.
+- [ ] Registrar origem, autoria e licença de cada áudio.
+- [ ] Revisar se cada gravação demonstra adequadamente o instrumento apresentado.
+- [ ] Avaliar compressão dos arquivos de áudio mais pesados para uso na web.
 - [ ] Avaliar pequenas atividades ou perguntas educativas para cada instrumento.
 
 ## Design, acessibilidade e dispositivos

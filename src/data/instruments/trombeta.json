@@ -74,7 +74,7 @@
   "assets": {
     "modelUrl": "/models/trombeta/trombeta.glb",
     "coverImageUrl": null,
-    "audioUrl": null
+    "audioUrl": "/audio/trombeta/trombeta.mp3"
   },
   "ar": {
     "enabled": false,

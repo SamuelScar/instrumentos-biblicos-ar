@@ -78,6 +78,10 @@ Os dados de cada instrumento relacionam seus arquivos e conteúdos, evitando cam
 
 Imagens compartilhadas pela interface, como a ilustração do catálogo, ficam em `public/images`. Imagens específicas de um instrumento devem ser associadas pelo respectivo arquivo JSON.
 
+Os áudios seguem a convenção `public/audio/<instrumento>/<instrumento>.mp3` e são associados pelo
+campo `assets.audioUrl`. O player visual fica isolado em um componente Vue, enquanto o elemento
+HTML de áudio permanece responsável por carregamento e reprodução no navegador.
+
 ## Backend
 
 A aplicação não possui backend. Textos e configurações ficam nos arquivos JSON em `src/data/instruments`, enquanto modelos, imagens, áudios e marcadores são arquivos estáticos.

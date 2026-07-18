@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { RouterLink, useRoute } from "vue-router";
+import AudioPlayer from "../components/AudioPlayer.vue";
 import InstrumentModel from "../components/InstrumentModel.vue";
 import { findInstrumentById, formatBibleRef } from "../domain/instruments";
 
@@ -76,7 +77,11 @@ const instrument = computed(() => {
         <section v-if="instrument.assets.audioUrl" class="overview-section">
           <p class="eyebrow">Demonstração</p>
           <h2>Ouça o instrumento</h2>
-          <audio controls preload="none" :src="instrument.assets.audioUrl" />
+          <AudioPlayer
+            :key="instrument.id"
+            :src="instrument.assets.audioUrl"
+            :instrument-name="instrument.name"
+          />
         </section>
       </aside>
     </section>

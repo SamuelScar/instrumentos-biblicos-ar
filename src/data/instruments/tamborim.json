@@ -50,7 +50,7 @@
   "assets": {
     "modelUrl": "/models/tamborim/tamborim.glb",
     "coverImageUrl": null,
-    "audioUrl": null
+    "audioUrl": "/audio/tamborim/tamborim.mp3"
   },
   "ar": {
     "enabled": false,

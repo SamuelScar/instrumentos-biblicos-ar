@@ -38,7 +38,7 @@
   "assets": {
     "modelUrl": "/models/sinos/sinos.glb",
     "coverImageUrl": null,
-    "audioUrl": null
+    "audioUrl": "/audio/sinos/sinos.mp3"
   },
   "ar": {
     "enabled": false,

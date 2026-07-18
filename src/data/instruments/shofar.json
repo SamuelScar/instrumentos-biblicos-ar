@@ -49,7 +49,7 @@
   "assets": {
     "modelUrl": "/models/shofar/shofar.glb",
     "coverImageUrl": null,
-    "audioUrl": null
+    "audioUrl": "/audio/shofar/shofar.mp3"
   },
   "ar": {
     "enabled": false,
