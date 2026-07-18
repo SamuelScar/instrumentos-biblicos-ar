@@ -11,10 +11,12 @@ defineProps<{
 }>();
 
 type ViewerState = "preparing" | "loading" | "ready" | "error";
+type ArStatus = "not-presenting" | "session-started" | "object-placed" | "failed";
 
 const componentReady = ref(false);
 const viewerKey = ref(0);
 const viewerState = ref<ViewerState>("preparing");
+const arStatus = ref<ArStatus>("not-presenting");
 
 async function prepareViewer(): Promise<void> {
   viewerState.value = "preparing";
@@ -37,8 +39,17 @@ function reportError(): void {
   viewerState.value = "error";
 }
 
+function reportArStatus(event: Event): void {
+  arStatus.value = (event as CustomEvent<{ status: ArStatus }>).detail.status;
+}
+
+function prepareArSession(): void {
+  arStatus.value = "not-presenting";
+}
+
 async function retryLoading(): Promise<void> {
   viewerKey.value += 1;
+  arStatus.value = "not-presenting";
 
   if (componentReady.value) {
     viewerState.value = "loading";
@@ -73,15 +84,36 @@ onMounted(prepareViewer);
       :ar-scale="ar.scale"
       @load="finishLoading"
       @error="reportError"
+      @ar-status="reportArStatus"
     >
       <button
         v-if="ar.enabled"
         class="button button--primary model-ar-button"
         slot="ar-button"
         type="button"
+        @click="prepareArSession"
       >
         Ver no meu espaço
       </button>
+
+      <div
+        v-if="arStatus === 'session-started'"
+        class="model-ar-feedback"
+        role="status"
+        aria-live="polite"
+      >
+        <strong>Procure uma superfície</strong>
+        <span>Mova o celular devagar até encontrar o chão.</span>
+      </div>
+
+      <div
+        v-else-if="arStatus === 'failed'"
+        class="model-ar-feedback model-ar-feedback--error"
+        role="alert"
+      >
+        <strong>Não foi possível abrir a realidade aumentada.</strong>
+        <span>Use um celular compatível, acesse por HTTPS e permita o uso da câmera.</span>
+      </div>
     </model-viewer>
 
     <div

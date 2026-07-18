@@ -47,16 +47,16 @@ que já existe.
 
 ## Realidade aumentada
 
-O `<model-viewer>` já oferece uma entrada experimental para posicionamento no ambiente, atualmente
-habilitada apenas onde a configuração do instrumento permite. Essa capacidade continua fora do
-foco da próxima entrega.
+O MVP de realidade aumentada começa pela Harpa. Seu modelo foi normalizado para aproximadamente
+1,80 m, centralizado e apoiado no chão, mantendo o redimensionamento permitido durante a sessão.
+O visualizador também orienta a procura por uma superfície e informa quando não consegue iniciar a
+experiência. Os demais instrumentos permanecem desabilitados até receberem uma escala coerente.
 
-Depois da consolidação da experiência 3D, será necessário:
+Para ampliar a experiência, será necessário:
 
-- definir dimensões e escala física dos modelos;
+- definir dimensões e escala física dos demais modelos;
 - validar posicionamento em Android e iOS compatíveis;
 - preparar os formatos e ativos exigidos por cada plataforma;
-- criar mensagens para dispositivos sem suporte;
 - decidir se a experiência pode ser apresentada como recurso estável;
 - reavaliar o MindAR somente para atividades com cartões ou materiais impressos.
 

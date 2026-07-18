@@ -19,6 +19,6 @@ O conteúdo educacional e a exploração 3D serão o núcleo da aplicação. A r
 ## Momento atual
 
 A primeira coleção reúne nove instrumentos com conteúdo, modelos 3D, capas, demonstrações sonoras
-e estados consistentes de carregamento e falha. O foco atual é concluir o MVP com revisão editorial,
-acessibilidade, validação em dispositivos reais e registro da procedência dos ativos.
-Otimização avançada dos modelos e realidade aumentada permanecem como evoluções posteriores.
+e estados consistentes de carregamento e falha. A Harpa inicia o piloto de posicionamento em
+realidade aumentada do MVP. Os demais instrumentos serão habilitados à medida que suas escalas forem
+normalizadas. Otimização avançada dos modelos permanece como evolução posterior.

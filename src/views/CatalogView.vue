@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Wrench } from "@lucide/vue";
 import { computed, ref } from "vue";
 import { RouterLink } from "vue-router";
 import InstrumentCard from "../components/InstrumentCard.vue";
@@ -8,6 +9,7 @@ type SortOption = "default" | "name-asc" | "name-desc" | "bible-refs" | "sources
 
 const sortOption = ref<SortOption>("default");
 const nameCollator = new Intl.Collator("pt-BR", { sensitivity: "base" });
+const isDevelopment = import.meta.env.DEV;
 
 const sortedInstruments = computed(() => {
   const sorted = [...instruments];
@@ -87,9 +89,11 @@ const sortedInstruments = computed(() => {
       </div>
     </section>
 
-    <div class="technical-tools">
+    <div v-if="isDevelopment" class="technical-tools">
+      <span>Ambiente local</span>
       <RouterLink class="button button--quiet" :to="{ name: 'diagnostics' }">
-        Ferramentas técnicas
+        <Wrench :size="17" aria-hidden="true" />
+        Diagnóstico de câmera
       </RouterLink>
     </div>
   </div>

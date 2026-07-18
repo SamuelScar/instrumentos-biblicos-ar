@@ -65,15 +65,18 @@
 - [ ] Verificar rótulos e leitura por tecnologia assistiva.
 - [ ] Validar catálogo, páginas internas e visualizador em celular, tablet, notebook e tela ampla.
 - [ ] Testar o visualizador 3D em navegadores reais com diferentes capacidades gráficas.
-- [ ] Revisar o acesso às ferramentas técnicas para decidir se devem permanecer visíveis ao público.
+- [x] Manter o diagnóstico acessível por rota direta e ocultar seu atalho no catálogo público.
 
-## Realidade aumentada: etapa futura
+## Realidade aumentada: MVP e expansão
 
-- [ ] Retomar **Ver no meu espaço** depois que a experiência 3D estiver consolidada.
-- [ ] Definir dimensões e escala física de cada modelo.
+- [x] Retomar **Ver no meu espaço** com a Harpa como instrumento-piloto do MVP.
+- [ ] Definir dimensões e escala física de cada modelo:
+  - [x] Harpa normalizada para aproximadamente 1,80 m, centralizada e apoiada no chão;
+  - [ ] demais instrumentos.
 - [ ] Validar posicionamento em aparelhos Android compatíveis.
-- [ ] Preparar os ativos necessários e validar a experiência em iOS compatível.
-- [ ] Criar mensagens para dispositivos sem suporte.
+- [ ] Validar a geração automática do USDZ em iOS e criar um arquivo dedicado somente se necessário.
+- [x] Criar orientação para localização do chão e mensagem para falha ao iniciar a RA.
+- [ ] Habilitar **Ver no meu espaço** nos demais instrumentos depois de normalizar suas escalas.
 - [ ] Reavaliar o MindAR somente para atividades com cartões ou materiais impressos.
 - [ ] Remover `targets.mind` caso o rastreamento por imagem seja definitivamente descartado.
 

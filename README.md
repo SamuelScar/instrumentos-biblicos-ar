@@ -24,6 +24,7 @@ A aplicação possui:
 - visualização e manipulação de modelos 3D de Alaúde, Flauta, Harpa, Lira, Saltério,
   Shofar, Sinos, Tamborim e Trombeta;
 - demonstrações sonoras com player próprio para os nove instrumentos;
+- piloto de realidade aumentada com posicionamento da Harpa no ambiente;
 - estrutura de dados independente da interface;
 - temas do sistema, claro e escuro;
 - layout fluido para diferentes tamanhos de tela e retorno rápido ao topo;

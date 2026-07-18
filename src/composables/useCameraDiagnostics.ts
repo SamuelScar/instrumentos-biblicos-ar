@@ -1,11 +1,18 @@
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from "vue";
 
+type CameraOption = {
+  deviceId: string;
+  label: string;
+};
+
 export function useCameraDiagnostics() {
   let requestVersion = 0;
   const videoElement = ref<HTMLVideoElement | null>(null);
   const stream = shallowRef<MediaStream | null>(null);
   const permission = ref("unknown");
   const devices = ref("Carregando...");
+  const cameras = ref<CameraOption[]>([]);
+  const selectedCameraId = ref("");
   const logs = ref<string[]>([]);
 
   const isActive = computed(() => stream.value !== null);
@@ -43,9 +50,34 @@ export function useCameraDiagnostics() {
 
   async function readDevices() {
     try {
-      if (!navigator.mediaDevices?.enumerateDevices) return "enumerateDevices: unsupported";
+      if (!navigator.mediaDevices?.enumerateDevices) {
+        cameras.value = [];
+        selectedCameraId.value = "";
+        return "enumerateDevices: unsupported";
+      }
+
       const mediaDevices = await navigator.mediaDevices.enumerateDevices();
-      if (!mediaDevices.length) return "(nenhum dispositivo retornado)";
+      if (!mediaDevices.length) {
+        cameras.value = [];
+        selectedCameraId.value = "";
+        return "(nenhum dispositivo retornado)";
+      }
+
+      const availableCameras = mediaDevices
+        .filter((device) => device.kind === "videoinput")
+        .map((device, index) => ({
+          deviceId: device.deviceId,
+          label: device.label || `Câmera ${index + 1}`,
+        }));
+
+      cameras.value = availableCameras;
+
+      if (
+        selectedCameraId.value &&
+        !availableCameras.some((camera) => camera.deviceId === selectedCameraId.value)
+      ) {
+        selectedCameraId.value = "";
+      }
 
       return mediaDevices
         .map(
@@ -54,6 +86,8 @@ export function useCameraDiagnostics() {
         )
         .join("\n");
     } catch (error) {
+      cameras.value = [];
+      selectedCameraId.value = "";
       return `erro: ${error instanceof Error ? error.message : String(error)}`;
     }
   }
@@ -75,14 +109,18 @@ export function useCameraDiagnostics() {
       }
 
       let requestedStream: MediaStream;
+      const selectedDeviceId = selectedCameraId.value;
 
       try {
         requestedStream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: { ideal: "environment" } },
+          video: selectedDeviceId
+            ? { deviceId: { exact: selectedDeviceId } }
+            : { facingMode: { ideal: "environment" } },
           audio: false,
         });
-      } catch {
+      } catch (error) {
         if (currentRequest !== requestVersion) return;
+        if (selectedDeviceId) throw error;
         requestedStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
       }
 
@@ -92,6 +130,8 @@ export function useCameraDiagnostics() {
       }
 
       stream.value = requestedStream;
+      selectedCameraId.value =
+        requestedStream.getVideoTracks()[0]?.getSettings().deviceId ?? selectedCameraId.value;
       if (videoElement.value) videoElement.value.srcObject = requestedStream;
       addLog("câmera iniciada");
     } catch (error) {
@@ -107,6 +147,13 @@ export function useCameraDiagnostics() {
     await refresh();
   }
 
+  async function changeCamera() {
+    if (!isActive.value) return;
+
+    addLog("alternando câmera");
+    await startCamera();
+  }
+
   onMounted(() => {
     addLog("diagnóstico aberto");
     void refresh();
@@ -115,10 +162,13 @@ export function useCameraDiagnostics() {
 
   return {
     videoElement,
+    cameras,
     devices,
     diagnosticsText,
     isActive,
     logsText,
+    selectedCameraId,
+    changeCamera,
     startCamera,
     stopCamera: stopAndRefresh,
   };

@@ -36,6 +36,18 @@ O protótipo de `World Tracking`, que não fazia rastreamento espacial real, foi
 
 O MindAR também foi retirado do build ativo. O arquivo de marcadores foi preservado como ativo legado, mas a dependência só deverá voltar quando a experiência com materiais impressos for retomada e sua compatibilidade com as bibliotecas atuais for definida.
 
+### Piloto de RA do MVP
+
+A Harpa é o primeiro instrumento habilitado para posicionamento no ambiente. O GLB foi normalizado
+para aproximadamente 1,80 m de altura, com centro horizontal na origem e base em `Y=0`. A opção
+`ar-scale="auto"` permanece ativa para permitir que o usuário ajuste o tamanho conforme o espaço
+disponível.
+
+Durante uma sessão WebXR, a interface orienta o usuário a mover o celular até localizar o chão. O
+evento `ar-status` também é observado para apresentar uma mensagem quando a RA não pode ser
+iniciada. Android pode usar WebXR ou Scene Viewer, enquanto o Quick Look do iOS pode receber o USDZ
+gerado automaticamente pelo `<model-viewer>` nesta primeira versão.
+
 ## Organização do código
 
 ```text
@@ -54,6 +66,12 @@ src/
 O instrumento é identificado na URL, como `/instrumentos/harpa`. Isso permite atualização da página e compartilhamento de links sem estado global.
 
 O diagnóstico da câmera usa um composable. Recursos de navegador devem ser adquiridos e liberados dentro do ciclo de vida Vue, especialmente câmera, áudio e futuras sessões de realidade aumentada.
+
+A rota `/diagnostico` permanece disponível para suporte durante o desenvolvimento e em previews da
+Vercel, mas seu atalho aparece no catálogo somente em modo de desenvolvimento. Assim, os dados
+técnicos e logs não fazem parte da navegação pública do MVP. Depois que a permissão é concedida, o
+diagnóstico também permite escolher entre as câmeras enumeradas pelo navegador e trocar o fluxo
+ativo sem recarregar a página.
 
 ## Modelos e mídia
 
