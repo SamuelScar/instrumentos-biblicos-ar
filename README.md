@@ -83,15 +83,15 @@ Não é necessário conhecimento técnico para utilizar a aplicação.
 
 ## Licença
 
-O código e o conteúdo autoral deste repositório estão licenciados sob a **Creative Commons
-Attribution–NonCommercial 4.0 International (CC BY-NC 4.0)**. Ativos obtidos de terceiros devem
-respeitar também suas licenças de origem, que precisam ser registradas antes da publicação definitiva.
+O licenciamento é separado conforme o tipo de material:
 
-- uso permitido para fins educacionais e não comerciais;
-- crédito obrigatório aos autores;
-- uso comercial somente mediante autorização prévia.
+- o código autoral usa a **PolyForm Noncommercial License 1.0.0**;
+- textos, dados educacionais e artes autorais usam a **CC BY-NC 4.0**;
+- bibliotecas e ativos de terceiros permanecem sob suas licenças de origem.
 
-Mais informações em [creativecommons.org/licenses/by-nc/4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+Consulte [LICENSE.md](LICENSE.md) para os termos e [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+para as bibliotecas utilizadas. Modelos 3D, imagens e áudios de terceiros não são automaticamente
+cobertos pela licença do projeto.
 
 ## Autoria
 

@@ -15,6 +15,10 @@ const {
   startCamera,
   stopCamera,
 } = useCameraDiagnostics();
+
+function setVideoElement(element: unknown): void {
+  videoElement.value = element instanceof HTMLVideoElement ? element : null;
+}
 </script>
 
 <template>
@@ -68,7 +72,7 @@ const {
         </div>
 
         <div class="camera-preview" :class="{ 'camera-preview--active': isActive }">
-          <video ref="videoElement" playsinline muted autoplay />
+          <video :ref="setVideoElement" playsinline muted autoplay />
           <div v-if="!isActive" class="camera-preview__empty">
             <Camera :size="32" aria-hidden="true" />
             <strong>A câmera ainda não foi iniciada</strong>

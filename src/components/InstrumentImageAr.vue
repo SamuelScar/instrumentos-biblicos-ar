@@ -268,7 +268,7 @@ async function startExperience(): Promise<void> {
   let currentSession: MindArImageSession | null = null;
 
   try {
-    currentSession = new MindArImageSession({
+    const activeSession = new MindArImageSession({
       container: viewportElement.value,
       targetUrl: props.imageTracking.targetFileUrl,
       targetIndex: props.imageTracking.targetIndex,
@@ -281,7 +281,8 @@ async function startExperience(): Promise<void> {
         if (currentRequest === requestVersion) experienceState.value = "scanning";
       },
     });
-    session = currentSession;
+    currentSession = activeSession;
+    session = activeSession;
 
     const model = await loadModel(props.modelUrl);
 
@@ -292,32 +293,32 @@ async function startExperience(): Promise<void> {
 
     loadedModel = model;
     modelPivot = prepareModel(model);
-    currentSession.anchor.add(modelPivot);
+    activeSession.anchor.add(modelPivot);
 
     const ambientLight = new HemisphereLight(0xfff4dd, 0x4c382a, 2.2);
     const keyLight = new DirectionalLight(0xffffff, 2.8);
     keyLight.position.set(1.5, 2.5, 3);
-    currentSession.scene.add(ambientLight, keyLight);
-    prepareEnvironment(currentSession);
+    activeSession.scene.add(ambientLight, keyLight);
+    prepareEnvironment(activeSession);
 
     let previousFrameTime: number | null = null;
-    currentSession.renderer.setAnimationLoop((frameTime) => {
+    activeSession.renderer.setAnimationLoop((frameTime) => {
       const deltaSeconds =
         previousFrameTime === null ? 1 / 60 : (frameTime - previousFrameTime) / 1000;
       previousFrameTime = frameTime;
 
-      currentSession.updateAnchorPose(deltaSeconds);
-      currentSession.renderer.render(currentSession.scene, currentSession.camera);
+      activeSession.updateAnchorPose(deltaSeconds);
+      activeSession.renderer.render(activeSession.scene, activeSession.camera);
     });
 
-    await currentSession.start();
+    await activeSession.start();
 
     if (currentRequest !== requestVersion) {
-      currentSession.dispose();
+      activeSession.dispose();
       return;
     }
 
-    experienceState.value = currentSession.isTargetVisible ? "found" : "scanning";
+    experienceState.value = activeSession.isTargetVisible ? "found" : "scanning";
 
     await refreshCameras();
     if (currentRequest !== requestVersion) return;
