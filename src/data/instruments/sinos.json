@@ -41,9 +41,17 @@
     "audioUrl": "/audio/sinos/sinos.mp3"
   },
   "ar": {
-    "enabled": false,
+    "enabled": true,
     "placement": "floor",
-    "scale": "auto"
+    "scale": "fixed",
+    "imageTracking": {
+      "enabled": true,
+      "targetFileUrl": "/ar/sinos/targets.mind",
+      "targetImageUrl": "/ar/sinos/card-ra-sinos.png",
+      "targetIndex": 4,
+      "modelScale": 8,
+      "modelRotation": [0, -0.28, 0]
+    }
   },
   "sources": [
     {

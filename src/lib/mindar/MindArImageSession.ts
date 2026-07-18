@@ -10,6 +10,13 @@ import {
 } from "three";
 
 const MINDAR_CORE_URL = "/vendor/mindar/1.2.5/mindar-image.prod.js";
+const TRACKING_FILTER_MIN_CUTOFF = 0.0001;
+const TRACKING_FILTER_SPEED_COEFFICIENT = 10;
+const DEFAULT_TRACKING_MISS_TOLERANCE = 5;
+const POSITION_DAMPING = 8;
+const ROTATION_DAMPING = 7;
+const SCALE_DAMPING = 8;
+const MAX_FRAME_DELTA_SECONDS = 0.1;
 
 type ImageTargetDimensions = [number, number];
 
@@ -23,6 +30,9 @@ type MindArControllerOptions = {
   inputWidth: number;
   inputHeight: number;
   maxTrack: number;
+  filterMinCF: number;
+  filterBeta: number;
+  missTolerance: number;
   onUpdate: (update: MindArUpdate) => void;
 };
 
@@ -102,6 +112,7 @@ export interface MindArImageSessionOptions {
   container: HTMLElement;
   targetUrl: string;
   targetIndex?: number;
+  missTolerance?: number;
   deviceId?: string;
   onTargetFound?: () => void;
   onTargetLost?: () => void;
@@ -118,6 +129,7 @@ export class MindArImageSession {
   private readonly container: HTMLElement;
   private readonly targetUrl: string;
   private readonly targetIndex: number;
+  private readonly missTolerance: number;
   private readonly deviceId?: string;
   private readonly onTargetFound?: () => void;
   private readonly onTargetLost?: () => void;
@@ -129,18 +141,23 @@ export class MindArImageSession {
   private controller: MindArController | null = null;
   private mediaStream: MediaStream | null = null;
   private postMatrix: Matrix4 | null = null;
+  private readonly targetPosition = new Vector3();
+  private readonly targetQuaternion = new Quaternion();
+  private readonly targetScale = new Vector3(1, 1, 1);
   private startTask: Promise<void> | null = null;
   private startAbortController: AbortController | null = null;
   private operationToken = 0;
   private resizeListenerAttached = false;
   private running = false;
   private targetVisible = false;
+  private poseInitialized = false;
   private disposed = false;
 
   constructor(options: MindArImageSessionOptions) {
     this.container = options.container;
     this.targetUrl = options.targetUrl;
     this.targetIndex = options.targetIndex ?? 0;
+    this.missTolerance = options.missTolerance ?? DEFAULT_TRACKING_MISS_TOLERANCE;
     this.deviceId = options.deviceId;
     this.onTargetFound = options.onTargetFound;
     this.onTargetLost = options.onTargetLost;
@@ -150,6 +167,10 @@ export class MindArImageSession {
       throw new Error("O índice do alvo do MindAR deve ser um inteiro não negativo.");
     }
 
+    if (!Number.isInteger(this.missTolerance) || this.missTolerance < 0) {
+      throw new Error("A tolerância de perda do MindAR deve ser um inteiro não negativo.");
+    }
+
     this.originalContainerPosition = this.container.style.position;
     this.changedContainerPosition = getComputedStyle(this.container).position === "static";
     if (this.changedContainerPosition) this.container.style.position = "relative";
@@ -157,7 +178,6 @@ export class MindArImageSession {
     this.scene = new Scene();
     this.camera = new PerspectiveCamera();
     this.anchor = new Group();
-    this.anchor.matrixAutoUpdate = false;
     this.anchor.visible = false;
     this.scene.add(this.anchor);
 
@@ -179,6 +199,21 @@ export class MindArImageSession {
 
   get isTargetVisible() {
     return this.targetVisible;
+  }
+
+  updateAnchorPose(deltaSeconds: number) {
+    if (!this.targetVisible || !this.poseInitialized) return;
+
+    const delta = Math.min(Math.max(deltaSeconds, 0), MAX_FRAME_DELTA_SECONDS);
+    if (delta === 0) return;
+
+    const positionAlpha = 1 - Math.exp(-POSITION_DAMPING * delta);
+    const rotationAlpha = 1 - Math.exp(-ROTATION_DAMPING * delta);
+    const scaleAlpha = 1 - Math.exp(-SCALE_DAMPING * delta);
+
+    this.anchor.position.lerp(this.targetPosition, positionAlpha);
+    this.anchor.quaternion.slerp(this.targetQuaternion, rotationAlpha);
+    this.anchor.scale.lerp(this.targetScale, scaleAlpha);
   }
 
   start(): Promise<void> {
@@ -215,9 +250,12 @@ export class MindArImageSession {
 
     this.running = false;
     this.targetVisible = false;
+    this.poseInitialized = false;
     this.postMatrix = null;
     this.anchor.visible = false;
-    this.anchor.matrix.identity();
+    this.anchor.position.set(0, 0, 0);
+    this.anchor.quaternion.identity();
+    this.anchor.scale.set(1, 1, 1);
 
     this.detachResizeListener();
     this.detachElements();
@@ -334,6 +372,9 @@ export class MindArImageSession {
         inputWidth: this.video.videoWidth,
         inputHeight: this.video.videoHeight,
         maxTrack: 1,
+        filterMinCF: TRACKING_FILTER_MIN_CUTOFF,
+        filterBeta: TRACKING_FILTER_SPEED_COEFFICIENT,
+        missTolerance: this.missTolerance,
         onUpdate: (update) => this.handleControllerUpdate(update, localController, token),
       });
       localController.interestedTargetIndex = this.targetIndex;
@@ -373,6 +414,7 @@ export class MindArImageSession {
         this.renderer.setAnimationLoop(null);
         this.running = false;
         this.targetVisible = false;
+        this.poseInitialized = false;
         this.postMatrix = null;
         this.anchor.visible = false;
         this.detachResizeListener();
@@ -446,6 +488,7 @@ export class MindArImageSession {
 
     if (update.worldMatrix === null || update.worldMatrix === undefined) {
       this.anchor.visible = false;
+      this.poseInitialized = false;
       if (this.targetVisible) {
         this.targetVisible = false;
         this.onTargetLost?.();
@@ -456,7 +499,15 @@ export class MindArImageSession {
 
     const matrix = new Matrix4().fromArray(update.worldMatrix);
     matrix.multiply(this.postMatrix);
-    this.anchor.matrix.copy(matrix);
+    matrix.decompose(this.targetPosition, this.targetQuaternion, this.targetScale);
+
+    if (!this.poseInitialized) {
+      this.anchor.position.copy(this.targetPosition);
+      this.anchor.quaternion.copy(this.targetQuaternion);
+      this.anchor.scale.copy(this.targetScale);
+      this.poseInitialized = true;
+    }
+
     this.anchor.visible = true;
 
     if (!this.targetVisible) {

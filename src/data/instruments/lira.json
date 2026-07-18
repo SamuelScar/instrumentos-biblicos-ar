@@ -71,9 +71,17 @@
 "audioUrl": "/audio/lira/lira.mp3"
 },
 "ar": {
-"enabled": false,
+"enabled": true,
 "placement": "floor",
-"scale": "auto"
+"scale": "fixed",
+"imageTracking": {
+"enabled": true,
+"targetFileUrl": "/ar/lira/targets.mind",
+"targetImageUrl": "/ar/lira/card-ra-lira.png",
+"targetIndex": 2,
+"modelScale": 2.4,
+"modelRotation": [0, -0.25, 0]
+}
 },
 "sources": [
 {

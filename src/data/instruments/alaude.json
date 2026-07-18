@@ -59,9 +59,17 @@
     "audioUrl": "/audio/alaude/alaude.mp3"
   },
   "ar": {
-    "enabled": false,
+    "enabled": true,
     "placement": "floor",
-    "scale": "auto"
+    "scale": "fixed",
+    "imageTracking": {
+      "enabled": true,
+      "targetFileUrl": "/ar/alaude/targets.mind",
+      "targetImageUrl": "/ar/alaude/card-ra-alaude.png",
+      "targetIndex": 0,
+      "modelScale": 0.29,
+      "modelRotation": [0, -0.32, 0]
+    }
   },
   "sources": [
     {

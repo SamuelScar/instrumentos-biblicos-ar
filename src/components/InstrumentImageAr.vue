@@ -8,13 +8,20 @@ import {
   X,
 } from "@lucide/vue";
 import {
+  ACESFilmicToneMapping,
+  Box3,
   DirectionalLight,
+  Group,
   HemisphereLight,
+  MathUtils,
   Mesh,
+  PMREMGenerator,
   Texture,
+  Vector3,
   type Material,
   type Object3D,
 } from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import type { ImageTrackingAr } from "../domain/instruments";
@@ -46,8 +53,16 @@ const selectedCameraId = ref("");
 let requestVersion = 0;
 let session: MindArImageSession | null = null;
 let loadedModel: Object3D | null = null;
+let modelPivot: Group | null = null;
+let environmentTexture: Texture | null = null;
+let activePointerId: number | null = null;
+let pointerX = 0;
+let pointerY = 0;
 let previousBodyOverflow = "";
 let previouslyFocusedElement: HTMLElement | null = null;
+
+const MODEL_ROTATION_SENSITIVITY = 0.008;
+const MODEL_TILT_LIMIT = Math.PI / 3;
 
 function disposeMaterial(material: Material): void {
   for (const value of Object.values(material)) {
@@ -74,10 +89,23 @@ function disposeModel(model: Object3D): void {
 function disposeLoadedModel(): void {
   if (loadedModel) disposeModel(loadedModel);
   loadedModel = null;
+  modelPivot?.removeFromParent();
+  modelPivot = null;
+}
+
+function disposeEnvironment(): void {
+  if (session?.scene.environment === environmentTexture) {
+    session.scene.environment = null;
+  }
+
+  environmentTexture?.dispose();
+  environmentTexture = null;
 }
 
 function stopSession(): void {
   requestVersion += 1;
+  activePointerId = null;
+  disposeEnvironment();
   session?.dispose();
   session = null;
   disposeLoadedModel();
@@ -92,6 +120,75 @@ function loadModel(modelUrl: string): Promise<Object3D> {
       (error) => reject(error),
     );
   });
+}
+
+function prepareModel(model: Object3D): Group {
+  model.scale.setScalar(props.imageTracking.modelScale);
+
+  const bounds = new Box3().setFromObject(model);
+  const center = bounds.getCenter(new Vector3());
+  model.position.sub(center);
+
+  const pivot = new Group();
+  pivot.rotation.set(...props.imageTracking.modelRotation);
+  pivot.add(model);
+  return pivot;
+}
+
+function prepareEnvironment(currentSession: MindArImageSession): void {
+  const environment = new RoomEnvironment();
+  const generator = new PMREMGenerator(currentSession.renderer);
+
+  currentSession.renderer.toneMapping = ACESFilmicToneMapping;
+  currentSession.renderer.toneMappingExposure = 1.1;
+
+  try {
+    environmentTexture = generator.fromScene(environment, 0.04).texture;
+    currentSession.scene.environment = environmentTexture;
+  } finally {
+    environment.dispose();
+    generator.dispose();
+  }
+}
+
+function handleModelPointerDown(event: PointerEvent): void {
+  if (
+    experienceState.value !== "found" ||
+    !modelPivot ||
+    activePointerId !== null ||
+    (event.target instanceof Element && event.target.closest("button, select, label"))
+  ) {
+    return;
+  }
+
+  activePointerId = event.pointerId;
+  pointerX = event.clientX;
+  pointerY = event.clientY;
+  (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+}
+
+function handleModelPointerMove(event: PointerEvent): void {
+  if (event.pointerId !== activePointerId || !modelPivot) return;
+
+  const movementX = event.clientX - pointerX;
+  const movementY = event.clientY - pointerY;
+  pointerX = event.clientX;
+  pointerY = event.clientY;
+
+  modelPivot.rotation.y += movementX * MODEL_ROTATION_SENSITIVITY;
+  modelPivot.rotation.x = MathUtils.clamp(
+    modelPivot.rotation.x + movementY * MODEL_ROTATION_SENSITIVITY,
+    -MODEL_TILT_LIMIT,
+    MODEL_TILT_LIMIT,
+  );
+}
+
+function handleModelPointerEnd(event: PointerEvent): void {
+  if (event.pointerId !== activePointerId) return;
+
+  activePointerId = null;
+  const target = event.currentTarget as HTMLElement;
+  if (target.hasPointerCapture(event.pointerId)) target.releasePointerCapture(event.pointerId);
 }
 
 function describeCameraError(error: unknown): string {
@@ -172,6 +269,7 @@ async function startExperience(): Promise<void> {
       container: viewportElement.value,
       targetUrl: props.imageTracking.targetFileUrl,
       targetIndex: props.imageTracking.targetIndex,
+      missTolerance: props.imageTracking.missTolerance,
       deviceId: selectedCameraId.value || undefined,
       onTargetFound: () => {
         if (currentRequest === requestVersion) experienceState.value = "found";
@@ -190,16 +288,22 @@ async function startExperience(): Promise<void> {
     }
 
     loadedModel = model;
-    model.scale.setScalar(props.imageTracking.modelScale);
-    model.rotation.set(...props.imageTracking.modelRotation);
-    currentSession.anchor.add(model);
+    modelPivot = prepareModel(model);
+    currentSession.anchor.add(modelPivot);
 
     const ambientLight = new HemisphereLight(0xfff4dd, 0x4c382a, 2.2);
     const keyLight = new DirectionalLight(0xffffff, 2.8);
     keyLight.position.set(1.5, 2.5, 3);
     currentSession.scene.add(ambientLight, keyLight);
+    prepareEnvironment(currentSession);
 
-    currentSession.renderer.setAnimationLoop(() => {
+    let previousFrameTime: number | null = null;
+    currentSession.renderer.setAnimationLoop((frameTime) => {
+      const deltaSeconds =
+        previousFrameTime === null ? 1 / 60 : (frameTime - previousFrameTime) / 1000;
+      previousFrameTime = frameTime;
+
+      currentSession.updateAnchorPose(deltaSeconds);
       currentSession.renderer.render(currentSession.scene, currentSession.camera);
     });
 
@@ -227,6 +331,7 @@ async function startExperience(): Promise<void> {
   } catch (error) {
     if (currentRequest !== requestVersion) return;
 
+    disposeEnvironment();
     currentSession?.dispose();
     session = null;
     disposeLoadedModel();
@@ -335,7 +440,14 @@ onBeforeUnmount(() => {
         v-else
         ref="viewportElement"
         class="image-ar-viewport"
-        :class="{ 'image-ar-viewport--camera-options': cameras.length > 1 }"
+        :class="{
+          'image-ar-viewport--camera-options': cameras.length > 1,
+          'image-ar-viewport--interactive': experienceState === 'found',
+        }"
+        @pointerdown="handleModelPointerDown"
+        @pointermove="handleModelPointerMove"
+        @pointerup="handleModelPointerEnd"
+        @pointercancel="handleModelPointerEnd"
       >
         <div class="image-ar-status" role="status" aria-live="polite">
           <LoaderCircle
@@ -364,6 +476,10 @@ onBeforeUnmount(() => {
           <img :src="imageTracking.targetImageUrl" alt="" aria-hidden="true" />
           <span>{{ experienceState === "found" ? "Card reconhecido" : "Procure esta imagem" }}</span>
         </aside>
+
+        <p v-if="experienceState === 'found'" class="image-ar-interaction-hint">
+          Arraste para girar o instrumento
+        </p>
 
         <label v-if="cameras.length > 1" class="image-ar-camera-control">
           <span>Câmera</span>

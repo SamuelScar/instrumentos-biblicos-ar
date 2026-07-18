@@ -52,9 +52,17 @@
     "audioUrl": "/audio/shofar/shofar.mp3"
   },
   "ar": {
-    "enabled": false,
+    "enabled": true,
     "placement": "floor",
-    "scale": "auto"
+    "scale": "fixed",
+    "imageTracking": {
+      "enabled": true,
+      "targetFileUrl": "/ar/shofar/targets.mind",
+      "targetImageUrl": "/ar/shofar/card-ra-shofar.png",
+      "targetIndex": 7,
+      "modelScale": 0.00105,
+      "modelRotation": [0, -0.28, -0.08]
+    }
   },
   "sources": [
     {

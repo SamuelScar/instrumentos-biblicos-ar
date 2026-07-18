@@ -83,9 +83,18 @@
     "audioUrl": "/audio/flauta/flauta.mp3"
   },
   "ar": {
-    "enabled": false,
+    "enabled": true,
     "placement": "floor",
-    "scale": "auto"
+    "scale": "fixed",
+    "imageTracking": {
+      "enabled": true,
+      "targetFileUrl": "/ar/flauta/targets.mind",
+      "targetImageUrl": "/ar/flauta/card-ra-flauta.png",
+      "targetIndex": 0,
+      "missTolerance": 12,
+      "modelScale": 1.08,
+      "modelRotation": [0, -0.2, -0.55]
+    }
   },
   "sources": [
     {

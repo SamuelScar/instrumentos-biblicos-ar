@@ -53,9 +53,17 @@
     "audioUrl": "/audio/tamborim/tamborim.mp3"
   },
   "ar": {
-    "enabled": false,
+    "enabled": true,
     "placement": "floor",
-    "scale": "auto"
+    "scale": "fixed",
+    "imageTracking": {
+      "enabled": true,
+      "targetFileUrl": "/ar/tamborim/targets.mind",
+      "targetImageUrl": "/ar/tamborim/card-ra-tamborim.png",
+      "targetIndex": 5,
+      "modelScale": 0.052,
+      "modelRotation": [1.15, -0.15, -0.08]
+    }
   },
   "sources": [
     {

@@ -77,9 +77,17 @@
     "audioUrl": "/audio/trombeta/trombeta.mp3"
   },
   "ar": {
-    "enabled": false,
+    "enabled": true,
     "placement": "floor",
-    "scale": "auto"
+    "scale": "fixed",
+    "imageTracking": {
+      "enabled": true,
+      "targetFileUrl": "/ar/trombeta/targets.mind",
+      "targetImageUrl": "/ar/trombeta/card-ra-trombeta.png",
+      "targetIndex": 6,
+      "modelScale": 1.9,
+      "modelRotation": [0, 1.25, -0.5]
+    }
   },
   "sources": [
     {
