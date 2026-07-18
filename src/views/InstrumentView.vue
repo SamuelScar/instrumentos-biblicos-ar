@@ -1,16 +1,37 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { ScanLine } from "@lucide/vue";
+import { computed, ref, watch } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import AudioPlayer from "../components/AudioPlayer.vue";
+import InstrumentImageAr from "../components/InstrumentImageAr.vue";
 import InstrumentModel from "../components/InstrumentModel.vue";
 import { findInstrumentById, formatBibleRef } from "../domain/instruments";
 
 const route = useRoute();
+const showImageAr = ref(false);
 
 const instrument = computed(() => {
   const routeId = route.params.instrumentId;
   const instrumentId = Array.isArray(routeId) ? routeId[0] : routeId;
   return findInstrumentById(instrumentId);
+});
+
+const imageArExperience = computed(() => {
+  const currentInstrument = instrument.value;
+  const imageTracking = currentInstrument?.ar.imageTracking;
+  const modelUrl = currentInstrument?.assets.modelUrl;
+
+  if (!currentInstrument || !modelUrl || !imageTracking?.enabled) return null;
+
+  return {
+    instrumentName: currentInstrument.name,
+    modelUrl,
+    imageTracking,
+  };
+});
+
+watch(instrument, () => {
+  showImageAr.value = false;
 });
 </script>
 
@@ -31,7 +52,7 @@ const instrument = computed(() => {
     <section class="instrument-experience" aria-label="Exploração do instrumento">
       <div class="instrument-visual" :aria-label="`Visualização de ${instrument.name}`">
         <InstrumentModel
-          v-if="instrument.assets.modelUrl"
+          v-if="instrument.assets.modelUrl && !showImageAr"
           :key="instrument.id"
           :model-url="instrument.assets.modelUrl"
           :poster-url="instrument.assets.coverImageUrl ?? undefined"
@@ -39,7 +60,7 @@ const instrument = computed(() => {
           :ar="instrument.ar"
         />
 
-        <div v-else class="model-placeholder">
+        <div v-else-if="!instrument.assets.modelUrl" class="model-placeholder">
           <span class="model-placeholder__letter" aria-hidden="true">
             {{ instrument.name.slice(0, 1) }}
           </span>
@@ -65,13 +86,29 @@ const instrument = computed(() => {
           <h2>
             {{ instrument.assets.modelUrl ? "Explore por todos os ângulos" : "Conteúdo disponível" }}
           </h2>
-          <p>
+          <p class="overview-section__description">
             {{
               instrument.assets.modelUrl
                 ? "Arraste para girar o modelo e use o gesto de pinça ou a roda do mouse para aproximar."
                 : "Conheça o contexto bíblico, a história e a ciência por trás deste instrumento."
             }}
           </p>
+
+          <button
+            v-if="imageArExperience"
+            class="button button--primary overview-image-ar-button"
+            type="button"
+            @click="showImageAr = true"
+          >
+            <ScanLine :size="18" aria-hidden="true" />
+            Usar card com a câmera
+          </button>
+          <span
+            v-if="imageArExperience"
+            class="overview-image-ar-note"
+          >
+            Disponível com webcam no computador ou câmera no celular.
+          </span>
         </section>
 
         <section v-if="instrument.assets.audioUrl" class="overview-section">
@@ -142,6 +179,14 @@ const instrument = computed(() => {
         </li>
       </ul>
     </section>
+
+    <InstrumentImageAr
+      v-if="showImageAr && imageArExperience"
+      :instrument-name="imageArExperience.instrumentName"
+      :model-url="imageArExperience.modelUrl"
+      :image-tracking="imageArExperience.imageTracking"
+      @close="showImageAr = false"
+    />
   </article>
 
   <section v-else class="empty-state">

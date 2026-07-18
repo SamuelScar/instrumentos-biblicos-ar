@@ -2,7 +2,9 @@
 
 Aplicação web educacional para explorar instrumentos mencionados em contextos bíblicos por meio de conteúdo histórico, referências, ciência do som e modelos 3D.
 
-O conteúdo e a exploração 3D formam a experiência principal. A realidade aumentada será aprimorada posteriormente como uma extensão opcional, sem impedir o acesso às informações em dispositivos incompatíveis.
+O conteúdo e a exploração 3D formam a experiência principal. A realidade aumentada está sendo
+validada como uma extensão opcional, sem impedir o acesso às informações em dispositivos
+incompatíveis.
 
 ## Objetivo
 
@@ -25,6 +27,7 @@ A aplicação possui:
   Shofar, Sinos, Tamborim e Trombeta;
 - demonstrações sonoras com player próprio para os nove instrumentos;
 - piloto de realidade aumentada com posicionamento da Harpa no ambiente;
+- piloto da Harpa por rastreamento de card, disponível com webcam ou câmera do celular;
 - estrutura de dados independente da interface;
 - temas do sistema, claro e escuro;
 - layout fluido para diferentes tamanhos de tela e retorno rápido ao topo;
@@ -33,13 +36,14 @@ A aplicação possui:
 
 Todos os instrumentos cadastrados possuem conteúdo educacional, modelo 3D, imagem de capa e áudio
 demonstrativo. Para concluir o MVP, as próximas etapas são revisar textos e fontes, validar
-acessibilidade e dispositivos reais e registrar a procedência dos modelos e áudios.
+acessibilidade, validar os dois modos de RA em dispositivos reais e registrar a procedência dos
+modelos e áudios.
 
 ## Tecnologias
 
 - Vue 3 e Vue Router;
 - TypeScript e Vite;
-- `<model-viewer>` e Three.js;
+- `<model-viewer>`, Three.js e núcleo web do MindAR;
 - Lucide para ícones;
 - JSON para o conteúdo dos instrumentos;
 - CSS com temas e layout responsivo;

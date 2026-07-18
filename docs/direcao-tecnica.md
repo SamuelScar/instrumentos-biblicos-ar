@@ -27,26 +27,46 @@ O Three.js permanece como dependência do `<model-viewer>`. Seu uso direto deve 
 
 ## Realidade aumentada
 
-A evolução prevista possui duas experiências diferentes:
+A aplicação mantém duas experiências complementares:
 
 1. **Posicionamento no ambiente:** iniciado pelo `<model-viewer>`, usando os recursos disponíveis em cada plataforma, sem implementar WebXR manualmente na primeira versão.
-2. **Rastreamento de imagem:** reavaliar o MindAR em uma etapa futura baseada em cartões, páginas ou pôsteres impressos.
+2. **Rastreamento de imagem:** iniciado a partir de um card, com o núcleo do MindAR e uma cena Three.js própria para associar o modelo 3D à imagem reconhecida.
 
 O protótipo de `World Tracking`, que não fazia rastreamento espacial real, foi removido. O posicionamento no ambiente fica sob responsabilidade do `<model-viewer>`.
 
-O MindAR também foi retirado do build ativo. O arquivo de marcadores foi preservado como ativo legado, mas a dependência só deverá voltar quando a experiência com materiais impressos for retomada e sua compatibilidade com as bibliotecas atuais for definida.
+O piloto de rastreamento por imagem usa a Harpa e um único alvo compilado em `public/ar/harpa`.
+O núcleo do MindAR necessário em tempo de execução é mantido como ativo estático em
+`public/vendor/mindar/1.2.5`, sem adicionar o pacote como dependência npm. Isso evita trazer para o
+build dependências nativas usadas pelas ferramentas de compilação do MindAR e preserva a versão
+avaliada pelo projeto. O antigo `public/targets.mind`, incompatível com o formato atual, foi
+substituído pelo alvo compilado especificamente para este card.
+
+O modo por card pode usar webcam em computadores e a câmera traseira em Android e iOS. O acesso à
+câmera exige um contexto seguro: `localhost` funciona durante o desenvolvimento no próprio
+computador e a publicação deve usar HTTPS. O acesso pelo celular a um endereço HTTP da rede local
+pode ser bloqueado pelo navegador mesmo que a página abra normalmente.
 
 ### Piloto de RA do MVP
 
 A Harpa é o primeiro instrumento habilitado para posicionamento no ambiente. O GLB foi normalizado
 para aproximadamente 1,80 m de altura, com centro horizontal na origem e base em `Y=0`. A opção
-`ar-scale="auto"` permanece ativa para permitir que o usuário ajuste o tamanho conforme o espaço
-disponível.
+`ar-scale="fixed"` mantém essa escala física durante o piloto, evitando que o redimensionamento do
+usuário esconda problemas na normalização do modelo.
 
 Durante uma sessão WebXR, a interface orienta o usuário a mover o celular até localizar o chão. O
 evento `ar-status` também é observado para apresentar uma mensagem quando a RA não pode ser
-iniciada. Android pode usar WebXR ou Scene Viewer, enquanto o Quick Look do iOS pode receber o USDZ
-gerado automaticamente pelo `<model-viewer>` nesta primeira versão.
+iniciada, e `ar-tracking` orienta o usuário quando o reconhecimento do ambiente é interrompido.
+Android pode usar WebXR ou Scene Viewer, enquanto o Quick Look do iOS pode receber o USDZ gerado
+automaticamente pelo `<model-viewer>` nesta primeira versão.
+
+O card `AR 01` do PS Vita é usado somente como alvo provisório para validar a fórmula do
+rastreamento por imagem. Ele deverá ser substituído por uma arte própria, com novo arquivo de alvo
+compilado, antes de qualquer publicação. A validação manual desse piloto em PC, Android e iOS ainda
+está pendente.
+
+Na página da Harpa, **Usar card com a câmera** abre uma experiência em tela cheia com instruções,
+permissão explícita, escolha entre câmeras disponíveis, estados de busca e reconhecimento e
+liberação dos recursos de câmera e WebGL ao fechar.
 
 ## Organização do código
 
@@ -86,10 +106,13 @@ Os arquivos públicos poderão ser organizados por tipo:
 ```text
 public/
 ├── favicon.ico
+├── ar/
+│   └── harpa/          # imagem do card e alvo compilado do piloto
 ├── models/
 ├── images/
 ├── audio/
-└── targets.mind
+└── vendor/
+    └── mindar/1.2.5/ # núcleo estático usado pelo rastreamento de imagem
 ```
 
 Os dados de cada instrumento relacionam seus arquivos e conteúdos, evitando caminhos e textos espalhados pelas telas. O TypeScript fica responsável apenas pelos tipos, pela validação básica dos JSONs e pelas funções de consulta.

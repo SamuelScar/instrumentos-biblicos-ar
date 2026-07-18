@@ -70,15 +70,28 @@
 ## Realidade aumentada: MVP e expansão
 
 - [x] Retomar **Ver no meu espaço** com a Harpa como instrumento-piloto do MVP.
+- [x] Preparar o piloto de RA por card da Harpa com rastreamento de imagem pelo MindAR.
+- [x] Integrar o botão **Usar card com a câmera** e os estados de preparação, busca, reconhecimento
+  e falha.
+- [x] Permitir a escolha da câmera quando o dispositivo disponibilizar mais de uma opção.
+- [x] Manter o núcleo necessário do MindAR como ativo estático vendorizado, sem dependência npm.
+- [x] Organizar a imagem-alvo e o arquivo compilado do piloto em `public/ar/harpa`.
 - [ ] Definir dimensões e escala física de cada modelo:
-  - [x] Harpa normalizada para aproximadamente 1,80 m, centralizada e apoiada no chão;
+  - [x] Harpa normalizada para aproximadamente 1,80 m, centralizada, apoiada no chão e
+    com escala fixa durante o piloto;
   - [ ] demais instrumentos.
 - [ ] Validar posicionamento em aparelhos Android compatíveis.
 - [ ] Validar a geração automática do USDZ em iOS e criar um arquivo dedicado somente se necessário.
 - [x] Criar orientação para localização do chão e mensagem para falha ao iniciar a RA.
+- [x] Orientar o usuário quando o rastreamento do ambiente for interrompido no WebXR.
+- [ ] Validar manualmente o rastreamento do card da Harpa com webcam em computador.
+- [ ] Validar manualmente o rastreamento do card da Harpa em Android e iOS.
+- [ ] Confirmar o acesso à câmera em produção por HTTPS e documentar as limitações de acesso local
+  pelo celular fora de um contexto seguro.
+- [ ] Substituir o card provisório do PS Vita por uma arte própria antes da publicação.
 - [ ] Habilitar **Ver no meu espaço** nos demais instrumentos depois de normalizar suas escalas.
-- [ ] Reavaliar o MindAR somente para atividades com cartões ou materiais impressos.
-- [ ] Remover `targets.mind` caso o rastreamento por imagem seja definitivamente descartado.
+- [ ] Expandir o rastreamento por imagem para outros instrumentos somente depois de validar o fluxo
+  completo com a Harpa.
 
 ## Evoluções sem prioridade atual
 

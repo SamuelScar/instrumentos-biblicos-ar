@@ -19,6 +19,7 @@ O conteúdo educacional e a exploração 3D serão o núcleo da aplicação. A r
 ## Momento atual
 
 A primeira coleção reúne nove instrumentos com conteúdo, modelos 3D, capas, demonstrações sonoras
-e estados consistentes de carregamento e falha. A Harpa inicia o piloto de posicionamento em
-realidade aumentada do MVP. Os demais instrumentos serão habilitados à medida que suas escalas forem
-normalizadas. Otimização avançada dos modelos permanece como evolução posterior.
+e estados consistentes de carregamento e falha. A Harpa inicia os pilotos de posicionamento no
+ambiente e de rastreamento por card. Os demais instrumentos serão habilitados à medida que essas
+experiências forem validadas e suas escalas forem normalizadas. Otimização avançada dos modelos
+permanece como evolução posterior.

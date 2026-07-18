@@ -11,6 +11,7 @@
     "format": "prettier -w ."
   },
   "devDependencies": {
+    "@types/three": "^0.183.1",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
     "@typescript-eslint/parser": "^8.50.0",
     "@vitejs/plugin-vue": "^6.0.7",

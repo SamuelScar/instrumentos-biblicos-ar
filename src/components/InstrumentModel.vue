@@ -12,11 +12,13 @@ defineProps<{
 
 type ViewerState = "preparing" | "loading" | "ready" | "error";
 type ArStatus = "not-presenting" | "session-started" | "object-placed" | "failed";
+type ArTrackingStatus = "tracking" | "not-tracking";
 
 const componentReady = ref(false);
 const viewerKey = ref(0);
 const viewerState = ref<ViewerState>("preparing");
 const arStatus = ref<ArStatus>("not-presenting");
+const arTrackingStatus = ref<ArTrackingStatus>("tracking");
 
 async function prepareViewer(): Promise<void> {
   viewerState.value = "preparing";
@@ -40,16 +42,29 @@ function reportError(): void {
 }
 
 function reportArStatus(event: Event): void {
-  arStatus.value = (event as CustomEvent<{ status: ArStatus }>).detail.status;
+  const status = (event as CustomEvent<{ status: ArStatus }>).detail.status;
+  arStatus.value = status;
+
+  if (status === "not-presenting" || status === "failed") {
+    arTrackingStatus.value = "tracking";
+  }
+}
+
+function reportArTracking(event: Event): void {
+  arTrackingStatus.value = (
+    event as CustomEvent<{ status: ArTrackingStatus }>
+  ).detail.status;
 }
 
 function prepareArSession(): void {
   arStatus.value = "not-presenting";
+  arTrackingStatus.value = "tracking";
 }
 
 async function retryLoading(): Promise<void> {
   viewerKey.value += 1;
   arStatus.value = "not-presenting";
+  arTrackingStatus.value = "tracking";
 
   if (componentReady.value) {
     viewerState.value = "loading";
@@ -85,6 +100,7 @@ onMounted(prepareViewer);
       @load="finishLoading"
       @error="reportError"
       @ar-status="reportArStatus"
+      @ar-tracking="reportArTracking"
     >
       <button
         v-if="ar.enabled"
@@ -97,7 +113,21 @@ onMounted(prepareViewer);
       </button>
 
       <div
-        v-if="arStatus === 'session-started'"
+        v-if="
+          arStatus !== 'not-presenting' &&
+          arStatus !== 'failed' &&
+          arTrackingStatus === 'not-tracking'
+        "
+        class="model-ar-feedback"
+        role="status"
+        aria-live="polite"
+      >
+        <strong>Rastreamento interrompido</strong>
+        <span>Aponte para uma superfície bem iluminada e mova o celular devagar.</span>
+      </div>
+
+      <div
+        v-else-if="arStatus === 'session-started'"
         class="model-ar-feedback"
         role="status"
         aria-live="polite"

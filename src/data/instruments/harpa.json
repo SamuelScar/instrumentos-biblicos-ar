@@ -55,7 +55,15 @@
   "ar": {
     "enabled": true,
     "placement": "floor",
-    "scale": "auto"
+    "scale": "fixed",
+    "imageTracking": {
+      "enabled": true,
+      "targetFileUrl": "/ar/harpa/targets.mind",
+      "targetImageUrl": "/ar/harpa/card-prototipo-01.png",
+      "targetIndex": 0,
+      "modelScale": 0.64,
+      "modelRotation": [1.5707963267948966, 0, 0]
+    }
   },
   "sources": [
     {

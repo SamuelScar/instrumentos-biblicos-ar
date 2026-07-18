@@ -31,6 +31,15 @@ export type InstrumentSource = {
   url: string;
 };
 
+export type ImageTrackingAr = {
+  enabled: boolean;
+  targetFileUrl: string;
+  targetImageUrl: string;
+  targetIndex: number;
+  modelScale: number;
+  modelRotation: [number, number, number];
+};
+
 export type Instrument = {
   id: InstrumentId;
   name: string;
@@ -51,6 +60,7 @@ export type Instrument = {
     enabled: boolean;
     placement: "floor" | "wall";
     scale: "auto" | "fixed";
+    imageTracking?: ImageTrackingAr;
   };
   sources: InstrumentSource[];
 };
@@ -61,6 +71,9 @@ type InstrumentData = Omit<Instrument, "id" | "ar"> & {
     enabled: boolean;
     placement: string;
     scale: string;
+    imageTracking?: Omit<ImageTrackingAr, "modelRotation"> & {
+      modelRotation: number[];
+    };
   };
 };
 
@@ -91,6 +104,22 @@ function parseInstrument(data: InstrumentData): Instrument {
     throw new Error(`Escala de RA inválida para ${data.id}`);
   }
 
+  const imageTracking = data.ar.imageTracking;
+
+  if (
+    imageTracking &&
+    (!Number.isInteger(imageTracking.targetIndex) ||
+      imageTracking.targetIndex < 0 ||
+      !imageTracking.targetFileUrl ||
+      !imageTracking.targetImageUrl ||
+      !Number.isFinite(imageTracking.modelScale) ||
+      imageTracking.modelScale <= 0 ||
+      imageTracking.modelRotation.length !== 3 ||
+      !imageTracking.modelRotation.every(Number.isFinite))
+  ) {
+    throw new Error(`Configuração de rastreamento por imagem inválida para ${data.id}`);
+  }
+
   return {
     ...data,
     id: data.id,
@@ -98,6 +127,12 @@ function parseInstrument(data: InstrumentData): Instrument {
       ...data.ar,
       placement: data.ar.placement,
       scale: data.ar.scale,
+      imageTracking: imageTracking
+        ? {
+            ...imageTracking,
+            modelRotation: imageTracking.modelRotation as [number, number, number],
+          }
+        : undefined,
     },
   };
 }
