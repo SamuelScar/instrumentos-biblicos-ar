@@ -30,9 +30,9 @@ A aplicação possui:
 - execução local com Node.js ou Docker;
 - publicação estática compatível com a Vercel.
 
-Todos os instrumentos cadastrados possuem conteúdo educacional e modelo 3D. As próximas etapas são
-otimizar os arquivos mais pesados, revisar textos e fontes, validar acessibilidade e dispositivos reais,
-registrar a procedência dos modelos e áudios e adicionar imagens de capa.
+Todos os instrumentos cadastrados possuem conteúdo educacional, modelo 3D, imagem de capa e áudio
+demonstrativo. Para concluir o MVP, as próximas etapas são revisar textos e fontes, validar
+acessibilidade e dispositivos reais e registrar a procedência dos modelos e áudios.
 
 ## Tecnologias
 

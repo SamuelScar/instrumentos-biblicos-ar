@@ -26,23 +26,24 @@ Já foram concluídos:
 8. [x] identidade visual, favicon e ilustração do catálogo;
 9. [x] execução estática compatível com Vercel e Docker;
 10. [x] demonstrações sonoras em MP3 com player próprio para os nove instrumentos;
-11. [x] estrutura inicial para imagens de capa e realidade aumentada opcional.
+11. [x] capas próprias para os nove instrumentos, usadas no catálogo e como pôster do visualizador;
+12. [x] estrutura inicial para realidade aumentada opcional;
+13. [x] estados consistentes de preparação, carregamento, falha e nova tentativa no visualizador 3D.
 
 ## Próxima entrega
 
-O próximo marco é transformar a coleção funcional em uma versão 3D consolidada, adequada para
-avaliação editorial e testes com usuários. A prioridade deixa de ser adicionar instrumentos e passa
-a ser melhorar a qualidade do que já existe.
+O próximo marco é concluir um MVP adequado para avaliação editorial e testes com usuários. A
+prioridade deixa de ser adicionar instrumentos e passa a ser tornar previsível e clara a experiência
+que já existe.
 
-1. auditar e otimizar os modelos 3D, começando por Trombeta, Saltério e Shofar;
-2. fortalecer a validação estrutural dos arquivos JSON;
-3. validar carregamento, enquadramento e interação em celulares e computadores reais;
-4. gerar capas ou pôsteres coerentes para os nove instrumentos;
-5. revisar referências, fontes, termos originais e afirmações históricas;
-6. registrar origem, autoria e licença de todos os ativos;
-7. validar contraste, teclado e tecnologia assistiva;
-8. revisar procedência, licença, adequação e compressão dos áudios adicionados;
-9. atualizar a documentação sempre que a coleção ou o estado dos ativos mudar.
+1. fortalecer a validação estrutural dos arquivos JSON;
+2. revisar enquadramento, materiais e interação dos nove modelos;
+3. validar o fluxo completo em celulares e computadores reais;
+4. revisar referências, fontes, termos originais e afirmações históricas;
+5. registrar origem, autoria e licença de todos os ativos;
+6. validar contraste, teclado e tecnologia assistiva;
+7. revisar procedência, licença e adequação dos áudios adicionados;
+8. atualizar a documentação sempre que a coleção ou o estado dos ativos mudar.
 
 ## Realidade aumentada
 
@@ -65,6 +66,7 @@ Depois da consolidação da experiência 3D, será necessário:
 - criar atividades conduzidas por educadores;
 - avaliar funcionamento offline como aplicação web instalável;
 - aprimorar desempenho e compatibilidade em dispositivos reais;
+- auditar e otimizar os modelos 3D quando essa necessidade for confirmada após o MVP;
 - avaliar recursos de apoio para famílias, professores e responsáveis.
 
 ## Decisões consolidadas

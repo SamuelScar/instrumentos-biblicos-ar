@@ -55,7 +55,7 @@
   },
   "assets": {
     "modelUrl": "/models/alaude/alaude.glb",
-    "coverImageUrl": null,
+    "coverImageUrl": "/images/instruments/alaude.png",
     "audioUrl": "/audio/alaude/alaude.mp3"
   },
   "ar": {

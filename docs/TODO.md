@@ -27,21 +27,16 @@
 - [x] Adicionar retorno flutuante ao topo em páginas longas.
 - [x] Preparar execução local, Docker, Nginx e deploy estático na Vercel.
 
-## Próxima entrega: consolidação do catálogo 3D
+## Próxima entrega: conclusão do MVP
 
 - [ ] Validar todos os campos dos JSONs com um esquema de dados, além das verificações atuais de id e RA.
-- [ ] Auditar peso, quantidade de polígonos e resolução das texturas dos nove modelos.
-- [ ] Otimizar primeiro os modelos acima de 10 MiB:
-  - [ ] Trombeta, aproximadamente 14,6 MiB;
-  - [ ] Saltério, aproximadamente 13,6 MiB;
-  - [ ] Shofar, aproximadamente 12,1 MiB.
-- [ ] Avaliar também a Flauta, aproximadamente 6,9 MiB, em aparelhos mais simples.
 - [ ] Confirmar enquadramento, orientação, materiais e controles de cada modelo.
-- [ ] Validar tempo de carregamento e consumo de memória em celulares.
-- [ ] Definir um estado visual consistente para carregamento e falha dos modelos.
-- [ ] Gerar uma imagem de capa ou pôster para cada instrumento.
+- [x] Definir um estado visual consistente para carregamento e falha dos modelos.
+- [x] Gerar uma imagem de capa ou pôster para cada instrumento.
 - [x] Exibir capas no catálogo quando `coverImageUrl` estiver preenchido.
 - [x] Usar a capa como pôster do visualizador quando estiver disponível.
+- [ ] Revisar visualmente as nove páginas com capa, modelo, conteúdo e áudio.
+- [ ] Validar o fluxo principal em celulares e computadores reais.
 
 ## Revisão editorial e procedência
 
@@ -84,6 +79,9 @@
 
 ## Evoluções sem prioridade atual
 
+- [ ] Auditar peso, quantidade de polígonos e resolução das texturas dos nove modelos.
+- [ ] Otimizar os modelos 3D quando o desempenho se tornar uma prioridade.
+- [ ] Avaliar tempo de carregamento e consumo de memória em aparelhos mais simples.
 - [ ] Avaliar funcionamento offline como PWA.
 - [ ] Avaliar atividades conduzidas por professores ou responsáveis.
 - [ ] Considerar busca e filtros quando o catálogo crescer além da coleção atual.

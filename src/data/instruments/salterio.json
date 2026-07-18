@@ -67,7 +67,7 @@
   },
   "assets": {
     "modelUrl": "/models/salterio/salterio.glb",
-    "coverImageUrl": null,
+    "coverImageUrl": "/images/instruments/salterio.png",
     "audioUrl": "/audio/salterio/salterio.mp3"
   },
   "ar": {

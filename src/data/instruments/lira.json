@@ -67,7 +67,7 @@
 },
 "assets": {
 "modelUrl": "/models/lira/lira.glb",
-"coverImageUrl": null,
+"coverImageUrl": "/images/instruments/lira.png",
 "audioUrl": "/audio/lira/lira.mp3"
 },
 "ar": {

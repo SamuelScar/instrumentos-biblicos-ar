@@ -76,7 +76,15 @@ public/
 
 Os dados de cada instrumento relacionam seus arquivos e conteúdos, evitando caminhos e textos espalhados pelas telas. O TypeScript fica responsável apenas pelos tipos, pela validação básica dos JSONs e pelas funções de consulta.
 
-Imagens compartilhadas pela interface, como a ilustração do catálogo, ficam em `public/images`. Imagens específicas de um instrumento devem ser associadas pelo respectivo arquivo JSON.
+Imagens compartilhadas pela interface, como a ilustração do catálogo, ficam em `public/images`.
+As capas seguem a convenção `public/images/instruments/<instrumento>.png` e são associadas pelo
+campo `assets.coverImageUrl` do respectivo JSON. Elas aparecem nos cards do catálogo e também são
+usadas como pôster enquanto o modelo 3D ainda não foi apresentado.
+
+O visualizador mantém estados explícitos de preparação, carregamento, sucesso e falha. A capa é
+usada apenas como pôster durante o carregamento, sem permanecer atrás do modelo 3D. Em caso de erro,
+a interface oferece uma nova tentativa, recriando o elemento responsável pelo modelo sem recarregar
+a página inteira.
 
 Os áudios seguem a convenção `public/audio/<instrumento>/<instrumento>.mp3` e são associados pelo
 campo `assets.audioUrl`. O player visual fica isolado em um componente Vue, enquanto o elemento

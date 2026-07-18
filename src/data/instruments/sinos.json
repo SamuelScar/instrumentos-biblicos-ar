@@ -37,7 +37,7 @@
   },
   "assets": {
     "modelUrl": "/models/sinos/sinos.glb",
-    "coverImageUrl": null,
+    "coverImageUrl": "/images/instruments/sinos.png",
     "audioUrl": "/audio/sinos/sinos.mp3"
   },
   "ar": {

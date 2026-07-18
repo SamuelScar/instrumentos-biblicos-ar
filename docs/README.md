@@ -18,6 +18,7 @@ O conteúdo educacional e a exploração 3D serão o núcleo da aplicação. A r
 
 ## Momento atual
 
-A primeira coleção reúne nove instrumentos com conteúdo e modelos 3D. O foco atual é consolidar
-desempenho, revisão editorial, acessibilidade, capas e procedência dos ativos antes de ampliar
-novamente o catálogo ou avançar na realidade aumentada.
+A primeira coleção reúne nove instrumentos com conteúdo, modelos 3D, capas, demonstrações sonoras
+e estados consistentes de carregamento e falha. O foco atual é concluir o MVP com revisão editorial,
+acessibilidade, validação em dispositivos reais e registro da procedência dos ativos.
+Otimização avançada dos modelos e realidade aumentada permanecem como evoluções posteriores.

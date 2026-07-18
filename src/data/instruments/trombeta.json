@@ -73,7 +73,7 @@
   },
   "assets": {
     "modelUrl": "/models/trombeta/trombeta.glb",
-    "coverImageUrl": null,
+    "coverImageUrl": "/images/instruments/trombeta.png",
     "audioUrl": "/audio/trombeta/trombeta.mp3"
   },
   "ar": {

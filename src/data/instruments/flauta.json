@@ -79,7 +79,7 @@
   },
   "assets": {
     "modelUrl": "/models/flauta/flauta.glb",
-    "coverImageUrl": null,
+    "coverImageUrl": "/images/instruments/flauta.png",
     "audioUrl": "/audio/flauta/flauta.mp3"
   },
   "ar": {

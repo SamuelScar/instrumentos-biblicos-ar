@@ -49,7 +49,7 @@
   },
   "assets": {
     "modelUrl": "/models/harpa/harpa.glb",
-    "coverImageUrl": null,
+    "coverImageUrl": "/images/instruments/harpa.png",
     "audioUrl": "/audio/harpa/harpa.mp3"
   },
   "ar": {

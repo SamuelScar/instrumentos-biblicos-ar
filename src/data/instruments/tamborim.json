@@ -49,7 +49,7 @@
   },
   "assets": {
     "modelUrl": "/models/tamborim/tamborim.glb",
-    "coverImageUrl": null,
+    "coverImageUrl": "/images/instruments/tamborim.png",
     "audioUrl": "/audio/tamborim/tamborim.mp3"
   },
   "ar": {
