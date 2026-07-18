@@ -58,14 +58,34 @@ watch(instrument, () => {
           :poster-url="instrument.assets.coverImageUrl ?? undefined"
           :instrument-name="instrument.name"
           :ar="instrument.ar"
-        />
+        >
+          <template #actions>
+            <button
+              v-if="imageArExperience"
+              class="model-action-button"
+              type="button"
+              @click="showImageAr = true"
+            >
+              <ScanLine :size="19" aria-hidden="true" />
+              <span>Com card</span>
+            </button>
+
+            <AudioPlayer
+              v-if="instrument.assets.audioUrl"
+              :key="instrument.id"
+              compact
+              :src="instrument.assets.audioUrl"
+              :instrument-name="instrument.name"
+            />
+          </template>
+        </InstrumentModel>
 
         <div v-else-if="!instrument.assets.modelUrl" class="model-placeholder">
           <span class="model-placeholder__letter" aria-hidden="true">
             {{ instrument.name.slice(0, 1) }}
           </span>
-          <strong>Modelo 3D em preparação</strong>
-          <span>O conteúdo educacional já pode ser consultado nesta página.</span>
+          <strong>Modelo 3D indisponível</strong>
+          <span>Consulte as informações históricas e educacionais deste instrumento.</span>
         </div>
       </div>
 
@@ -78,47 +98,7 @@ watch(instrument, () => {
               {{ formatBibleRef(reference) }}
             </li>
           </ul>
-          <p v-else>Referências em preparação.</p>
-        </section>
-
-        <section class="overview-section overview-section--soft">
-          <p class="eyebrow">Experiência</p>
-          <h2>
-            {{ instrument.assets.modelUrl ? "Explore por todos os ângulos" : "Conteúdo disponível" }}
-          </h2>
-          <p class="overview-section__description">
-            {{
-              instrument.assets.modelUrl
-                ? "Arraste para girar o modelo e use o gesto de pinça ou a roda do mouse para aproximar."
-                : "Conheça o contexto bíblico, a história e a ciência por trás deste instrumento."
-            }}
-          </p>
-
-          <button
-            v-if="imageArExperience"
-            class="button button--primary overview-image-ar-button"
-            type="button"
-            @click="showImageAr = true"
-          >
-            <ScanLine :size="18" aria-hidden="true" />
-            Usar card com a câmera
-          </button>
-          <span
-            v-if="imageArExperience"
-            class="overview-image-ar-note"
-          >
-            Disponível com webcam no computador ou câmera no celular.
-          </span>
-        </section>
-
-        <section v-if="instrument.assets.audioUrl" class="overview-section">
-          <p class="eyebrow">Demonstração</p>
-          <h2>Ouça o instrumento</h2>
-          <AudioPlayer
-            :key="instrument.id"
-            :src="instrument.assets.audioUrl"
-            :instrument-name="instrument.name"
-          />
+          <p v-else>Nenhuma referência disponível.</p>
         </section>
       </aside>
     </section>
@@ -136,19 +116,19 @@ watch(instrument, () => {
         <section class="content-section content-section--biblical">
           <span class="content-section__number" aria-hidden="true">01</span>
           <h3>Contexto bíblico</h3>
-          <p>{{ instrument.content.biblicalContext ?? "Conteúdo em preparação." }}</p>
+          <p>{{ instrument.content.biblicalContext ?? "Conteúdo não disponível." }}</p>
         </section>
 
         <section class="content-section">
           <span class="content-section__number" aria-hidden="true">02</span>
           <h3>Contexto histórico</h3>
-          <p>{{ instrument.content.historicalContext ?? "Conteúdo em preparação." }}</p>
+          <p>{{ instrument.content.historicalContext ?? "Conteúdo não disponível." }}</p>
         </section>
 
         <section class="content-section content-section--science">
           <span class="content-section__number" aria-hidden="true">03</span>
           <h3>Como o som é produzido?</h3>
-          <p>{{ instrument.content.scientificExplanation ?? "Conteúdo em preparação." }}</p>
+          <p>{{ instrument.content.scientificExplanation ?? "Conteúdo não disponível." }}</p>
         </section>
       </div>
     </section>

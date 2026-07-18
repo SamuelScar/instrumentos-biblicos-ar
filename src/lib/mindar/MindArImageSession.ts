@@ -430,11 +430,25 @@ export class MindArImageSession {
       throw new Error("A câmera não está disponível neste navegador.");
     }
 
-    const video: MediaTrackConstraints = this.deviceId
-      ? { deviceId: { exact: this.deviceId } }
-      : { facingMode: { ideal: "environment" } };
+    if (this.deviceId) {
+      try {
+        return await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: { deviceId: { exact: this.deviceId } },
+        });
+      } catch (error) {
+        const selectedCameraIsUnavailable =
+          error instanceof DOMException &&
+          (error.name === "NotFoundError" || error.name === "OverconstrainedError");
 
-    return navigator.mediaDevices.getUserMedia({ audio: false, video });
+        if (!selectedCameraIsUnavailable) throw error;
+      }
+    }
+
+    return navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: { facingMode: { ideal: "environment" } },
+    });
   }
 
   private waitForVideoMetadata(signal: AbortSignal) {

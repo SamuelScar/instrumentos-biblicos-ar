@@ -5,6 +5,7 @@ import { computed, onBeforeUnmount, ref } from "vue";
 const props = defineProps<{
   src: string;
   instrumentName: string;
+  compact?: boolean;
 }>();
 
 const audioElement = ref<HTMLAudioElement>();
@@ -22,6 +23,9 @@ const progress = computed(() => {
 const progressStyle = computed(() => ({
   "--audio-progress": `${progress.value}%`,
 }));
+const compactExpanded = computed(
+  () => props.compact && (isPlaying.value || currentTime.value > 0),
+);
 
 function formatTime(seconds: number): string {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -92,7 +96,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="audio-player" :class="{ 'audio-player--playing': isPlaying }">
+  <div
+    class="audio-player"
+    :class="{
+      'audio-player--playing': isPlaying,
+      'audio-player--compact': props.compact,
+      'audio-player--compact-expanded': compactExpanded,
+    }"
+  >
     <audio
       ref="audioElement"
       class="audio-player__media"
@@ -118,10 +129,11 @@ onBeforeUnmount(() => {
     >
       <Pause v-if="isPlaying" :size="21" fill="currentColor" aria-hidden="true" />
       <Play v-else :size="21" fill="currentColor" aria-hidden="true" />
+      <span v-if="props.compact">Som</span>
     </button>
 
     <div class="audio-player__content">
-      <div class="audio-player__heading">
+      <div v-if="!props.compact" class="audio-player__heading">
         <span class="audio-player__icon" aria-hidden="true">
           <Music2 :size="18" />
         </span>

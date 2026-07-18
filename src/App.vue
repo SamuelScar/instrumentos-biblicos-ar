@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { ArrowUp, Moon, Palette, Sun } from "@lucide/vue";
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
-import { RouterLink, RouterView, useRoute } from "vue-router";
+import { onBeforeUnmount, onMounted, ref } from "vue";
+import { RouterLink, RouterView } from "vue-router";
 import { useTheme, type ThemePreference } from "./composables/useTheme";
 
-const route = useRoute();
-const isCatalog = computed(() => route.name === "catalog");
 const { themePreference } = useTheme();
 const themeMenu = ref<HTMLDetailsElement>();
 const showScrollTop = ref(false);
@@ -41,7 +39,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-shell">
     <header class="app-header">
-      <div class="app-header__inner" :class="{ 'app-header__inner--wide': isCatalog }">
+      <div class="app-header__inner">
         <RouterLink
           class="brand"
           :to="{ name: 'catalog' }"
@@ -94,7 +92,7 @@ onBeforeUnmount(() => {
       </div>
     </header>
 
-    <main class="screen-root" :class="{ 'screen-root--catalog': isCatalog }">
+    <main class="screen-root">
       <RouterView />
     </main>
 
@@ -109,8 +107,18 @@ onBeforeUnmount(() => {
       <ArrowUp :size="20" aria-hidden="true" />
     </button>
 
-    <footer class="app-footer" :class="{ 'app-footer--wide': isCatalog }">
-      <p>Ciência, história e fé em uma experiência interativa.</p>
+    <footer class="app-footer">
+      <div class="app-footer__inner">
+        <span>Desenvolvido por <strong>Samuel de Souza</strong></span>
+        <a
+          href="https://github.com/SamuelScar"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Acessar o GitHub de Samuel de Souza"
+        >
+          GitHub
+        </a>
+      </div>
     </footer>
   </div>
 </template>

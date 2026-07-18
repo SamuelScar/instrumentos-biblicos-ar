@@ -1,4 +1,5 @@
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from "vue";
+import { readCameraPreference, saveCameraPreference } from "../lib/cameraPreference";
 
 type CameraOption = {
   deviceId: string;
@@ -12,7 +13,7 @@ export function useCameraDiagnostics() {
   const permission = ref("unknown");
   const devices = ref("Carregando...");
   const cameras = ref<CameraOption[]>([]);
-  const selectedCameraId = ref("");
+  const selectedCameraId = ref(readCameraPreference());
   const logs = ref<string[]>([]);
 
   const isActive = computed(() => stream.value !== null);
@@ -52,19 +53,17 @@ export function useCameraDiagnostics() {
     try {
       if (!navigator.mediaDevices?.enumerateDevices) {
         cameras.value = [];
-        selectedCameraId.value = "";
         return "enumerateDevices: unsupported";
       }
 
       const mediaDevices = await navigator.mediaDevices.enumerateDevices();
       if (!mediaDevices.length) {
         cameras.value = [];
-        selectedCameraId.value = "";
         return "(nenhum dispositivo retornado)";
       }
 
       const availableCameras = mediaDevices
-        .filter((device) => device.kind === "videoinput")
+        .filter((device) => device.kind === "videoinput" && device.deviceId)
         .map((device, index) => ({
           deviceId: device.deviceId,
           label: device.label || `Câmera ${index + 1}`,
@@ -73,10 +72,12 @@ export function useCameraDiagnostics() {
       cameras.value = availableCameras;
 
       if (
+        availableCameras.length > 0 &&
         selectedCameraId.value &&
         !availableCameras.some((camera) => camera.deviceId === selectedCameraId.value)
       ) {
         selectedCameraId.value = "";
+        saveCameraPreference("");
       }
 
       return mediaDevices
@@ -87,7 +88,6 @@ export function useCameraDiagnostics() {
         .join("\n");
     } catch (error) {
       cameras.value = [];
-      selectedCameraId.value = "";
       return `erro: ${error instanceof Error ? error.message : String(error)}`;
     }
   }
@@ -120,8 +120,25 @@ export function useCameraDiagnostics() {
         });
       } catch (error) {
         if (currentRequest !== requestVersion) return;
-        if (selectedDeviceId) throw error;
-        requestedStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+
+        const selectedCameraIsUnavailable =
+          Boolean(selectedDeviceId) &&
+          error instanceof DOMException &&
+          (error.name === "NotFoundError" || error.name === "OverconstrainedError");
+
+        if (selectedDeviceId && !selectedCameraIsUnavailable) throw error;
+
+        if (selectedCameraIsUnavailable) {
+          selectedCameraId.value = "";
+          saveCameraPreference("");
+        }
+
+        requestedStream = await navigator.mediaDevices.getUserMedia({
+          video: selectedCameraIsUnavailable
+            ? { facingMode: { ideal: "environment" } }
+            : true,
+          audio: false,
+        });
       }
 
       if (currentRequest !== requestVersion) {
@@ -130,8 +147,6 @@ export function useCameraDiagnostics() {
       }
 
       stream.value = requestedStream;
-      selectedCameraId.value =
-        requestedStream.getVideoTracks()[0]?.getSettings().deviceId ?? selectedCameraId.value;
       if (videoElement.value) videoElement.value.srcObject = requestedStream;
       addLog("câmera iniciada");
     } catch (error) {
@@ -148,6 +163,7 @@ export function useCameraDiagnostics() {
   }
 
   async function changeCamera() {
+    saveCameraPreference(selectedCameraId.value);
     if (!isActive.value) return;
 
     addLog("alternando câmera");
@@ -155,7 +171,7 @@ export function useCameraDiagnostics() {
   }
 
   onMounted(() => {
-    addLog("diagnóstico aberto");
+    addLog("configuração da câmera aberta");
     void refresh();
   });
   onBeforeUnmount(stopCamera);

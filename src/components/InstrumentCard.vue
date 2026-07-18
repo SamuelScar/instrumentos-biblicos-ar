@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Box, ScanLine } from "@lucide/vue";
 import { RouterLink } from "vue-router";
 import type { Instrument } from "../domain/instruments";
 
@@ -21,8 +22,28 @@ defineProps<{
         />
         <span v-else aria-hidden="true">{{ instrument.name.slice(0, 1) }}</span>
 
-        <span class="status-badge">
-          {{ instrument.assets.modelUrl ? "Modelo 3D disponível" : "Modelo 3D em breve" }}
+        <span
+          v-if="instrument.assets.modelUrl || instrument.ar.enabled"
+          class="instrument-card__capabilities"
+        >
+          <span
+            v-if="instrument.assets.modelUrl"
+            class="instrument-card__capability"
+            role="img"
+            aria-label="Modelo 3D disponível"
+            title="Modelo 3D disponível"
+          >
+            <Box :size="18" aria-hidden="true" />
+          </span>
+          <span
+            v-if="instrument.ar.enabled"
+            class="instrument-card__capability"
+            role="img"
+            aria-label="Realidade aumentada disponível"
+            title="Realidade aumentada disponível"
+          >
+            <ScanLine :size="18" aria-hidden="true" />
+          </span>
         </span>
       </div>
 

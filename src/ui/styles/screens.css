@@ -68,6 +68,7 @@
 
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: center;
   gap: var(--catalog-gap);
 }
@@ -135,10 +136,6 @@
   .catalog-grid .instrument-card__preview {
     min-height: clamp(175px, 18vw, 220px);
   }
-
-  .catalog-grid .instrument-card__content {
-    min-height: 230px;
-  }
 }
 
 @media (min-width: 901px) {
@@ -167,7 +164,6 @@
 
 .instrument-card__link {
   display: flex;
-  height: 100%;
   flex-direction: column;
   color: inherit;
   text-decoration: none;
@@ -205,17 +201,29 @@
   object-fit: cover;
 }
 
-.instrument-card__preview .status-badge {
+.instrument-card__capabilities {
   position: absolute;
   right: 16px;
   bottom: 16px;
-  left: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.instrument-card__capability {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-border-strong) 70%, transparent);
+  border-radius: 50%;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+  box-shadow: 0 8px 22px rgb(24 14 8 / 16%);
+  backdrop-filter: blur(10px);
 }
 
 .instrument-card__content {
   display: flex;
-  min-height: 270px;
-  flex: 1;
   flex-direction: column;
   align-items: flex-start;
   padding: clamp(1.3rem, 3vw, 1.75rem);
@@ -227,7 +235,6 @@
 }
 
 .instrument-card p {
-  flex: 1;
   margin-bottom: 24px;
   color: var(--color-text-muted);
   font-size: 0.94rem;
@@ -248,20 +255,6 @@
 
 .instrument-card:hover .instrument-card__action span {
   transform: translateX(4px);
-}
-
-.technical-tools {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.technical-tools > span {
-  color: var(--color-text-muted);
-  font-size: 0.78rem;
-  font-weight: 700;
 }
 
 .instrument-header {
@@ -291,8 +284,10 @@
 }
 
 .instrument-visual {
+  --instrument-visual-min-height: clamp(390px, 52vw, 650px);
+
   min-width: 0;
-  min-height: clamp(390px, 52vw, 650px);
+  min-height: var(--instrument-visual-min-height);
   overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-large);
@@ -302,26 +297,89 @@
   box-shadow: var(--shadow-card);
 }
 
-.instrument-model-shell,
-.instrument-model {
-  width: 100%;
-  height: 100%;
-  min-height: inherit;
-}
-
 .instrument-model-shell {
   position: relative;
+  display: flex;
+  width: 100%;
+  min-height: var(--instrument-visual-min-height);
+  flex-direction: column;
 }
 
 .instrument-model {
   display: block;
+  width: 100%;
+  min-height: calc(var(--instrument-visual-min-height) - 69px);
+  flex: 1;
   background: transparent;
 }
 
-.model-ar-button {
+.model-gesture-hint {
   position: absolute;
-  right: 18px;
-  bottom: 18px;
+  z-index: 2;
+  top: 16px;
+  right: 16px;
+  margin: 0;
+  padding: 7px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.35;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+
+.model-action-dock {
+  display: grid;
+  flex: none;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+}
+
+.model-action-button {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+  font-size: 0.82rem;
+  font-weight: 800;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.model-action-button:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--color-border-strong);
+  color: var(--color-primary-hover);
+  background: var(--color-surface-strong);
+}
+
+.model-action-button[aria-disabled="true"] {
+  opacity: 0.58;
+  cursor: help;
+}
+
+.model-action-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-focus) 35%, transparent);
+  outline-offset: 2px;
+}
+
+.model-action-button svg {
+  flex: none;
 }
 
 .model-ar-feedback {
@@ -442,11 +500,6 @@
   background: var(--color-surface);
 }
 
-.overview-section--soft {
-  flex: 1;
-  background: var(--color-surface-soft);
-}
-
 .overview-section h2 {
   margin-bottom: 14px;
   font-size: clamp(1.2rem, 2vw, 1.55rem);
@@ -456,25 +509,6 @@
   margin-bottom: 0;
   color: var(--color-text-muted);
   font-size: 0.92rem;
-}
-
-.overview-section__description {
-  margin-bottom: 0;
-  color: var(--color-text-muted);
-  font-size: 0.92rem;
-}
-
-.overview-image-ar-button {
-  gap: 9px;
-  margin-top: 22px;
-}
-
-.overview-image-ar-note {
-  display: block;
-  margin-top: 10px;
-  color: var(--color-text-muted);
-  font-size: 0.76rem;
-  line-height: 1.5;
 }
 
 .image-ar-overlay {
@@ -942,6 +976,73 @@
   font-variant-numeric: tabular-nums;
 }
 
+.audio-player--compact {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.audio-player--compact .audio-player__control {
+  display: inline-flex;
+  width: 100%;
+  height: 48px;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+  box-shadow: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.audio-player--compact .audio-player__control svg {
+  flex: none;
+  margin-left: 0;
+}
+
+.audio-player--compact .audio-player__control:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+  color: var(--color-primary-hover);
+  background: var(--color-surface-strong);
+}
+
+.audio-player--compact.audio-player--playing .audio-player__control {
+  color: var(--color-primary-contrast);
+  background: var(--color-primary);
+}
+
+.audio-player--compact .audio-player__content {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: calc(100% + 18px);
+  visibility: hidden;
+  width: min(320px, calc(100vw - 48px));
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  opacity: 0;
+  background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+  box-shadow: var(--shadow-card);
+  pointer-events: none;
+  transform: translateY(6px);
+  transition:
+    visibility 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
+  backdrop-filter: blur(12px);
+}
+
+.audio-player--compact-expanded .audio-player__content {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 .reference-list {
   display: flex;
   flex-wrap: wrap;
@@ -1081,8 +1182,7 @@
 }
 
 .diagnostics-page {
-  max-width: 1100px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .diagnostics-header {
@@ -1264,10 +1364,6 @@
   .diagnostics-grid {
     grid-template-columns: 1fr;
   }
-
-  .overview-section--soft {
-    flex: initial;
-  }
 }
 
 @media (max-width: 680px) {
@@ -1280,10 +1376,6 @@
 
   .hero__art {
     width: min(56vw, 210px);
-  }
-
-  .instrument-card__content {
-    min-height: 240px;
   }
 
   .catalog-toolbar {
@@ -1299,7 +1391,7 @@
   }
 
   .instrument-visual {
-    min-height: clamp(360px, 110vw, 500px);
+    --instrument-visual-min-height: clamp(360px, 110vw, 500px);
   }
 
   .content-section:last-child {
@@ -1308,10 +1400,6 @@
 
   .content-section__number {
     margin-bottom: 2rem;
-  }
-
-  .technical-tools {
-    justify-content: flex-start;
   }
 
   .image-ar-setup {
@@ -1370,14 +1458,22 @@
     font-size: 3rem;
   }
 
-  .model-ar-button {
+  .model-gesture-hint {
     right: 12px;
-    bottom: 12px;
     left: 12px;
+    text-align: center;
   }
 
-  .overview-image-ar-button {
-    width: 100%;
+  .model-action-dock {
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .model-action-button,
+  .audio-player--compact .audio-player__control {
+    gap: 6px;
+    padding-inline: 6px;
+    font-size: 0.76rem;
   }
 
   .image-ar-status {

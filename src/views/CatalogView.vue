@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { Wrench } from "@lucide/vue";
 import { computed, ref } from "vue";
-import { RouterLink } from "vue-router";
 import InstrumentCard from "../components/InstrumentCard.vue";
 import { instruments } from "../domain/instruments";
 
@@ -9,7 +7,6 @@ type SortOption = "default" | "name-asc" | "name-desc" | "bible-refs" | "sources
 
 const sortOption = ref<SortOption>("default");
 const nameCollator = new Intl.Collator("pt-BR", { sensitivity: "base" });
-const isDevelopment = import.meta.env.DEV;
 
 const sortedInstruments = computed(() => {
   const sorted = [...instruments];
@@ -64,7 +61,7 @@ const sortedInstruments = computed(() => {
           <p class="eyebrow">Catálogo</p>
           <h2 id="catalog-title">Escolha um instrumento</h2>
           <p class="catalog-heading__description">
-            Comece pelo conteúdo disponível e acompanhe a chegada de novos modelos 3D.
+            Explore o catálogo e escolha um instrumento para conhecer sua história e seu som.
           </p>
         </div>
 
@@ -88,13 +85,5 @@ const sortedInstruments = computed(() => {
         />
       </div>
     </section>
-
-    <div v-if="isDevelopment" class="technical-tools">
-      <span>Ambiente local</span>
-      <RouterLink class="button button--quiet" :to="{ name: 'diagnostics' }">
-        <Wrench :size="17" aria-hidden="true" />
-        Diagnóstico de câmera
-      </RouterLink>
-    </div>
   </div>
 </template>

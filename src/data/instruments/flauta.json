@@ -1,7 +1,7 @@
 {
   "id": "flauta",
   "name": "Flauta",
-  "shortDescription": "Nome de tradução para diferentes aerofones bíblicos, como chalil, ugav e aulos, cujas formas e mecanismos exatos nem sempre são conhecidos.",
+  "shortDescription": "Nome bíblico usado para diferentes instrumentos de sopro.",
   "bibleRefs": [
     {
       "book": "Gênesis",

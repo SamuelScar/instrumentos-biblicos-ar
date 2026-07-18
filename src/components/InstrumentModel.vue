@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LoaderCircle, RotateCcw } from "@lucide/vue";
+import { Box, LoaderCircle, RotateCcw } from "@lucide/vue";
 import { onMounted, ref } from "vue";
 import type { Instrument } from "../domain/instruments";
 
@@ -13,12 +13,18 @@ defineProps<{
 type ViewerState = "preparing" | "loading" | "ready" | "error";
 type ArStatus = "not-presenting" | "session-started" | "object-placed" | "failed";
 type ArTrackingStatus = "tracking" | "not-tracking";
+type ModelViewerElement = HTMLElement & {
+  canActivateAR?: boolean;
+  activateAR?: () => Promise<void>;
+};
 
 const componentReady = ref(false);
+const modelViewerElement = ref<ModelViewerElement | null>(null);
 const viewerKey = ref(0);
 const viewerState = ref<ViewerState>("preparing");
 const arStatus = ref<ArStatus>("not-presenting");
 const arTrackingStatus = ref<ArTrackingStatus>("tracking");
+const canActivateAr = ref(false);
 
 async function prepareViewer(): Promise<void> {
   viewerState.value = "preparing";
@@ -33,8 +39,17 @@ async function prepareViewer(): Promise<void> {
   }
 }
 
-function finishLoading(): void {
+function finishLoading(event: Event): void {
   viewerState.value = "ready";
+  updateArAvailability(event.currentTarget as ModelViewerElement);
+}
+
+function updateArAvailability(
+  viewer = modelViewerElement.value,
+): boolean {
+  const isAvailable = Boolean(viewer?.canActivateAR);
+  canActivateAr.value = isAvailable;
+  return isAvailable;
 }
 
 function reportError(): void {
@@ -61,10 +76,27 @@ function prepareArSession(): void {
   arTrackingStatus.value = "tracking";
 }
 
+async function startArSession(): Promise<void> {
+  const viewer = modelViewerElement.value;
+  if (!viewer?.activateAR || !updateArAvailability(viewer)) {
+    arStatus.value = "failed";
+    return;
+  }
+
+  prepareArSession();
+
+  try {
+    await viewer.activateAR();
+  } catch {
+    arStatus.value = "failed";
+  }
+}
+
 async function retryLoading(): Promise<void> {
   viewerKey.value += 1;
   arStatus.value = "not-presenting";
   arTrackingStatus.value = "tracking";
+  canActivateAr.value = false;
 
   if (componentReady.value) {
     viewerState.value = "loading";
@@ -84,6 +116,7 @@ onMounted(prepareViewer);
   >
     <model-viewer
       v-if="componentReady"
+      ref="modelViewerElement"
       :key="viewerKey"
       class="instrument-model"
       :src="modelUrl"
@@ -102,16 +135,6 @@ onMounted(prepareViewer);
       @ar-status="reportArStatus"
       @ar-tracking="reportArTracking"
     >
-      <button
-        v-if="ar.enabled"
-        class="button button--primary model-ar-button"
-        slot="ar-button"
-        type="button"
-        @click="prepareArSession"
-      >
-        Ver no meu espaço
-      </button>
-
       <div
         v-if="
           arStatus !== 'not-presenting' &&
@@ -145,6 +168,28 @@ onMounted(prepareViewer);
         <span>Use um celular compatível, acesse por HTTPS e permita o uso da câmera.</span>
       </div>
     </model-viewer>
+
+    <p v-if="viewerState === 'ready'" class="model-gesture-hint">
+      Arraste para girar · pinça ou roda para aproximar
+    </p>
+
+    <div v-if="viewerState === 'ready'" class="model-action-dock" aria-label="Ações rápidas">
+      <button
+        v-if="ar.enabled"
+        class="model-action-button"
+        type="button"
+        :aria-disabled="!canActivateAr"
+        :title="canActivateAr ? 'Ver no meu espaço' : 'Disponível em celular compatível'"
+        @focus="updateArAvailability()"
+        @pointerenter="updateArAvailability()"
+        @click="startArSession"
+      >
+        <Box :size="19" aria-hidden="true" />
+        <span>No ambiente</span>
+      </button>
+
+      <slot name="actions" />
+    </div>
 
     <div
       v-if="viewerState === 'preparing' || viewerState === 'loading'"

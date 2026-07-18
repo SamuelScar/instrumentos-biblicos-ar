@@ -1,7 +1,7 @@
 {
   "id": "harpa",
   "name": "Harpa",
-  "shortDescription": "Nome usado em traduções bíblicas para antigos cordofones, especialmente kinnor e nevel, que não devem ser confundidos com a harpa moderna.",
+  "shortDescription": "Nome bíblico usado para antigos instrumentos de cordas.",
   "bibleRefs": [
     {
       "book": "Gênesis",

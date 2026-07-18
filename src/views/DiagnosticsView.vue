@@ -26,11 +26,11 @@ const {
     </nav>
 
     <header class="diagnostics-header">
-      <p class="eyebrow">Área técnica</p>
-      <h1>Diagnóstico de câmera</h1>
+      <p class="eyebrow">Câmera</p>
+      <h1>Configuração da câmera</h1>
       <p>
-        Use esta tela para conferir permissões, HTTPS e acesso à câmera durante o desenvolvimento da
-        experiência em realidade aumentada.
+        Confira o acesso à câmera e escolha o dispositivo utilizado nas experiências de realidade
+        aumentada.
       </p>
     </header>
 
@@ -54,7 +54,7 @@ const {
             :disabled="!cameras.length"
             @change="changeCamera"
           >
-            <option value="">Automática — preferir câmera traseira</option>
+            <option value="">Automática</option>
             <option v-for="camera in cameras" :key="camera.deviceId" :value="camera.deviceId">
               {{ camera.label }}
             </option>
@@ -72,7 +72,7 @@ const {
           <div v-if="!isActive" class="camera-preview__empty">
             <Camera :size="32" aria-hidden="true" />
             <strong>A câmera ainda não foi iniciada</strong>
-            <span>O navegador solicitará permissão quando você iniciar o diagnóstico.</span>
+            <span>O navegador solicitará permissão quando você iniciar a câmera.</span>
           </div>
         </div>
 
@@ -94,27 +94,27 @@ const {
       </section>
 
       <aside class="diagnostics-panel diagnostics-panel--summary">
-        <p class="eyebrow">Ambiente</p>
-        <h2>Resumo técnico</h2>
-        <p>Informações usadas para identificar bloqueios de permissão e compatibilidade.</p>
+        <p class="eyebrow">Compatibilidade</p>
+        <h2>Informações do navegador</h2>
+        <p>Dados úteis para identificar problemas de permissão e acesso à câmera.</p>
         <pre class="diagnostics-output">{{ diagnosticsText }}</pre>
       </aside>
     </div>
 
     <section class="diagnostics-details" aria-labelledby="diagnostics-details-title">
       <div class="diagnostics-details__heading">
-        <p class="eyebrow">Investigação</p>
-        <h2 id="diagnostics-details-title">Detalhes avançados</h2>
-        <p>Abra estas informações somente quando precisar investigar um problema.</p>
+        <p class="eyebrow">Suporte</p>
+        <h2 id="diagnostics-details-title">Informações avançadas</h2>
+        <p>Consulte estes dados somente quando precisar solucionar um problema.</p>
       </div>
 
       <details>
-        <summary>Dispositivos de mídia</summary>
+        <summary>Dispositivos encontrados</summary>
         <pre class="diagnostics-output">{{ devices }}</pre>
       </details>
 
       <details>
-        <summary>Logs da sessão</summary>
+        <summary>Eventos da câmera</summary>
         <pre class="diagnostics-output diagnostics-output--dark">{{ logsText }}</pre>
       </details>
     </section>

@@ -32,8 +32,7 @@
   --radius-small: 12px;
   --radius-medium: 20px;
   --radius-large: 30px;
-  --content-width: 1240px;
-  --wide-content-width: 1500px;
+  --content-width: 1500px;
   --layout-inline-padding: clamp(1rem, 4vw, 2rem);
 }
 
@@ -153,10 +152,6 @@ li {
   margin: 0 auto;
   padding: clamp(1.5rem, 3vw, 2.75rem) var(--layout-inline-padding)
     clamp(3rem, 7vw, 6rem);
-}
-
-.screen-root--catalog {
-  width: min(var(--wide-content-width), 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

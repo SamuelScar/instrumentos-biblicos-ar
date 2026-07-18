@@ -25,6 +25,7 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import type { ImageTrackingAr } from "../domain/instruments";
+import { readCameraPreference, saveCameraPreference } from "../lib/cameraPreference";
 import { MindArImageSession } from "../lib/mindar/MindArImageSession";
 
 const props = defineProps<{
@@ -48,7 +49,7 @@ const closeButtonElement = ref<HTMLButtonElement | null>(null);
 const experienceState = ref<ExperienceState>("idle");
 const errorMessage = ref("");
 const cameras = ref<CameraOption[]>([]);
-const selectedCameraId = ref("");
+const selectedCameraId = ref(readCameraPreference());
 
 let requestVersion = 0;
 let session: MindArImageSession | null = null;
@@ -226,10 +227,12 @@ async function refreshCameras(): Promise<void> {
       }));
 
     if (
+      cameras.value.length > 0 &&
       selectedCameraId.value &&
       !cameras.value.some((camera) => camera.deviceId === selectedCameraId.value)
     ) {
       selectedCameraId.value = "";
+      saveCameraPreference("");
     }
   } catch {
     cameras.value = [];
@@ -318,16 +321,6 @@ async function startExperience(): Promise<void> {
 
     await refreshCameras();
     if (currentRequest !== requestVersion) return;
-
-    const activeStream = currentSession.video.srcObject;
-    const activeDeviceId =
-      activeStream instanceof MediaStream
-        ? (activeStream.getVideoTracks()[0]?.getSettings().deviceId ?? "")
-        : "";
-
-    if (activeDeviceId && cameras.value.some((camera) => camera.deviceId === activeDeviceId)) {
-      selectedCameraId.value = activeDeviceId;
-    }
   } catch (error) {
     if (currentRequest !== requestVersion) return;
 
@@ -338,6 +331,15 @@ async function startExperience(): Promise<void> {
     errorMessage.value = describeCameraError(error);
     experienceState.value = "error";
   }
+}
+
+function storeCameraPreference(): void {
+  saveCameraPreference(selectedCameraId.value);
+}
+
+async function changeCamera(): Promise<void> {
+  storeCameraPreference();
+  await startExperience();
 }
 
 function closeExperience(): void {
@@ -391,14 +393,18 @@ onBeforeUnmount(() => {
           <p class="eyebrow">RA por card</p>
           <h2>Veja {{ instrumentName }} surgir sobre o card</h2>
           <p>
-            Apoie o card 01 em uma superfície plana — impresso ou exibido em outra tela deitada.
-            Depois, aponte a câmera para ele e mantenha toda a imagem visível.
+            Apoie o card de {{ instrumentName }} em uma superfície plana — impresso ou exibido em
+            outra tela deitada. Depois, aponte a câmera para ele e mantenha toda a imagem visível.
           </p>
 
           <div v-if="cameras.length" class="image-ar-camera-field">
             <label for="image-ar-camera">Câmera utilizada</label>
-            <select id="image-ar-camera" v-model="selectedCameraId">
-              <option value="">Automática — preferir câmera traseira</option>
+            <select
+              id="image-ar-camera"
+              v-model="selectedCameraId"
+              @change="storeCameraPreference"
+            >
+              <option value="">Automática</option>
               <option v-for="camera in cameras" :key="camera.deviceId" :value="camera.deviceId">
                 {{ camera.label }}
               </option>
@@ -430,9 +436,9 @@ onBeforeUnmount(() => {
         <figure class="image-ar-card-reference">
           <img
             :src="imageTracking.targetImageUrl"
-            :alt="`Card 01 usado para reconhecer ${instrumentName}`"
+            :alt="`Card usado para reconhecer ${instrumentName}`"
           />
-          <figcaption>Card provisório do piloto</figcaption>
+          <figcaption>Card de {{ instrumentName }}</figcaption>
         </figure>
       </div>
 
@@ -463,7 +469,7 @@ onBeforeUnmount(() => {
                 ? "Preparando modelo e câmera..."
                 : experienceState === "found"
                   ? "Instrumento reconhecido"
-                  : "Procurando o card 01..."
+                  : `Procurando o card de ${instrumentName}...`
             }}
           </span>
         </div>
@@ -486,7 +492,7 @@ onBeforeUnmount(() => {
           <select
             v-model="selectedCameraId"
             :disabled="experienceState === 'starting'"
-            @change="startExperience"
+            @change="changeCamera"
           >
             <option value="">Automática</option>
             <option v-for="camera in cameras" :key="camera.deviceId" :value="camera.deviceId">
