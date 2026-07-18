@@ -8,6 +8,8 @@ esses termos.
 | --- | --- | --- | --- |
 | `@google/model-viewer` | 4.3.1 | Apache-2.0 | <https://github.com/google/model-viewer> |
 | `@lucide/vue` | 1.24.0 | ISC | <https://github.com/lucide-icons/lucide> |
+| `@vercel/analytics` | 2.0.1 | MIT | <https://github.com/vercel/analytics> |
+| `@vercel/speed-insights` | 2.0.0 | Apache-2.0 | <https://github.com/vercel/speed-insights> |
 | MindAR | 1.2.5 | MIT | <https://github.com/hiukim/mind-ar-js> |
 | Three.js | 0.183.2 | MIT | <https://github.com/mrdoob/three.js> |
 | Vue | 3.5.39 | MIT | <https://github.com/vuejs/core> |

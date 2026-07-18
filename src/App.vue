@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ArrowUp, Moon, Palette, Sun } from "@lucide/vue";
+import { Analytics } from "@vercel/analytics/vue";
+import { SpeedInsights } from "@vercel/speed-insights/vue";
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import { useTheme, type ThemePreference } from "./composables/useTheme";
@@ -120,5 +122,8 @@ onBeforeUnmount(() => {
         </a>
       </div>
     </footer>
+
+    <Analytics />
+    <SpeedInsights />
   </div>
 </template>
