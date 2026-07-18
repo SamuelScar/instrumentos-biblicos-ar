@@ -49,7 +49,7 @@
       "targetFileUrl": "/ar/sinos/targets.mind",
       "targetImageUrl": "/ar/sinos/card-ra-sinos.png",
       "targetIndex": 4,
-      "modelScale": 8,
+      "modelScale": 14.7,
       "modelRotation": [0, -0.28, 0]
     }
   },
