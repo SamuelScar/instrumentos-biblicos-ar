@@ -61,7 +61,7 @@
       "targetFileUrl": "/ar/tamborim/targets.mind",
       "targetImageUrl": "/ar/tamborim/card-ra-tamborim.png",
       "targetIndex": 5,
-      "modelScale": 0.052,
+      "modelScale": 1.8962672,
       "modelRotation": [1.15, -0.15, -0.08]
     }
   },

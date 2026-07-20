@@ -1,14 +1,29 @@
 <script setup lang="ts">
 import { ScanLine } from "@lucide/vue";
 import { computed, ref, watch } from "vue";
-import { RouterLink, useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import AudioPlayer from "../components/AudioPlayer.vue";
 import InstrumentImageAr from "../components/InstrumentImageAr.vue";
 import InstrumentModel from "../components/InstrumentModel.vue";
 import { findInstrumentById, formatBibleRef } from "../domain/instruments";
 
 const route = useRoute();
+const router = useRouter();
 const showImageAr = ref(false);
+
+function returnToCatalog(): void {
+  const previousLocation = router.options.history.state.back;
+
+  if (
+    typeof previousLocation === "string" &&
+    router.resolve(previousLocation).name === "catalog"
+  ) {
+    router.back();
+    return;
+  }
+
+  void router.push({ name: "catalog" });
+}
 
 const instrument = computed(() => {
   const routeId = route.params.instrumentId;
@@ -38,9 +53,13 @@ watch(instrument, () => {
 <template>
   <article v-if="instrument" class="instrument-page">
     <nav class="page-navigation" aria-label="Navegação da página">
-      <RouterLink class="back-link" :to="{ name: 'catalog' }">
+      <a
+        class="back-link"
+        :href="router.resolve({ name: 'catalog' }).href"
+        @click.prevent="returnToCatalog"
+      >
         <span aria-hidden="true">←</span> Voltar ao catálogo
-      </RouterLink>
+      </a>
     </nav>
 
     <header class="instrument-header">

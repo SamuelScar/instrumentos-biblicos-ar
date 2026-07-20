@@ -60,7 +60,7 @@
       "targetFileUrl": "/ar/shofar/targets.mind",
       "targetImageUrl": "/ar/shofar/card-ra-shofar.png",
       "targetIndex": 7,
-      "modelScale": 0.00105,
+      "modelScale": 1.63142226,
       "modelRotation": [0, -0.28, -0.08]
     }
   },
