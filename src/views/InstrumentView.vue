@@ -186,6 +186,7 @@ watch(instrument, () => {
       v-if="showImageAr && imageArExperience"
       :instrument-name="imageArExperience.instrumentName"
       :model-url="imageArExperience.modelUrl"
+      :audio-url="instrument.assets.audioUrl ?? undefined"
       :image-tracking="imageArExperience.imageTracking"
       @close="showImageAr = false"
     />

@@ -27,10 +27,12 @@ import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import type { ImageTrackingAr } from "../domain/instruments";
 import { readCameraPreference, saveCameraPreference } from "../lib/cameraPreference";
 import { MindArImageSession } from "../lib/mindar/MindArImageSession";
+import AudioPlayer from "./AudioPlayer.vue";
 
 const props = defineProps<{
   instrumentName: string;
   modelUrl: string;
+  audioUrl?: string;
   imageTracking: ImageTrackingAr;
 }>();
 
@@ -388,6 +390,15 @@ onBeforeUnmount(() => {
       >
         <X :size="22" aria-hidden="true" />
       </button>
+
+      <AudioPlayer
+        v-if="audioUrl && experienceState !== 'idle' && experienceState !== 'error'"
+        class="image-ar-audio"
+        compact
+        minimal
+        :src="audioUrl"
+        :instrument-name="instrumentName"
+      />
 
       <div v-if="experienceState === 'idle' || experienceState === 'error'" class="image-ar-setup">
         <div class="image-ar-setup__content">

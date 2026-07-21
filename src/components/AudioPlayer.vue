@@ -6,6 +6,7 @@ const props = defineProps<{
   src: string;
   instrumentName: string;
   compact?: boolean;
+  minimal?: boolean;
 }>();
 
 const audioElement = ref<HTMLAudioElement>();
@@ -24,7 +25,7 @@ const progressStyle = computed(() => ({
   "--audio-progress": `${progress.value}%`,
 }));
 const compactExpanded = computed(
-  () => props.compact && (isPlaying.value || currentTime.value > 0),
+  () => props.compact && !props.minimal && (isPlaying.value || currentTime.value > 0),
 );
 
 function formatTime(seconds: number): string {
@@ -101,6 +102,7 @@ onBeforeUnmount(() => {
     :class="{
       'audio-player--playing': isPlaying,
       'audio-player--compact': props.compact,
+      'audio-player--minimal': props.minimal,
       'audio-player--compact-expanded': compactExpanded,
     }"
   >
@@ -132,7 +134,7 @@ onBeforeUnmount(() => {
       <span v-if="props.compact">Som</span>
     </button>
 
-    <div class="audio-player__content">
+    <div v-if="!props.minimal" class="audio-player__content">
       <div v-if="!props.compact" class="audio-player__heading">
         <span class="audio-player__icon" aria-hidden="true">
           <Music2 :size="18" />
