@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ScanLine } from "@lucide/vue";
-import { computed, ref, watch } from "vue";
+import { computed, defineAsyncComponent, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import AudioPlayer from "../components/AudioPlayer.vue";
-import InstrumentImageAr from "../components/InstrumentImageAr.vue";
 import InstrumentModel from "../components/InstrumentModel.vue";
 import { findInstrumentById, formatBibleRef } from "../domain/instruments";
+
+const InstrumentImageAr = defineAsyncComponent(
+  () => import("../components/InstrumentImageAr.vue"),
+);
 
 const route = useRoute();
 const router = useRouter();
