@@ -79,7 +79,7 @@
       "targetFileUrl": "/ar/salterio/targets.mind",
       "targetImageUrl": "/ar/salterio/card-ra-salterio.png",
       "targetIndex": 3,
-      "modelScale": 0.27,
+      "modelScale": 1.41421091,
       "modelRotation": [1.15, -0.18, -0.08]
     }
   },

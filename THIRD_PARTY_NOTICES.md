@@ -20,3 +20,8 @@ integral de sua licença acompanha esses arquivos em `public/vendor/mindar/1.2.5
 
 As cópias integrais das licenças das dependências instaladas via npm acompanham seus respectivos
 pacotes. Dependências transitivas permanecem sujeitas às licenças declaradas pelos próprios pacotes.
+
+## Modelos, imagens e áudios
+
+A autoria, a origem, a licença e o estado de verificação dos ativos de mídia distribuídos com a
+aplicação estão documentados separadamente em [ASSET_CREDITS.md](ASSET_CREDITS.md).

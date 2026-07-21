@@ -15,16 +15,17 @@
     "format": "prettier -w ."
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "@types/three": "^0.183.1",
-    "@typescript-eslint/eslint-plugin": "^8.50.0",
-    "@typescript-eslint/parser": "^8.50.0",
+    "@typescript-eslint/eslint-plugin": "^8.65.0",
+    "@typescript-eslint/parser": "^8.65.0",
     "@vitejs/plugin-vue": "^6.0.7",
-    "eslint": "^8.57.1",
+    "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^9.33.0",
     "prettier": "^3.7.4",
     "typescript": "~5.9.3",
-    "vite": "^7.2.4",
+    "vite": "^7.3.6",
     "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^3.3.7"
   },
@@ -36,5 +37,8 @@
     "three": "^0.183.0",
     "vue": "^3.5.39",
     "vue-router": "^5.1.0"
+  },
+  "allowScripts": {
+    "esbuild@0.27.2": true
   }
 }

@@ -23,5 +23,5 @@ export const router = createRouter({
       redirect: "/",
     },
   ],
-  scrollBehavior: () => ({ top: 0 }),
+  scrollBehavior: (_to, _from, savedPosition) => savedPosition ?? { top: 0 },
 });
