@@ -160,10 +160,10 @@ por IA deve permanecer informada e não implica exclusividade do resultado.
 
 | Grupo | Arquivos | Data registrada | Alterações | Situação |
 | --- | --- | --- | --- | --- |
-| Favicon | `public/favicon.png` e `public/favicon.ico` | 14 de julho de 2026 | Seleção, ajuste e conversão para ICO | Procedência verificada |
-| Ilustração do catálogo | `public/images/hero-instruments.png` | 14 de julho de 2026 | Seleção e integração à interface | Procedência verificada |
-| Capas dos instrumentos | `public/images/instruments/*.png` | 18 de julho de 2026 | Seleção, recorte e integração ao catálogo e visualizador | Procedência verificada |
-| Cards de RA | `public/ar/<instrumento>/card-ra-<instrumento>.png` | 18 de julho de 2026 | Seleção e uso como imagens-alvo | Procedência verificada |
+| Favicon | `public/favicon.ico` | 14 de julho de 2026 | Seleção, ajuste e conversão para ICO | Procedência verificada |
+| Ilustração do catálogo | `public/images/hero-instruments.webp` | 14 de julho de 2026 | Seleção, conversão e integração à interface | Procedência verificada |
+| Capas dos instrumentos | `public/images/instruments/*.webp` | 18 de julho de 2026 | Seleção, redimensionamento, conversão e integração ao catálogo e visualizador | Procedência verificada |
+| Cards de RA | `public/ar/<instrumento>/card-ra-<instrumento>.webp` | 18 de julho de 2026 | Seleção, conversão e uso como imagens-alvo | Procedência verificada |
 
 - **Ferramenta de origem:** OpenAI Media Service.
 - **Termos aplicáveis:** [Termos de Uso da OpenAI](https://openai.com/policies/row-terms-of-use/).

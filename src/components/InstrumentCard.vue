@@ -19,6 +19,7 @@ defineProps<{
           v-if="instrument.assets.coverImageUrl"
           :src="instrument.assets.coverImageUrl"
           :alt="`Capa do instrumento ${instrument.name}`"
+          loading="lazy"
         />
         <span v-else aria-hidden="true">{{ instrument.name.slice(0, 1) }}</span>
 

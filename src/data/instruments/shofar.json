@@ -48,7 +48,7 @@
   },
   "assets": {
     "modelUrl": "/models/shofar/shofar.glb",
-    "coverImageUrl": "/images/instruments/shofar.png",
+    "coverImageUrl": "/images/instruments/shofar.webp",
     "audioUrl": "/audio/shofar/shofar.mp3"
   },
   "ar": {
@@ -58,7 +58,7 @@
     "imageTracking": {
       "enabled": true,
       "targetFileUrl": "/ar/shofar/targets.mind",
-      "targetImageUrl": "/ar/shofar/card-ra-shofar.png",
+      "targetImageUrl": "/ar/shofar/card-ra-shofar.webp",
       "targetIndex": 7,
       "modelScale": 1.63142226,
       "modelRotation": [0, -0.28, -0.08]

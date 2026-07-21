@@ -55,7 +55,7 @@
   },
   "assets": {
     "modelUrl": "/models/alaude/alaude.glb",
-    "coverImageUrl": "/images/instruments/alaude.png",
+    "coverImageUrl": "/images/instruments/alaude.webp",
     "audioUrl": "/audio/alaude/alaude.mp3"
   },
   "ar": {
@@ -65,7 +65,7 @@
     "imageTracking": {
       "enabled": true,
       "targetFileUrl": "/ar/alaude/targets.mind",
-      "targetImageUrl": "/ar/alaude/card-ra-alaude.png",
+      "targetImageUrl": "/ar/alaude/card-ra-alaude.webp",
       "targetIndex": 0,
       "modelScale": 1.59372501,
       "modelRotation": [0, -0.32, 0]

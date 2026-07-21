@@ -49,7 +49,7 @@
   },
   "assets": {
     "modelUrl": "/models/tamborim/tamborim.glb",
-    "coverImageUrl": "/images/instruments/tamborim.png",
+    "coverImageUrl": "/images/instruments/tamborim.webp",
     "audioUrl": "/audio/tamborim/tamborim.mp3"
   },
   "ar": {
@@ -59,7 +59,7 @@
     "imageTracking": {
       "enabled": true,
       "targetFileUrl": "/ar/tamborim/targets.mind",
-      "targetImageUrl": "/ar/tamborim/card-ra-tamborim.png",
+      "targetImageUrl": "/ar/tamborim/card-ra-tamborim.webp",
       "targetIndex": 5,
       "modelScale": 1.8962672,
       "modelRotation": [1.15, -0.15, -0.08]
