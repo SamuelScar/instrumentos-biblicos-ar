@@ -37,9 +37,9 @@ O protótipo de `World Tracking`, que não fazia rastreamento espacial real, foi
 O rastreamento por imagem está configurado para os nove instrumentos. As artes e os arquivos de
 alvo ficam organizados em `public/ar/<instrumento>`, enquanto o núcleo do MindAR necessário em tempo
 de execução é mantido como ativo estático em
-`public/vendor/mindar/1.2.5`, sem adicionar o pacote como dependência npm. Isso evita trazer para o
-build dependências nativas usadas pelas ferramentas de compilação do MindAR e preserva a versão
-avaliada pelo projeto.
+`public/vendor/mindar/1.2.5`, sem adicionar o pacote como dependência do projeto. Isso evita trazer
+para o build dependências nativas usadas pelas ferramentas de compilação do MindAR e preserva a
+versão avaliada pelo projeto.
 
 O modo por card pode usar webcam em computadores e a câmera traseira em Android e iOS. O acesso à
 câmera exige um contexto seguro: `localhost` funciona durante o desenvolvimento no próprio

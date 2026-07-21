@@ -6,9 +6,7 @@ import AudioPlayer from "../components/AudioPlayer.vue";
 import InstrumentModel from "../components/InstrumentModel.vue";
 import { findInstrumentById, formatBibleRef } from "../domain/instruments";
 
-const InstrumentImageAr = defineAsyncComponent(
-  () => import("../components/InstrumentImageAr.vue"),
-);
+const InstrumentImageAr = defineAsyncComponent(() => import("../components/InstrumentImageAr.vue"));
 
 const route = useRoute();
 const router = useRouter();
@@ -17,10 +15,7 @@ const showImageAr = ref(false);
 function returnToCatalog(): void {
   const previousLocation = router.options.history.state.back;
 
-  if (
-    typeof previousLocation === "string" &&
-    router.resolve(previousLocation).name === "catalog"
-  ) {
+  if (typeof previousLocation === "string" && router.resolve(previousLocation).name === "catalog") {
     router.back();
     return;
   }
@@ -95,7 +90,7 @@ watch(instrument, () => {
             <AudioPlayer
               v-if="instrument.assets.audioUrl"
               :key="instrument.id"
-              compact
+              variant="compact"
               :src="instrument.assets.audioUrl"
               :instrument-name="instrument.name"
             />
@@ -186,6 +181,7 @@ watch(instrument, () => {
       v-if="showImageAr && imageArExperience"
       :instrument-name="imageArExperience.instrumentName"
       :model-url="imageArExperience.modelUrl"
+      :audio-url="instrument.assets.audioUrl ?? undefined"
       :image-tracking="imageArExperience.imageTracking"
       @close="showImageAr = false"
     />

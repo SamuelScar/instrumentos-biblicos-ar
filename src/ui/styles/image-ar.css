@@ -1,0 +1,407 @@
+.image-ar-overlay {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  min-width: 320px;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: #fff7ed;
+  background: #100d0b;
+}
+
+.image-ar-close {
+  position: absolute;
+  z-index: 8;
+  top: max(16px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  display: grid;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: 50%;
+  color: #fff;
+  background: rgb(18 13 10 / 72%);
+  backdrop-filter: blur(12px);
+}
+
+.image-ar-close:hover {
+  border-color: rgb(255 255 255 / 45%);
+  background: rgb(18 13 10 / 92%);
+}
+
+.image-ar-close:focus-visible {
+  outline: 3px solid #f0b464;
+  outline-offset: 3px;
+}
+
+.image-ar-audio.audio-player--compact {
+  position: absolute;
+  z-index: 8;
+  top: max(76px, calc(env(safe-area-inset-top) + 60px));
+  right: max(16px, env(safe-area-inset-right));
+}
+
+.image-ar-audio.audio-player--compact .audio-player__control {
+  width: auto;
+  min-width: 92px;
+  padding-inline: 14px;
+  border-color: rgb(255 255 255 / 24%);
+  color: #fff;
+  background: rgb(18 13 10 / 72%);
+  backdrop-filter: blur(12px);
+}
+
+.image-ar-audio.audio-player--compact .audio-player__control:hover:not(:disabled) {
+  border-color: rgb(255 255 255 / 45%);
+  color: #fff;
+  background: rgb(18 13 10 / 92%);
+}
+
+.image-ar-audio.audio-player--compact.audio-player--playing .audio-player__control {
+  border-color: #f0b464;
+  color: #1d1713;
+  background: #f0b464;
+}
+
+.image-ar-setup {
+  display: grid;
+  width: min(1040px, calc(100% - 40px));
+  max-height: calc(100dvh - 40px);
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.55fr);
+  align-items: center;
+  gap: clamp(2rem, 7vw, 6rem);
+  margin: auto;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  overflow: auto;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: clamp(24px, 4vw, 38px);
+  background: radial-gradient(circle at 80% 15%, rgb(212 155 63 / 18%), transparent 34%), #1d1713;
+  box-shadow: 0 30px 100px rgb(0 0 0 / 45%);
+}
+
+.image-ar-setup__content {
+  max-width: 590px;
+}
+
+.image-ar-setup h2 {
+  margin-bottom: 18px;
+  color: #fff7ed;
+  font-size: clamp(2.1rem, 5vw, 4.25rem);
+  letter-spacing: -0.05em;
+}
+
+.image-ar-setup__content > p:not(.eyebrow) {
+  color: rgb(255 247 237 / 72%);
+}
+
+.image-ar-setup__content > small {
+  display: block;
+  margin-top: 14px;
+  color: rgb(255 247 237 / 56%);
+}
+
+.image-ar-setup__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.image-ar-camera-field {
+  display: grid;
+  gap: 7px;
+  margin-top: 22px;
+}
+
+.image-ar-camera-field label {
+  color: rgb(255 247 237 / 72%);
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.image-ar-camera-field select,
+.image-ar-camera-control select {
+  min-height: 42px;
+  padding: 0 38px 0 12px;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 10px;
+  outline: none;
+  color: #fff7ed;
+  background: #2d241e;
+}
+
+.image-ar-camera-field select:focus-visible,
+.image-ar-camera-control select:focus-visible {
+  border-color: #f0b464;
+  box-shadow: 0 0 0 3px rgb(240 180 100 / 24%);
+}
+
+.image-ar-setup__actions .button {
+  gap: 9px;
+}
+
+.image-ar-setup .button--secondary {
+  border-color: rgb(255 255 255 / 18%);
+  color: #fff7ed;
+  background: rgb(255 255 255 / 7%);
+}
+
+.image-ar-card-reference {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.image-ar-card-reference img {
+  display: block;
+  width: min(100%, 260px);
+  max-height: min(54dvh, 420px);
+  padding: 8px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 22px 46px rgb(0 0 0 / 32%);
+  object-fit: contain;
+}
+
+.image-ar-card-reference figcaption {
+  color: rgb(255 247 237 / 58%);
+  font-size: 0.78rem;
+}
+
+.image-ar-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid rgb(255 154 154 / 34%);
+  border-radius: var(--radius-small);
+  color: #ffb4b4;
+  background: rgb(155 44 44 / 18%);
+}
+
+.image-ar-error svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.image-ar-error div {
+  display: grid;
+  gap: 3px;
+}
+
+.image-ar-error span {
+  color: rgb(255 247 237 / 70%);
+  line-height: 1.5;
+}
+
+.image-ar-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #050403;
+  touch-action: none;
+}
+
+.image-ar-viewport--interactive {
+  cursor: grab;
+}
+
+.image-ar-viewport--interactive:active {
+  cursor: grabbing;
+}
+
+.image-ar-viewport > video,
+.image-ar-viewport > canvas {
+  position: absolute;
+  max-width: none;
+  inset: 0;
+}
+
+.image-ar-viewport > video {
+  z-index: 0;
+  object-fit: cover;
+}
+
+.image-ar-viewport > canvas {
+  z-index: 1;
+}
+
+.image-ar-status {
+  position: absolute;
+  z-index: 5;
+  top: max(18px, env(safe-area-inset-top));
+  left: max(18px, env(safe-area-inset-left));
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 999px;
+  color: #fff;
+  background: rgb(18 13 10 / 76%);
+  font-size: 0.86rem;
+  font-weight: 750;
+  backdrop-filter: blur(12px);
+}
+
+.image-ar-status__spinner {
+  animation: model-status-spin 900ms linear infinite;
+}
+
+.image-ar-guide {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: min(44vw, 320px);
+  aspect-ratio: 324 / 489;
+  place-items: center;
+  border: 2px dashed rgb(255 255 255 / 72%);
+  border-radius: 18px;
+  color: #fff;
+  box-shadow: 0 0 0 9999px rgb(0 0 0 / 12%);
+  transform: translate(-50%, -50%);
+  transition:
+    border-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.image-ar-guide span {
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 56%);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.image-ar-guide--found {
+  border-color: #f0b464;
+  opacity: 0.28;
+}
+
+.image-ar-card-hint {
+  position: absolute;
+  z-index: 5;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  left: max(18px, env(safe-area-inset-left));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px 8px 8px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 14px;
+  color: #fff;
+  background: rgb(18 13 10 / 76%);
+  font-size: 0.78rem;
+  font-weight: 700;
+  backdrop-filter: blur(12px);
+}
+
+.image-ar-card-hint img {
+  width: 34px;
+  height: 50px;
+  border-radius: 4px;
+  background: #fff;
+  object-fit: cover;
+}
+
+.image-ar-interaction-hint {
+  position: absolute;
+  z-index: 5;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  left: 50%;
+  margin: 0;
+  padding: 9px 13px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 999px;
+  color: #fff;
+  background: rgb(18 13 10 / 76%);
+  font-size: 0.76rem;
+  font-weight: 700;
+  pointer-events: none;
+  transform: translateX(-50%);
+  backdrop-filter: blur(12px);
+}
+
+.image-ar-camera-control {
+  position: absolute;
+  z-index: 5;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  display: grid;
+  gap: 5px;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 750;
+}
+
+.image-ar-camera-control select {
+  width: min(220px, 42vw);
+  background: rgb(18 13 10 / 82%);
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 680px) {
+  .image-ar-setup {
+    width: min(100% - 24px, 620px);
+    max-height: calc(100dvh - 24px);
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 24px 20px;
+  }
+
+  .image-ar-card-reference {
+    order: -1;
+  }
+
+  .image-ar-card-reference img {
+    width: 110px;
+    max-height: 168px;
+    border-radius: 12px;
+  }
+
+  .image-ar-card-reference figcaption {
+    display: none;
+  }
+
+  .image-ar-setup h2 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .image-ar-guide {
+    width: min(62vw, 280px);
+  }
+
+  .image-ar-camera-control {
+    right: 14px;
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+
+  .image-ar-viewport--camera-options .image-ar-card-hint {
+    display: none;
+  }
+
+  .image-ar-viewport--camera-options .image-ar-interaction-hint {
+    right: 14px;
+    bottom: calc(max(14px, env(safe-area-inset-bottom)) + 58px);
+    left: auto;
+    transform: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .image-ar-status {
+    top: max(72px, calc(env(safe-area-inset-top) + 56px));
+    right: 14px;
+    left: 14px;
+    justify-content: center;
+  }
+}

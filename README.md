@@ -56,9 +56,12 @@ modelos e áudios.
 
 Com Node.js:
 
+Use Node.js 24. O Corepack utiliza automaticamente a versão do pnpm fixada no projeto.
+
 ```bash
-npm install
-npm run dev
+corepack enable pnpm
+pnpm install
+pnpm run dev
 ```
 
 Com Docker:

@@ -79,17 +79,17 @@
   },
   "assets": {
     "modelUrl": "/models/flauta/flauta.glb",
-    "coverImageUrl": "/images/instruments/flauta.png",
+    "coverImageUrl": "/images/instruments/flauta.webp",
     "audioUrl": "/audio/flauta/flauta.mp3"
   },
   "ar": {
-    "enabled": true,
+    "environmentEnabled": true,
     "placement": "floor",
     "scale": "fixed",
     "imageTracking": {
       "enabled": true,
       "targetFileUrl": "/ar/flauta/targets.mind",
-      "targetImageUrl": "/ar/flauta/card-ra-flauta.png",
+      "targetImageUrl": "/ar/flauta/card-ra-flauta.webp",
       "targetIndex": 0,
       "missTolerance": 12,
       "modelScale": 1.08,

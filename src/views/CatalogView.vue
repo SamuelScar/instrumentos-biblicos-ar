@@ -49,8 +49,11 @@ const sortedInstruments = computed(() => {
       <div class="hero__art">
         <img
           class="hero__image"
-          src="/images/hero-instruments.png"
+          src="/images/hero-instruments.webp"
           alt="Ilustração de um shofar, uma lira antiga e um tambor de moldura"
+          width="1024"
+          height="1024"
+          fetchpriority="high"
         />
       </div>
     </header>

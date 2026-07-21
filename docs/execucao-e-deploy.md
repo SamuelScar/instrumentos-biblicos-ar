@@ -16,9 +16,12 @@ Vue, TypeScript e ativos
 
 ## Desenvolvimento local com Node.js
 
+Use Node.js 24. O Corepack utiliza automaticamente a versão do pnpm fixada no projeto.
+
 ```bash
-npm install
-npm run dev
+corepack enable pnpm
+pnpm install
+pnpm run dev
 ```
 
 A aplicação fica disponível em `http://localhost:5173`.
@@ -48,9 +51,9 @@ docker run --rm -p 8080:80 instrumentos-mundo-biblico
 
 O deploy na Vercel deve continuar usando o suporte nativo ao Vite:
 
-- comando de build: `npm run build`;
+- comando de build: `pnpm run build`;
 - diretório de saída: `dist`;
-- instalação: `npm install` ou detecção automática.
+- instalação: `pnpm install` ou detecção automática pelo `pnpm-lock.yaml`.
 
 O arquivo `docker/Dockerfile` não participa do deploy da Vercel. Não é necessário criar `Dockerfile.vercel` para esta aplicação estática.
 

@@ -49,17 +49,17 @@
   },
   "assets": {
     "modelUrl": "/models/harpa/harpa.glb",
-    "coverImageUrl": "/images/instruments/harpa.png",
+    "coverImageUrl": "/images/instruments/harpa.webp",
     "audioUrl": "/audio/harpa/harpa.mp3"
   },
   "ar": {
-    "enabled": true,
+    "environmentEnabled": true,
     "placement": "floor",
     "scale": "fixed",
     "imageTracking": {
       "enabled": true,
       "targetFileUrl": "/ar/harpa/targets.mind",
-      "targetImageUrl": "/ar/harpa/card-ra-harpa.png",
+      "targetImageUrl": "/ar/harpa/card-ra-harpa.webp",
       "targetIndex": 0,
       "modelScale": 0.64,
       "modelRotation": [0, -0.22, 0]

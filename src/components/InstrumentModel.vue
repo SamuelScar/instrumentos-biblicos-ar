@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Box, LoaderCircle, RotateCcw } from "@lucide/vue";
-import { onMounted, ref } from "vue";
+import { Box, LoaderCircle, Maximize2, Minimize2, RotateCcw } from "@lucide/vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import type { Instrument } from "../domain/instruments";
 
 defineProps<{
@@ -19,12 +19,35 @@ type ModelViewerElement = HTMLElement & {
 };
 
 const componentReady = ref(false);
+const modelShellElement = ref<HTMLElement | null>(null);
 const modelViewerElement = ref<ModelViewerElement | null>(null);
 const viewerKey = ref(0);
 const viewerState = ref<ViewerState>("preparing");
 const arStatus = ref<ArStatus>("not-presenting");
 const arTrackingStatus = ref<ArTrackingStatus>("tracking");
 const canActivateAr = ref(false);
+const canUseFullscreen = ref(false);
+const isFullscreen = ref(false);
+
+function syncFullscreenState(): void {
+  isFullscreen.value = document.fullscreenElement === modelShellElement.value;
+}
+
+async function toggleFullscreen(): Promise<void> {
+  const modelShell = modelShellElement.value;
+  if (!modelShell) return;
+
+  try {
+    if (document.fullscreenElement === modelShell) {
+      await document.exitFullscreen();
+      return;
+    }
+
+    await modelShell.requestFullscreen();
+  } catch {
+    syncFullscreenState();
+  }
+}
 
 async function prepareViewer(): Promise<void> {
   viewerState.value = "preparing";
@@ -44,9 +67,7 @@ function finishLoading(event: Event): void {
   updateArAvailability(event.currentTarget as ModelViewerElement);
 }
 
-function updateArAvailability(
-  viewer = modelViewerElement.value,
-): boolean {
+function updateArAvailability(viewer = modelViewerElement.value): boolean {
   const isAvailable = Boolean(viewer?.canActivateAR);
   canActivateAr.value = isAvailable;
   return isAvailable;
@@ -66,9 +87,7 @@ function reportArStatus(event: Event): void {
 }
 
 function reportArTracking(event: Event): void {
-  arTrackingStatus.value = (
-    event as CustomEvent<{ status: ArTrackingStatus }>
-  ).detail.status;
+  arTrackingStatus.value = (event as CustomEvent<{ status: ArTrackingStatus }>).detail.status;
 }
 
 function prepareArSession(): void {
@@ -94,8 +113,7 @@ async function startArSession(): Promise<void> {
 
 async function retryLoading(): Promise<void> {
   viewerKey.value += 1;
-  arStatus.value = "not-presenting";
-  arTrackingStatus.value = "tracking";
+  prepareArSession();
   canActivateAr.value = false;
 
   if (componentReady.value) {
@@ -106,76 +124,126 @@ async function retryLoading(): Promise<void> {
   await prepareViewer();
 }
 
-onMounted(prepareViewer);
+onMounted(() => {
+  canUseFullscreen.value = document.fullscreenEnabled;
+  document.addEventListener("fullscreenchange", syncFullscreenState);
+  void prepareViewer();
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("fullscreenchange", syncFullscreenState);
+
+  if (document.fullscreenElement === modelShellElement.value) {
+    void document.exitFullscreen();
+  }
+});
 </script>
 
 <template>
-  <div
-    class="instrument-model-shell"
-    :class="`instrument-model-shell--${viewerState}`"
-  >
-    <model-viewer
-      v-if="componentReady"
-      ref="modelViewerElement"
-      :key="viewerKey"
-      class="instrument-model"
-      :src="modelUrl"
-      :poster="posterUrl"
-      :alt="`Modelo 3D do instrumento ${instrumentName}`"
-      camera-controls
-      auto-rotate
-      shadow-intensity="1"
-      touch-action="pan-y"
-      :ar="ar.enabled"
-      ar-modes="webxr scene-viewer quick-look"
-      :ar-placement="ar.placement"
-      :ar-scale="ar.scale"
-      @load="finishLoading"
-      @error="reportError"
-      @ar-status="reportArStatus"
-      @ar-tracking="reportArTracking"
-    >
+  <div ref="modelShellElement" class="instrument-model-shell">
+    <div class="instrument-model-stage">
+      <model-viewer
+        v-if="componentReady"
+        ref="modelViewerElement"
+        :key="viewerKey"
+        class="instrument-model"
+        :src="modelUrl"
+        :poster="posterUrl"
+        :alt="`Modelo 3D do instrumento ${instrumentName}`"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1"
+        :touch-action="isFullscreen ? 'none' : 'pan-y'"
+        :ar="ar.environmentEnabled"
+        ar-modes="webxr scene-viewer quick-look"
+        :ar-placement="ar.placement"
+        :ar-scale="ar.scale"
+        @load="finishLoading"
+        @error="reportError"
+        @ar-status="reportArStatus"
+        @ar-tracking="reportArTracking"
+      >
+        <div
+          v-if="
+            arStatus !== 'not-presenting' &&
+            arStatus !== 'failed' &&
+            arTrackingStatus === 'not-tracking'
+          "
+          class="model-ar-feedback"
+          role="status"
+          aria-live="polite"
+        >
+          <strong>Rastreamento interrompido</strong>
+          <span>Aponte para uma superfície bem iluminada e mova o celular devagar.</span>
+        </div>
+
+        <div
+          v-else-if="arStatus === 'session-started'"
+          class="model-ar-feedback"
+          role="status"
+          aria-live="polite"
+        >
+          <strong>Procure uma superfície</strong>
+          <span>Mova o celular devagar até encontrar o chão.</span>
+        </div>
+
+        <div
+          v-else-if="arStatus === 'failed'"
+          class="model-ar-feedback model-ar-feedback--error"
+          role="alert"
+        >
+          <strong>Não foi possível abrir a realidade aumentada.</strong>
+          <span>Use um celular compatível, acesse por HTTPS e permita o uso da câmera.</span>
+        </div>
+      </model-viewer>
+
+      <button
+        v-if="viewerState === 'ready' && canUseFullscreen"
+        class="model-fullscreen-button"
+        type="button"
+        :aria-label="isFullscreen ? 'Sair da tela cheia' : 'Ver modelo em tela cheia'"
+        :title="isFullscreen ? 'Sair da tela cheia' : 'Ver modelo em tela cheia'"
+        @click="toggleFullscreen"
+      >
+        <Minimize2 v-if="isFullscreen" :size="20" aria-hidden="true" />
+        <Maximize2 v-else :size="20" aria-hidden="true" />
+      </button>
+
+      <p v-if="viewerState === 'ready'" class="model-gesture-hint">
+        Arraste para girar · pinça ou roda para aproximar
+      </p>
+
       <div
-        v-if="
-          arStatus !== 'not-presenting' &&
-          arStatus !== 'failed' &&
-          arTrackingStatus === 'not-tracking'
-        "
-        class="model-ar-feedback"
+        v-if="viewerState === 'preparing' || viewerState === 'loading'"
+        class="model-status"
         role="status"
         aria-live="polite"
       >
-        <strong>Rastreamento interrompido</strong>
-        <span>Aponte para uma superfície bem iluminada e mova o celular devagar.</span>
+        <LoaderCircle class="model-status__icon" :size="18" aria-hidden="true" />
+        <span>
+          {{
+            viewerState === "preparing"
+              ? "Preparando visualizador 3D..."
+              : "Carregando modelo 3D..."
+          }}
+        </span>
       </div>
 
-      <div
-        v-else-if="arStatus === 'session-started'"
-        class="model-ar-feedback"
-        role="status"
-        aria-live="polite"
-      >
-        <strong>Procure uma superfície</strong>
-        <span>Mova o celular devagar até encontrar o chão.</span>
+      <div v-else-if="viewerState === 'error'" class="model-error" role="alert">
+        <strong>Não foi possível carregar o modelo 3D.</strong>
+        <span
+          >O arquivo pode estar indisponível ou o navegador pode não oferecer suporte ao 3D.</span
+        >
+        <button class="button button--secondary" type="button" @click="retryLoading">
+          <RotateCcw :size="17" aria-hidden="true" />
+          Tentar novamente
+        </button>
       </div>
-
-      <div
-        v-else-if="arStatus === 'failed'"
-        class="model-ar-feedback model-ar-feedback--error"
-        role="alert"
-      >
-        <strong>Não foi possível abrir a realidade aumentada.</strong>
-        <span>Use um celular compatível, acesse por HTTPS e permita o uso da câmera.</span>
-      </div>
-    </model-viewer>
-
-    <p v-if="viewerState === 'ready'" class="model-gesture-hint">
-      Arraste para girar · pinça ou roda para aproximar
-    </p>
+    </div>
 
     <div v-if="viewerState === 'ready'" class="model-action-dock" aria-label="Ações rápidas">
       <button
-        v-if="ar.enabled"
+        v-if="ar.environmentEnabled"
         class="model-action-button"
         type="button"
         :aria-disabled="!canActivateAr"
@@ -189,31 +257,6 @@ onMounted(prepareViewer);
       </button>
 
       <slot name="actions" />
-    </div>
-
-    <div
-      v-if="viewerState === 'preparing' || viewerState === 'loading'"
-      class="model-status"
-      role="status"
-      aria-live="polite"
-    >
-      <LoaderCircle class="model-status__icon" :size="18" aria-hidden="true" />
-      <span>
-        {{
-          viewerState === "preparing"
-            ? "Preparando visualizador 3D..."
-            : "Carregando modelo 3D..."
-        }}
-      </span>
-    </div>
-
-    <div v-else-if="viewerState === 'error'" class="model-error" role="alert">
-      <strong>Não foi possível carregar o modelo 3D.</strong>
-      <span>O arquivo pode estar indisponível ou o navegador pode não oferecer suporte ao 3D.</span>
-      <button class="button button--secondary" type="button" @click="retryLoading">
-        <RotateCcw :size="17" aria-hidden="true" />
-        Tentar novamente
-      </button>
     </div>
   </div>
 </template>

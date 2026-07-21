@@ -8,16 +8,21 @@ import sinosData from "../data/instruments/sinos.json";
 import tamborimData from "../data/instruments/tamborim.json";
 import trombetaData from "../data/instruments/trombeta.json";
 
-export type InstrumentId =
-  | "alaude"
-  | "flauta"
-  | "shofar"
-  | "harpa"
-  | "lira"
-  | "sinos"
-  | "tamborim"
-  | "salterio"
-  | "trombeta";
+const instrumentIds = [
+  "alaude",
+  "flauta",
+  "shofar",
+  "harpa",
+  "lira",
+  "sinos",
+  "tamborim",
+  "salterio",
+  "trombeta",
+] as const;
+
+const instrumentIdSet: ReadonlySet<string> = new Set(instrumentIds);
+
+export type InstrumentId = (typeof instrumentIds)[number];
 
 export type BibleRef = {
   book: string;
@@ -58,7 +63,7 @@ export type Instrument = {
     audioUrl: string | null;
   };
   ar: {
-    enabled: boolean;
+    environmentEnabled: boolean;
     placement: "floor" | "wall";
     scale: "auto" | "fixed";
     imageTracking?: ImageTrackingAr;
@@ -69,7 +74,7 @@ export type Instrument = {
 type InstrumentData = Omit<Instrument, "id" | "ar"> & {
   id: string;
   ar: {
-    enabled: boolean;
+    environmentEnabled: boolean;
     placement: string;
     scale: string;
     imageTracking?: Omit<ImageTrackingAr, "modelRotation"> & {
@@ -79,17 +84,7 @@ type InstrumentData = Omit<Instrument, "id" | "ar"> & {
 };
 
 function isInstrumentId(id: string): id is InstrumentId {
-  return (
-    id === "alaude" ||
-    id === "flauta" ||
-    id === "shofar" ||
-    id === "harpa" ||
-    id === "lira" ||
-    id === "sinos" ||
-    id === "tamborim" ||
-    id === "salterio" ||
-    id === "trombeta"
-  );
+  return instrumentIdSet.has(id);
 }
 
 function parseInstrument(data: InstrumentData): Instrument {
@@ -112,8 +107,7 @@ function parseInstrument(data: InstrumentData): Instrument {
     (!Number.isInteger(imageTracking.targetIndex) ||
       imageTracking.targetIndex < 0 ||
       (imageTracking.missTolerance !== undefined &&
-        (!Number.isInteger(imageTracking.missTolerance) ||
-          imageTracking.missTolerance < 0)) ||
+        (!Number.isInteger(imageTracking.missTolerance) || imageTracking.missTolerance < 0)) ||
       !imageTracking.targetFileUrl ||
       !imageTracking.targetImageUrl ||
       !Number.isFinite(imageTracking.modelScale) ||

@@ -67,17 +67,17 @@
   },
   "assets": {
     "modelUrl": "/models/salterio/salterio.glb",
-    "coverImageUrl": "/images/instruments/salterio.png",
+    "coverImageUrl": "/images/instruments/salterio.webp",
     "audioUrl": "/audio/salterio/salterio.mp3"
   },
   "ar": {
-    "enabled": true,
+    "environmentEnabled": true,
     "placement": "floor",
     "scale": "fixed",
     "imageTracking": {
       "enabled": true,
       "targetFileUrl": "/ar/salterio/targets.mind",
-      "targetImageUrl": "/ar/salterio/card-ra-salterio.png",
+      "targetImageUrl": "/ar/salterio/card-ra-salterio.webp",
       "targetIndex": 3,
       "modelScale": 1.41421091,
       "modelRotation": [1.15, -0.18, -0.08]
