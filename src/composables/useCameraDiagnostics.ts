@@ -1,10 +1,12 @@
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from "vue";
+import {
+  createCameraOptions,
+  enumerateMediaDevices,
+  normalizeCameraDeviceId,
+  requestCameraStream,
+  type CameraOption,
+} from "../lib/cameraDevices";
 import { readCameraPreference, saveCameraPreference } from "../lib/cameraPreference";
-
-type CameraOption = {
-  deviceId: string;
-  label: string;
-};
 
 export function useCameraDiagnostics() {
   let requestVersion = 0;
@@ -51,32 +53,24 @@ export function useCameraDiagnostics() {
 
   async function readDevices() {
     try {
-      if (!navigator.mediaDevices?.enumerateDevices) {
+      const mediaDevices = await enumerateMediaDevices();
+      if (!mediaDevices) {
         cameras.value = [];
         return "enumerateDevices: unsupported";
       }
 
-      const mediaDevices = await navigator.mediaDevices.enumerateDevices();
       if (!mediaDevices.length) {
         cameras.value = [];
         return "(nenhum dispositivo retornado)";
       }
 
-      const availableCameras = mediaDevices
-        .filter((device) => device.kind === "videoinput" && device.deviceId)
-        .map((device, index) => ({
-          deviceId: device.deviceId,
-          label: device.label || `Câmera ${index + 1}`,
-        }));
+      const availableCameras = createCameraOptions(mediaDevices);
 
       cameras.value = availableCameras;
 
-      if (
-        availableCameras.length > 0 &&
-        selectedCameraId.value &&
-        !availableCameras.some((camera) => camera.deviceId === selectedCameraId.value)
-      ) {
-        selectedCameraId.value = "";
+      const normalizedCameraId = normalizeCameraDeviceId(selectedCameraId.value, availableCameras);
+      if (normalizedCameraId !== selectedCameraId.value) {
+        selectedCameraId.value = normalizedCameraId;
         saveCameraPreference("");
       }
 
@@ -108,48 +102,28 @@ export function useCameraDiagnostics() {
         throw new Error("getUserMedia não está disponível neste navegador");
       }
 
-      let requestedStream: MediaStream;
       const selectedDeviceId = selectedCameraId.value;
-
-      try {
-        requestedStream = await navigator.mediaDevices.getUserMedia({
-          video: selectedDeviceId
-            ? { deviceId: { exact: selectedDeviceId } }
-            : { facingMode: { ideal: "environment" } },
-          audio: false,
-        });
-      } catch (error) {
-        if (currentRequest !== requestVersion) return;
-
-        const selectedCameraIsUnavailable =
-          Boolean(selectedDeviceId) &&
-          error instanceof DOMException &&
-          (error.name === "NotFoundError" || error.name === "OverconstrainedError");
-
-        if (selectedDeviceId && !selectedCameraIsUnavailable) throw error;
-
-        if (selectedCameraIsUnavailable) {
-          selectedCameraId.value = "";
-          saveCameraPreference("");
-        }
-
-        requestedStream = await navigator.mediaDevices.getUserMedia({
-          video: selectedCameraIsUnavailable
-            ? { facingMode: { ideal: "environment" } }
-            : true,
-          audio: false,
-        });
-      }
+      const { stream: requestedStream, preferredDeviceUnavailable } = await requestCameraStream({
+        deviceId: selectedDeviceId || undefined,
+        retryAutomaticWithAnyCamera: true,
+        shouldRetry: () => currentRequest === requestVersion,
+      });
 
       if (currentRequest !== requestVersion) {
         requestedStream.getTracks().forEach((track) => track.stop());
         return;
       }
 
+      if (preferredDeviceUnavailable) {
+        selectedCameraId.value = "";
+        saveCameraPreference("");
+      }
+
       stream.value = requestedStream;
       if (videoElement.value) videoElement.value.srcObject = requestedStream;
       addLog("câmera iniciada");
     } catch (error) {
+      if (currentRequest !== requestVersion) return;
       addLog(`ERRO: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       if (currentRequest === requestVersion) await refresh();

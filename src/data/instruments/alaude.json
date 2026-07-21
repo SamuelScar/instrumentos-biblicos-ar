@@ -59,7 +59,7 @@
     "audioUrl": "/audio/alaude/alaude.mp3"
   },
   "ar": {
-    "enabled": true,
+    "environmentEnabled": true,
     "placement": "floor",
     "scale": "fixed",
     "imageTracking": {

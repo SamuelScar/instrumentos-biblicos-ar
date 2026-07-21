@@ -2,6 +2,7 @@
   "name": "instrumentos-mundo-biblico",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@10.34.5",
   "license": "SEE LICENSE IN LICENSE.md",
   "type": "module",
   "engines": {
@@ -37,8 +38,5 @@
     "three": "^0.183.0",
     "vue": "^3.5.39",
     "vue-router": "^5.1.0"
-  },
-  "allowScripts": {
-    "esbuild@0.27.2": true
   }
 }

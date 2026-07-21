@@ -53,7 +53,7 @@
     "audioUrl": "/audio/tamborim/tamborim.mp3"
   },
   "ar": {
-    "enabled": true,
+    "environmentEnabled": true,
     "placement": "floor",
     "scale": "fixed",
     "imageTracking": {

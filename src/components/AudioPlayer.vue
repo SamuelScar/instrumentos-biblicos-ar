@@ -2,12 +2,16 @@
 import { Music2, Pause, Play } from "@lucide/vue";
 import { computed, onBeforeUnmount, ref } from "vue";
 
-const props = defineProps<{
-  src: string;
-  instrumentName: string;
-  compact?: boolean;
-  minimal?: boolean;
-}>();
+type AudioPlayerVariant = "default" | "compact" | "minimal";
+
+const props = withDefaults(
+  defineProps<{
+    src: string;
+    instrumentName: string;
+    variant?: AudioPlayerVariant;
+  }>(),
+  { variant: "default" }
+);
 
 const audioElement = ref<HTMLAudioElement>();
 const currentTime = ref(0);
@@ -24,8 +28,10 @@ const progress = computed(() => {
 const progressStyle = computed(() => ({
   "--audio-progress": `${progress.value}%`,
 }));
+const isCompact = computed(() => props.variant !== "default");
+const isMinimal = computed(() => props.variant === "minimal");
 const compactExpanded = computed(
-  () => props.compact && !props.minimal && (isPlaying.value || currentTime.value > 0),
+  () => isCompact.value && !isMinimal.value && (isPlaying.value || currentTime.value > 0)
 );
 
 function formatTime(seconds: number): string {
@@ -101,8 +107,7 @@ onBeforeUnmount(() => {
     class="audio-player"
     :class="{
       'audio-player--playing': isPlaying,
-      'audio-player--compact': props.compact,
-      'audio-player--minimal': props.minimal,
+      'audio-player--compact': isCompact,
       'audio-player--compact-expanded': compactExpanded,
     }"
   >
@@ -126,16 +131,18 @@ onBeforeUnmount(() => {
       class="audio-player__control"
       type="button"
       :disabled="hasError"
-      :aria-label="isPlaying ? `Pausar som de ${instrumentName}` : `Reproduzir som de ${instrumentName}`"
+      :aria-label="
+        isPlaying ? `Pausar som de ${instrumentName}` : `Reproduzir som de ${instrumentName}`
+      "
       @click="togglePlayback"
     >
       <Pause v-if="isPlaying" :size="21" fill="currentColor" aria-hidden="true" />
       <Play v-else :size="21" fill="currentColor" aria-hidden="true" />
-      <span v-if="props.compact">Som</span>
+      <span v-if="isCompact">Som</span>
     </button>
 
-    <div v-if="!props.minimal" class="audio-player__content">
-      <div v-if="!props.compact" class="audio-player__heading">
+    <div v-if="!isMinimal" class="audio-player__content">
+      <div v-if="!isCompact" class="audio-player__heading">
         <span class="audio-player__icon" aria-hidden="true">
           <Music2 :size="18" />
         </span>

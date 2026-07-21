@@ -77,7 +77,7 @@
     "audioUrl": "/audio/trombeta/trombeta.mp3"
   },
   "ar": {
-    "enabled": true,
+    "environmentEnabled": true,
     "placement": "floor",
     "scale": "fixed",
     "imageTracking": {

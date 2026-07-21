@@ -8,6 +8,7 @@ import {
   Vector3,
   WebGLRenderer,
 } from "three";
+import { requestCameraStream } from "../cameraDevices";
 
 const MINDAR_CORE_URL = "/vendor/mindar/1.2.5/mindar-image.prod.js";
 const TRACKING_FILTER_MIN_CUTOFF = 0.0001;
@@ -116,7 +117,6 @@ export interface MindArImageSessionOptions {
   deviceId?: string;
   onTargetFound?: () => void;
   onTargetLost?: () => void;
-  onTargetUpdate?: () => void;
 }
 
 export class MindArImageSession {
@@ -124,7 +124,6 @@ export class MindArImageSession {
   readonly camera: PerspectiveCamera;
   readonly scene: Scene;
   readonly anchor: Group;
-  readonly video: HTMLVideoElement;
 
   private readonly container: HTMLElement;
   private readonly targetUrl: string;
@@ -133,7 +132,7 @@ export class MindArImageSession {
   private readonly deviceId?: string;
   private readonly onTargetFound?: () => void;
   private readonly onTargetLost?: () => void;
-  private readonly onTargetUpdate?: () => void;
+  private readonly video: HTMLVideoElement;
   private readonly originalContainerPosition: string;
   private readonly changedContainerPosition: boolean;
   private readonly resizeListener = () => this.resize();
@@ -161,7 +160,6 @@ export class MindArImageSession {
     this.deviceId = options.deviceId;
     this.onTargetFound = options.onTargetFound;
     this.onTargetLost = options.onTargetLost;
-    this.onTargetUpdate = options.onTargetUpdate;
 
     if (!Number.isInteger(this.targetIndex) || this.targetIndex < 0) {
       throw new Error("O índice do alvo do MindAR deve ser um inteiro não negativo.");
@@ -193,15 +191,11 @@ export class MindArImageSession {
     this.attachResizeListener();
   }
 
-  get isRunning() {
-    return this.running;
-  }
-
   get isTargetVisible() {
     return this.targetVisible;
   }
 
-  updateAnchorPose(deltaSeconds: number) {
+  private updateAnchorPose(deltaSeconds: number) {
     if (!this.targetVisible || !this.poseInitialized) return;
 
     const delta = Math.min(Math.max(deltaSeconds, 0), MAX_FRAME_DELTA_SECONDS);
@@ -224,6 +218,7 @@ export class MindArImageSession {
     if (this.running) return Promise.resolve();
     if (this.startTask) return this.startTask;
 
+    this.startRenderLoop();
     const token = ++this.operationToken;
     const abortController = new AbortController();
     this.startAbortController = abortController;
@@ -275,7 +270,7 @@ export class MindArImageSession {
     }
   }
 
-  resize() {
+  private resize() {
     if (!this.video.videoWidth || !this.video.videoHeight) return;
 
     const containerWidth = Math.max(1, this.container.clientWidth);
@@ -345,6 +340,19 @@ export class MindArImageSession {
         this.startAbortController = null;
       }
     }
+  }
+
+  private startRenderLoop() {
+    let previousFrameTime: number | null = null;
+
+    this.renderer.setAnimationLoop((frameTime) => {
+      const deltaSeconds =
+        previousFrameTime === null ? 1 / 60 : (frameTime - previousFrameTime) / 1000;
+      previousFrameTime = frameTime;
+
+      this.updateAnchorPose(deltaSeconds);
+      this.renderer.render(this.scene, this.camera);
+    });
   }
 
   private async startInternal(token: number, signal: AbortSignal) {
@@ -430,25 +438,8 @@ export class MindArImageSession {
       throw new Error("A câmera não está disponível neste navegador.");
     }
 
-    if (this.deviceId) {
-      try {
-        return await navigator.mediaDevices.getUserMedia({
-          audio: false,
-          video: { deviceId: { exact: this.deviceId } },
-        });
-      } catch (error) {
-        const selectedCameraIsUnavailable =
-          error instanceof DOMException &&
-          (error.name === "NotFoundError" || error.name === "OverconstrainedError");
-
-        if (!selectedCameraIsUnavailable) throw error;
-      }
-    }
-
-    return navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: { facingMode: { ideal: "environment" } },
-    });
+    const { stream } = await requestCameraStream({ deviceId: this.deviceId });
+    return stream;
   }
 
   private waitForVideoMetadata(signal: AbortSignal) {
@@ -507,7 +498,6 @@ export class MindArImageSession {
         this.targetVisible = false;
         this.onTargetLost?.();
       }
-      this.onTargetUpdate?.();
       return;
     }
 
@@ -528,7 +518,6 @@ export class MindArImageSession {
       this.targetVisible = true;
       this.onTargetFound?.();
     }
-    this.onTargetUpdate?.();
   }
 
   private createPostMatrix([markerWidth, markerHeight]: ImageTargetDimensions) {

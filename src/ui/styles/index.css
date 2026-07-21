@@ -1,3 +1,6 @@
 @import "./base.css";
 @import "./components.css";
-@import "./screens.css";
+@import "./catalog.css";
+@import "./instrument.css";
+@import "./image-ar.css";
+@import "./diagnostics.css";

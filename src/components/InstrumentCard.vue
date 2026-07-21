@@ -23,7 +23,7 @@ defineProps<{
         <span v-else aria-hidden="true">{{ instrument.name.slice(0, 1) }}</span>
 
         <span
-          v-if="instrument.assets.modelUrl || instrument.ar.enabled"
+          v-if="instrument.assets.modelUrl || instrument.ar.environmentEnabled"
           class="instrument-card__capabilities"
         >
           <span
@@ -36,7 +36,7 @@ defineProps<{
             <Box :size="18" aria-hidden="true" />
           </span>
           <span
-            v-if="instrument.ar.enabled"
+            v-if="instrument.ar.environmentEnabled"
             class="instrument-card__capability"
             role="img"
             aria-label="Realidade aumentada disponível"

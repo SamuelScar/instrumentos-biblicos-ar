@@ -67,9 +67,7 @@ function finishLoading(event: Event): void {
   updateArAvailability(event.currentTarget as ModelViewerElement);
 }
 
-function updateArAvailability(
-  viewer = modelViewerElement.value,
-): boolean {
+function updateArAvailability(viewer = modelViewerElement.value): boolean {
   const isAvailable = Boolean(viewer?.canActivateAR);
   canActivateAr.value = isAvailable;
   return isAvailable;
@@ -89,9 +87,7 @@ function reportArStatus(event: Event): void {
 }
 
 function reportArTracking(event: Event): void {
-  arTrackingStatus.value = (
-    event as CustomEvent<{ status: ArTrackingStatus }>
-  ).detail.status;
+  arTrackingStatus.value = (event as CustomEvent<{ status: ArTrackingStatus }>).detail.status;
 }
 
 function prepareArSession(): void {
@@ -117,8 +113,7 @@ async function startArSession(): Promise<void> {
 
 async function retryLoading(): Promise<void> {
   viewerKey.value += 1;
-  arStatus.value = "not-presenting";
-  arTrackingStatus.value = "tracking";
+  prepareArSession();
   canActivateAr.value = false;
 
   if (componentReady.value) {
@@ -145,11 +140,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div
-    ref="modelShellElement"
-    class="instrument-model-shell"
-    :class="`instrument-model-shell--${viewerState}`"
-  >
+  <div ref="modelShellElement" class="instrument-model-shell">
     <div class="instrument-model-stage">
       <model-viewer
         v-if="componentReady"
@@ -163,7 +154,7 @@ onBeforeUnmount(() => {
         auto-rotate
         shadow-intensity="1"
         :touch-action="isFullscreen ? 'none' : 'pan-y'"
-        :ar="ar.enabled"
+        :ar="ar.environmentEnabled"
         ar-modes="webxr scene-viewer quick-look"
         :ar-placement="ar.placement"
         :ar-scale="ar.scale"
@@ -240,7 +231,9 @@ onBeforeUnmount(() => {
 
       <div v-else-if="viewerState === 'error'" class="model-error" role="alert">
         <strong>Não foi possível carregar o modelo 3D.</strong>
-        <span>O arquivo pode estar indisponível ou o navegador pode não oferecer suporte ao 3D.</span>
+        <span
+          >O arquivo pode estar indisponível ou o navegador pode não oferecer suporte ao 3D.</span
+        >
         <button class="button button--secondary" type="button" @click="retryLoading">
           <RotateCcw :size="17" aria-hidden="true" />
           Tentar novamente
@@ -250,7 +243,7 @@ onBeforeUnmount(() => {
 
     <div v-if="viewerState === 'ready'" class="model-action-dock" aria-label="Ações rápidas">
       <button
-        v-if="ar.enabled"
+        v-if="ar.environmentEnabled"
         class="model-action-button"
         type="button"
         :aria-disabled="!canActivateAr"

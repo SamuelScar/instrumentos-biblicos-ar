@@ -60,9 +60,9 @@ orientação, apoio no chão e estabilidade de todos os modelos em Android e iOS
 
 O rastreamento por imagem também está disponível para os nove instrumentos. Cada um possui arte
 própria em `public/ar/<instrumento>` e uma configuração que relaciona o card ao modelo 3D. O núcleo
-do MindAR é servido a partir de `public/vendor/mindar/1.2.5`, sem dependência npm. Esse modo funciona
-com webcam em computadores e câmera em Android e iOS, desde que a aplicação esteja em um contexto
-seguro, como `localhost` ou HTTPS.
+do MindAR é servido a partir de `public/vendor/mindar/1.2.5`, sem dependência do projeto. Esse modo
+funciona com webcam em computadores e câmera em Android e iOS, desde que a aplicação esteja em um
+contexto seguro, como `localhost` ou HTTPS.
 
 As artes provisórias foram substituídas, mas a validação manual do reconhecimento, da estabilidade e
 do enquadramento dos nove cards ainda está pendente nas três plataformas. Também falta definir um
@@ -93,7 +93,7 @@ Para ampliar a experiência, será necessário:
 - o conteúdo educacional e a exploração 3D são o núcleo da aplicação;
 - a realidade aumentada é uma extensão opcional;
 - o `<model-viewer>` atende à RA livre em dispositivos móveis e o MindAR atende ao modo por card;
-- o núcleo do MindAR permanece vendorizado como ativo estático, sem dependência npm;
+- o núcleo do MindAR permanece vendorizado como ativo estático, sem dependência do projeto;
 - a aplicação permanece totalmente frontend, sem API ou banco de dados;
 - a Vercel é a hospedagem principal e o Docker oferece portabilidade;
 - Vue 3 e Vue Router formam a camada de interface;

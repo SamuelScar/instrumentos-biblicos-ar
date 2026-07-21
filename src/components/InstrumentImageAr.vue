@@ -1,32 +1,22 @@
 <script setup lang="ts">
-import {
-  Camera,
-  LoaderCircle,
-  RotateCcw,
-  ScanLine,
-  ShieldAlert,
-  X,
-} from "@lucide/vue";
-import {
-  ACESFilmicToneMapping,
-  Box3,
-  DirectionalLight,
-  Group,
-  HemisphereLight,
-  MathUtils,
-  Mesh,
-  PMREMGenerator,
-  Texture,
-  Vector3,
-  type Material,
-  type Object3D,
-} from "three";
-import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
+import { Camera, LoaderCircle, RotateCcw, ScanLine, ShieldAlert, X } from "@lucide/vue";
+import { DirectionalLight, Group, HemisphereLight, MathUtils, Texture, type Object3D } from "three";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import type { ImageTrackingAr } from "../domain/instruments";
+import {
+  createCameraOptions,
+  enumerateMediaDevices,
+  normalizeCameraDeviceId,
+  type CameraOption,
+} from "../lib/cameraDevices";
 import { readCameraPreference, saveCameraPreference } from "../lib/cameraPreference";
 import { MindArImageSession } from "../lib/mindar/MindArImageSession";
+import {
+  createImageTrackingEnvironment,
+  disposeModel,
+  loadModel,
+  prepareImageTrackingModel,
+} from "../lib/three/imageTrackingModel";
 import AudioPlayer from "./AudioPlayer.vue";
 
 const props = defineProps<{
@@ -41,10 +31,6 @@ const emit = defineEmits<{
 }>();
 
 type ExperienceState = "idle" | "starting" | "scanning" | "found" | "error";
-type CameraOption = {
-  deviceId: string;
-  label: string;
-};
 
 const viewportElement = ref<HTMLElement | null>(null);
 const closeButtonElement = ref<HTMLButtonElement | null>(null);
@@ -52,6 +38,19 @@ const experienceState = ref<ExperienceState>("idle");
 const errorMessage = ref("");
 const cameras = ref<CameraOption[]>([]);
 const selectedCameraId = ref(readCameraPreference());
+const showsSetup = computed(
+  () => experienceState.value === "idle" || experienceState.value === "error"
+);
+const statusMessage = computed(() => {
+  switch (experienceState.value) {
+    case "starting":
+      return "Preparando modelo e câmera...";
+    case "found":
+      return "Instrumento reconhecido";
+    default:
+      return `Procurando o card de ${props.instrumentName}...`;
+  }
+});
 
 let requestVersion = 0;
 let session: MindArImageSession | null = null;
@@ -66,28 +65,6 @@ let previouslyFocusedElement: HTMLElement | null = null;
 
 const MODEL_ROTATION_SENSITIVITY = 0.008;
 const MODEL_TILT_LIMIT = Math.PI / 3;
-
-function disposeMaterial(material: Material): void {
-  for (const value of Object.values(material)) {
-    if (value instanceof Texture) {
-      value.dispose();
-    }
-  }
-
-  material.dispose();
-}
-
-function disposeModel(model: Object3D): void {
-  model.traverse((object) => {
-    if (!(object instanceof Mesh)) return;
-
-    object.geometry.dispose();
-    const materials = Array.isArray(object.material) ? object.material : [object.material];
-    materials.forEach(disposeMaterial);
-  });
-
-  model.removeFromParent();
-}
 
 function disposeLoadedModel(): void {
   if (loadedModel) disposeModel(loadedModel);
@@ -105,8 +82,7 @@ function disposeEnvironment(): void {
   environmentTexture = null;
 }
 
-function stopSession(): void {
-  requestVersion += 1;
+function disposeSessionResources(): void {
   activePointerId = null;
   disposeEnvironment();
   session?.dispose();
@@ -114,44 +90,14 @@ function stopSession(): void {
   disposeLoadedModel();
 }
 
-function loadModel(modelUrl: string): Promise<Object3D> {
-  return new Promise((resolve, reject) => {
-    new GLTFLoader().load(
-      modelUrl,
-      (gltf) => resolve(gltf.scene),
-      undefined,
-      (error) => reject(error),
-    );
-  });
-}
-
-function prepareModel(model: Object3D): Group {
-  model.scale.setScalar(props.imageTracking.modelScale);
-
-  const bounds = new Box3().setFromObject(model);
-  const center = bounds.getCenter(new Vector3());
-  model.position.sub(center);
-
-  const pivot = new Group();
-  pivot.rotation.set(...props.imageTracking.modelRotation);
-  pivot.add(model);
-  return pivot;
+function stopSession(): void {
+  requestVersion += 1;
+  disposeSessionResources();
 }
 
 function prepareEnvironment(currentSession: MindArImageSession): void {
-  const environment = new RoomEnvironment();
-  const generator = new PMREMGenerator(currentSession.renderer);
-
-  currentSession.renderer.toneMapping = ACESFilmicToneMapping;
-  currentSession.renderer.toneMappingExposure = 1.1;
-
-  try {
-    environmentTexture = generator.fromScene(environment, 0.04).texture;
-    currentSession.scene.environment = environmentTexture;
-  } finally {
-    environment.dispose();
-    generator.dispose();
-  }
+  environmentTexture = createImageTrackingEnvironment(currentSession.renderer);
+  currentSession.scene.environment = environmentTexture;
 }
 
 function handleModelPointerDown(event: PointerEvent): void {
@@ -182,7 +128,7 @@ function handleModelPointerMove(event: PointerEvent): void {
   modelPivot.rotation.x = MathUtils.clamp(
     modelPivot.rotation.x + movementY * MODEL_ROTATION_SENSITIVITY,
     -MODEL_TILT_LIMIT,
-    MODEL_TILT_LIMIT,
+    MODEL_TILT_LIMIT
   );
 }
 
@@ -218,22 +164,13 @@ function describeCameraError(error: unknown): string {
 
 async function refreshCameras(): Promise<void> {
   try {
-    const devices = await navigator.mediaDevices?.enumerateDevices();
+    const devices = await enumerateMediaDevices();
     if (!devices) return;
 
-    cameras.value = devices
-      .filter((device) => device.kind === "videoinput" && device.deviceId)
-      .map((device, index) => ({
-        deviceId: device.deviceId,
-        label: device.label || `Câmera ${index + 1}`,
-      }));
-
-    if (
-      cameras.value.length > 0 &&
-      selectedCameraId.value &&
-      !cameras.value.some((camera) => camera.deviceId === selectedCameraId.value)
-    ) {
-      selectedCameraId.value = "";
+    cameras.value = createCameraOptions(devices);
+    const normalizedCameraId = normalizeCameraDeviceId(selectedCameraId.value, cameras.value);
+    if (normalizedCameraId !== selectedCameraId.value) {
+      selectedCameraId.value = normalizedCameraId;
       saveCameraPreference("");
     }
   } catch {
@@ -243,11 +180,12 @@ async function refreshCameras(): Promise<void> {
 
 async function startExperience(): Promise<void> {
   stopSession();
-  const currentRequest = ++requestVersion;
+  const currentRequest = requestVersion;
   experienceState.value = "starting";
   errorMessage.value = "";
 
   await nextTick();
+  if (currentRequest !== requestVersion) return;
 
   if (!viewportElement.value) {
     experienceState.value = "error";
@@ -267,8 +205,6 @@ async function startExperience(): Promise<void> {
     return;
   }
 
-  let currentSession: MindArImageSession | null = null;
-
   try {
     const activeSession = new MindArImageSession({
       container: viewportElement.value,
@@ -283,18 +219,22 @@ async function startExperience(): Promise<void> {
         if (currentRequest === requestVersion) experienceState.value = "scanning";
       },
     });
-    currentSession = activeSession;
     session = activeSession;
 
     const model = await loadModel(props.modelUrl);
 
     if (currentRequest !== requestVersion) {
       disposeModel(model);
+      activeSession.dispose();
       return;
     }
 
     loadedModel = model;
-    modelPivot = prepareModel(model);
+    modelPivot = prepareImageTrackingModel(
+      model,
+      props.imageTracking.modelScale,
+      props.imageTracking.modelRotation
+    );
     activeSession.anchor.add(modelPivot);
 
     const ambientLight = new HemisphereLight(0xfff4dd, 0x4c382a, 2.2);
@@ -302,16 +242,6 @@ async function startExperience(): Promise<void> {
     keyLight.position.set(1.5, 2.5, 3);
     activeSession.scene.add(ambientLight, keyLight);
     prepareEnvironment(activeSession);
-
-    let previousFrameTime: number | null = null;
-    activeSession.renderer.setAnimationLoop((frameTime) => {
-      const deltaSeconds =
-        previousFrameTime === null ? 1 / 60 : (frameTime - previousFrameTime) / 1000;
-      previousFrameTime = frameTime;
-
-      activeSession.updateAnchorPose(deltaSeconds);
-      activeSession.renderer.render(activeSession.scene, activeSession.camera);
-    });
 
     await activeSession.start();
 
@@ -327,10 +257,7 @@ async function startExperience(): Promise<void> {
   } catch (error) {
     if (currentRequest !== requestVersion) return;
 
-    disposeEnvironment();
-    currentSession?.dispose();
-    session = null;
-    disposeLoadedModel();
+    disposeSessionResources();
     errorMessage.value = describeCameraError(error);
     experienceState.value = "error";
   }
@@ -392,15 +319,14 @@ onBeforeUnmount(() => {
       </button>
 
       <AudioPlayer
-        v-if="audioUrl && experienceState !== 'idle' && experienceState !== 'error'"
+        v-if="audioUrl && !showsSetup"
         class="image-ar-audio"
-        compact
-        minimal
+        variant="minimal"
         :src="audioUrl"
         :instrument-name="instrumentName"
       />
 
-      <div v-if="experienceState === 'idle' || experienceState === 'error'" class="image-ar-setup">
+      <div v-if="showsSetup" class="image-ar-setup">
         <div class="image-ar-setup__content">
           <p class="eyebrow">RA por card</p>
           <h2>Veja {{ instrumentName }} surgir sobre o card</h2>
@@ -411,11 +337,7 @@ onBeforeUnmount(() => {
 
           <div v-if="cameras.length" class="image-ar-camera-field">
             <label for="image-ar-camera">Câmera utilizada</label>
-            <select
-              id="image-ar-camera"
-              v-model="selectedCameraId"
-              @change="storeCameraPreference"
-            >
+            <select id="image-ar-camera" v-model="selectedCameraId" @change="storeCameraPreference">
               <option value="">Automática</option>
               <option v-for="camera in cameras" :key="camera.deviceId" :value="camera.deviceId">
                 {{ camera.label }}
@@ -476,23 +398,22 @@ onBeforeUnmount(() => {
           />
           <ScanLine v-else :size="19" aria-hidden="true" />
           <span>
-            {{
-              experienceState === "starting"
-                ? "Preparando modelo e câmera..."
-                : experienceState === "found"
-                  ? "Instrumento reconhecido"
-                  : `Procurando o card de ${instrumentName}...`
-            }}
+            {{ statusMessage }}
           </span>
         </div>
 
-        <div class="image-ar-guide" :class="{ 'image-ar-guide--found': experienceState === 'found' }">
+        <div
+          class="image-ar-guide"
+          :class="{ 'image-ar-guide--found': experienceState === 'found' }"
+        >
           <span v-if="experienceState !== 'found'">Enquadre o card inteiro</span>
         </div>
 
         <aside class="image-ar-card-hint">
           <img :src="imageTracking.targetImageUrl" alt="" aria-hidden="true" />
-          <span>{{ experienceState === "found" ? "Card reconhecido" : "Procure esta imagem" }}</span>
+          <span>{{
+            experienceState === "found" ? "Card reconhecido" : "Procure esta imagem"
+          }}</span>
         </aside>
 
         <p v-if="experienceState === 'found'" class="image-ar-interaction-hint">
