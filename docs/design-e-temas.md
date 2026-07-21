@@ -34,6 +34,11 @@ Na página de um instrumento, o conteúdo está dividido em quatro áreas:
 
 Os textos longos não ficam presos à coluna lateral do modelo. Em espaços menores, as áreas seguem a mesma ordem e ocupam a largura disponível.
 
+Quando o dispositivo oferece suporte, o visualizador apresenta ações centralizadas para abrir o
+instrumento no ambiente, iniciar o modo por card e reproduzir o áudio. O modo por card ocupa a tela
+inteira, exibe a arte que deve ser reconhecida e orienta a escolha da câmera, o enquadramento e a
+interação com o modelo.
+
 ## Temas
 
 A preferência inicial é `system`, que acompanha o tema claro ou escuro do dispositivo. O usuário também pode escolher explicitamente `light` ou `dark` pelo cabeçalho.

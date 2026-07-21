@@ -26,17 +26,19 @@ A aplicação possui:
 - visualização e manipulação de modelos 3D de Alaúde, Flauta, Harpa, Lira, Saltério,
   Shofar, Sinos, Tamborim e Trombeta;
 - demonstrações sonoras com player próprio para os nove instrumentos;
-- piloto de realidade aumentada com posicionamento da Harpa no ambiente;
-- piloto da Harpa por rastreamento de card, disponível com webcam ou câmera do celular;
+- realidade aumentada no ambiente para os nove instrumentos em dispositivos compatíveis;
+- rastreamento por cards próprios para os nove instrumentos, disponível com webcam ou câmera do
+  celular;
 - estrutura de dados independente da interface;
 - temas do sistema, claro e escuro;
 - layout fluido para diferentes tamanhos de tela e retorno rápido ao topo;
 - execução local com Node.js ou Docker;
 - publicação estática compatível com a Vercel.
 
-Todos os instrumentos cadastrados possuem conteúdo educacional, modelo 3D, imagem de capa e áudio
-demonstrativo. Para concluir o MVP, as próximas etapas são revisar textos e fontes, validar
-acessibilidade, validar os dois modos de RA em dispositivos reais e registrar a procedência dos
+Todos os instrumentos cadastrados possuem conteúdo educacional, modelo 3D, imagem de capa, áudio
+demonstrativo e configuração para os dois modos de realidade aumentada. Para concluir o MVP, as
+próximas etapas são revisar textos e fontes, validar acessibilidade, testar sistematicamente os dois
+modos de RA em dispositivos reais, preparar os cards para impressão e registrar a procedência dos
 modelos e áudios.
 
 ## Tecnologias
@@ -89,8 +91,9 @@ O licenciamento é separado conforme o tipo de material:
 - textos, dados educacionais e artes autorais usam a **CC BY-NC 4.0**;
 - bibliotecas e ativos de terceiros permanecem sob suas licenças de origem.
 
-Consulte [LICENSE.md](LICENSE.md) para os termos e [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
-para as bibliotecas utilizadas. Modelos 3D, imagens e áudios de terceiros não são automaticamente
+Consulte [LICENSE.md](LICENSE.md) para os termos, [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+para as bibliotecas utilizadas e [ASSET_CREDITS.md](ASSET_CREDITS.md) para a autoria, origem,
+licença e situação dos modelos 3D, imagens e áudios. Ativos de terceiros não são automaticamente
 cobertos pela licença do projeto.
 
 ## Autoria

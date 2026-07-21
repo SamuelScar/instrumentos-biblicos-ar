@@ -34,39 +34,38 @@ A aplicação mantém duas experiências complementares:
 
 O protótipo de `World Tracking`, que não fazia rastreamento espacial real, foi removido. O posicionamento no ambiente fica sob responsabilidade do `<model-viewer>`.
 
-O piloto de rastreamento por imagem usa a Harpa e um único alvo compilado em `public/ar/harpa`.
-O núcleo do MindAR necessário em tempo de execução é mantido como ativo estático em
+O rastreamento por imagem está configurado para os nove instrumentos. As artes e os arquivos de
+alvo ficam organizados em `public/ar/<instrumento>`, enquanto o núcleo do MindAR necessário em tempo
+de execução é mantido como ativo estático em
 `public/vendor/mindar/1.2.5`, sem adicionar o pacote como dependência npm. Isso evita trazer para o
 build dependências nativas usadas pelas ferramentas de compilação do MindAR e preserva a versão
-avaliada pelo projeto. O antigo `public/targets.mind`, incompatível com o formato atual, foi
-substituído pelo alvo compilado especificamente para este card.
+avaliada pelo projeto.
 
 O modo por card pode usar webcam em computadores e a câmera traseira em Android e iOS. O acesso à
 câmera exige um contexto seguro: `localhost` funciona durante o desenvolvimento no próprio
 computador e a publicação deve usar HTTPS. O acesso pelo celular a um endereço HTTP da rede local
 pode ser bloqueado pelo navegador mesmo que a página abra normalmente.
 
-### Piloto de RA do MVP
+### RA do MVP
 
-A Harpa é o primeiro instrumento habilitado para posicionamento no ambiente. O GLB foi normalizado
-para aproximadamente 1,80 m de altura, com centro horizontal na origem e base em `Y=0`. A opção
-`ar-scale="fixed"` mantém essa escala física durante o piloto, evitando que o redimensionamento do
-usuário esconda problemas na normalização do modelo.
+Os nove instrumentos estão habilitados para posicionamento no ambiente. A Harpa foi normalizada
+para aproximadamente 1,80 m de altura, com centro horizontal na origem e base em `Y=0`. Os demais
+modelos possuem configurações próprias, e Alaúde, Saltério, Shofar e Tamborim foram recalibrados
+depois dos primeiros testes no Android. A opção `ar-scale="fixed"` preserva a escala física definida
+e impede que o redimensionamento do usuário esconda problemas de normalização.
 
 Durante uma sessão WebXR, a interface orienta o usuário a mover o celular até localizar o chão. O
 evento `ar-status` também é observado para apresentar uma mensagem quando a RA não pode ser
 iniciada, e `ar-tracking` orienta o usuário quando o reconhecimento do ambiente é interrompido.
 Android pode usar WebXR ou Scene Viewer, enquanto o Quick Look do iOS pode receber o USDZ gerado
-automaticamente pelo `<model-viewer>` nesta primeira versão.
+automaticamente pelo `<model-viewer>` nesta primeira versão. O funcionamento e a escala ainda devem
+ser validados sistematicamente em aparelhos Android e iOS reais.
 
-O card `AR 01` do PS Vita é usado somente como alvo provisório para validar a fórmula do
-rastreamento por imagem. Ele deverá ser substituído por uma arte própria, com novo arquivo de alvo
-compilado, antes de qualquer publicação. A validação manual desse piloto em PC, Android e iOS ainda
-está pendente.
-
-Na página da Harpa, **Usar card com a câmera** abre uma experiência em tela cheia com instruções,
-permissão explícita, escolha entre câmeras disponíveis, estados de busca e reconhecimento e
-liberação dos recursos de câmera e WebGL ao fechar.
+Na página de cada instrumento, **Com card** abre uma experiência em tela cheia com instruções,
+permissão explícita, escolha entre câmeras disponíveis, estados de busca e reconhecimento,
+interação para girar o modelo e liberação dos recursos de câmera e WebGL ao fechar. Os nove cards
+usam artes próprias. Ainda é necessário validar o reconhecimento nas três plataformas e definir um
+tamanho padronizado para impressão, acompanhado por um PDF ou kit para download.
 
 ## Organização do código
 
@@ -107,7 +106,7 @@ Os arquivos públicos poderão ser organizados por tipo:
 public/
 ├── favicon.ico
 ├── ar/
-│   └── harpa/          # imagem do card e alvo compilado do piloto
+│   └── <instrumento>/  # imagem do card e alvo compilado
 ├── models/
 ├── images/
 ├── audio/

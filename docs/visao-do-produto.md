@@ -21,7 +21,7 @@ O fluxo principal proposto é:
 3. visualizar e manipular um modelo 3D no navegador;
 4. ouvir seu som e entender como ele é produzido;
 5. quando o dispositivo permitir, visualizar o instrumento no ambiente por meio de realidade aumentada;
-6. futuramente, usar cartões ou materiais impressos em atividades com rastreamento de imagem.
+6. usar cards impressos ou exibidos em outra tela para experiências com rastreamento de imagem.
 
 Os nomes apresentados ao público devem descrever ações compreensíveis, como **Explorar em 3D**, **Ver no meu espaço** e **Usar um cartão**, evitando termos técnicos como _Image Tracking_ e _World Tracking_.
 

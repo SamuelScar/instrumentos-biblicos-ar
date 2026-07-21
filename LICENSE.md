@@ -131,5 +131,8 @@ As bibliotecas utilizadas diretamente pela aplicação estão relacionadas em
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). A licença MIT do núcleo vendorizado do MindAR está
 preservada em [public/vendor/mindar/1.2.5/LICENSE](public/vendor/mindar/1.2.5/LICENSE).
 
+A autoria, a origem, a licença e o estado de verificação dos modelos 3D, áudios e imagens estão
+registrados em [ASSET_CREDITS.md](ASSET_CREDITS.md).
+
 Materiais cuja origem, autoria ou licença ainda não tenham sido registradas não devem ser presumidos
 como livres para redistribuição ou cobertos pela licença do projeto.
