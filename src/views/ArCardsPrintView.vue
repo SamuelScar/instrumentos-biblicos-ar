@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowLeft, Printer } from "@lucide/vue";
+import { Printer } from "@lucide/vue";
 import {
   AR_CARD_PRINT_HEIGHT_CM,
   AR_CARD_PRINT_WIDTH_CM,
@@ -14,11 +14,6 @@ function printCards(): void {
 <template>
   <div class="ar-print-page">
     <nav class="ar-print-toolbar" aria-label="Ações da versão para impressão">
-      <RouterLink class="back-link" :to="{ name: 'ar-cards' }">
-        <ArrowLeft :size="18" aria-hidden="true" />
-        Voltar aos cards
-      </RouterLink>
-
       <button class="button button--primary" type="button" @click="printCards">
         <Printer :size="18" aria-hidden="true" />
         Imprimir cards

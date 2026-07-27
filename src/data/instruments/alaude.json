@@ -67,6 +67,7 @@
       "targetFileUrl": "/ar/alaude/targets.mind",
       "targetImageUrl": "/ar/alaude/card-ra-alaude.webp",
       "targetIndex": 0,
+      "collectionTargetIndex": 0,
       "modelScale": 1.59372501,
       "modelRotation": [0, -0.32, 0]
     }

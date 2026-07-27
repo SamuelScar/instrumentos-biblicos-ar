@@ -79,6 +79,7 @@
 "targetFileUrl": "/ar/lira/targets.mind",
 "targetImageUrl": "/ar/lira/card-ra-lira.webp",
 "targetIndex": 2,
+"collectionTargetIndex": 2,
 "modelScale": 2.4,
 "modelRotation": [0, -0.25, 0]
 }

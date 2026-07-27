@@ -60,6 +60,7 @@
       "targetFileUrl": "/ar/shofar/targets.mind",
       "targetImageUrl": "/ar/shofar/card-ra-shofar.webp",
       "targetIndex": 7,
+      "collectionTargetIndex": 7,
       "modelScale": 1.63142226,
       "modelRotation": [0, -0.28, -0.08]
     }

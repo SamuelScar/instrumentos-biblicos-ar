@@ -1,14 +1,26 @@
 <script setup lang="ts">
-import { ArrowUp, Moon, Palette, Sun } from "@lucide/vue";
+import { ArrowLeft, ArrowUp, Moon, Palette, Sun } from "@lucide/vue";
 import { Analytics } from "@vercel/analytics/vue";
 import { SpeedInsights } from "@vercel/speed-insights/vue";
-import { onBeforeUnmount, onMounted, ref } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { RouterLink, RouterView, useRoute } from "vue-router";
 import { useTheme, type ThemePreference } from "./composables/useTheme";
 
 const { themePreference } = useTheme();
+const route = useRoute();
 const themeMenu = ref<HTMLDetailsElement>();
 const showScrollTop = ref(false);
+const headerBackNavigation = computed(() => {
+  const routeName = route.meta.backRouteName;
+  const label = route.meta.backLabel;
+
+  if (typeof routeName !== "string" || typeof label !== "string") return null;
+
+  return {
+    to: { name: routeName },
+    label,
+  };
+});
 
 function updateScrollTopVisibility(): void {
   showScrollTop.value = window.scrollY > 500;
@@ -42,13 +54,26 @@ onBeforeUnmount(() => {
   <div class="app-shell">
     <header class="app-header">
       <div class="app-header__inner">
-        <RouterLink
-          class="brand"
-          :to="{ name: 'catalog' }"
-          aria-label="Instrumentos do Mundo Bíblico — início"
-        >
-          <strong class="brand__text">Instrumentos do Mundo Bíblico</strong>
-        </RouterLink>
+        <div class="app-header__identity">
+          <RouterLink
+            v-if="headerBackNavigation"
+            class="header-back-link"
+            :to="headerBackNavigation.to"
+            replace
+            :aria-label="headerBackNavigation.label"
+            :title="headerBackNavigation.label"
+          >
+            <ArrowLeft :size="20" aria-hidden="true" />
+          </RouterLink>
+
+          <RouterLink
+            class="brand"
+            :to="{ name: 'catalog' }"
+            aria-label="Instrumentos do Mundo Bíblico — início"
+          >
+            <strong class="brand__text">Instrumentos do Mundo Bíblico</strong>
+          </RouterLink>
+        </div>
 
         <div class="app-header__actions">
           <RouterLink class="header-link" :to="{ name: 'catalog' }">Instrumentos</RouterLink>

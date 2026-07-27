@@ -49,6 +49,7 @@
       "targetFileUrl": "/ar/sinos/targets.mind",
       "targetImageUrl": "/ar/sinos/card-ra-sinos.webp",
       "targetIndex": 4,
+      "collectionTargetIndex": 4,
       "modelScale": 14.7,
       "modelRotation": [0, -0.28, 0]
     }

@@ -205,6 +205,35 @@
   outline-offset: 3px;
 }
 
+.image-ar-collection-reference {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+
+.image-ar-collection-reference > strong {
+  color: #fff7ed;
+  text-align: center;
+}
+
+.image-ar-collection-reference__cards {
+  display: grid;
+  width: min(100%, 360px);
+  grid-template-columns: repeat(5, minmax(42px, 1fr));
+  gap: 7px;
+}
+
+.image-ar-collection-reference__cards img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border: 3px solid #fff;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 12px 26px rgb(0 0 0 / 24%);
+  object-fit: cover;
+}
+
 .image-ar-error {
   display: flex;
   align-items: flex-start;
@@ -383,6 +412,47 @@
   backdrop-filter: blur(12px);
 }
 
+.image-ar-model-error {
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: min(380px, calc(100% - 40px));
+  justify-items: center;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgb(255 154 154 / 38%);
+  border-radius: var(--radius-small);
+  color: #ffd0d0;
+  background: rgb(18 13 10 / 92%);
+  box-shadow: 0 22px 60px rgb(0 0 0 / 38%);
+  text-align: center;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(12px);
+}
+
+.image-ar-model-error button {
+  min-height: 38px;
+  padding: 7px 13px;
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: 999px;
+  color: #fff;
+  background: rgb(255 255 255 / 8%);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.image-ar-model-error button:hover {
+  border-color: #f0b464;
+  color: #f0b464;
+}
+
+.image-ar-model-error button:focus-visible {
+  outline: 3px solid #f0b464;
+  outline-offset: 3px;
+}
+
 .image-ar-camera-control {
   position: absolute;
   z-index: 5;
@@ -422,6 +492,14 @@
 
   .image-ar-card-reference figcaption {
     display: none;
+  }
+
+  .image-ar-collection-reference {
+    order: -1;
+  }
+
+  .image-ar-collection-reference__cards {
+    width: min(100%, 260px);
   }
 
   .image-ar-setup h2 {

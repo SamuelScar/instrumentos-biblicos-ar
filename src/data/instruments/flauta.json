@@ -91,6 +91,7 @@
       "targetFileUrl": "/ar/flauta/targets.mind",
       "targetImageUrl": "/ar/flauta/card-ra-flauta.webp",
       "targetIndex": 0,
+      "collectionTargetIndex": 8,
       "missTolerance": 12,
       "modelScale": 1.08,
       "modelRotation": [0, -0.2, -0.55]

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Camera, CameraOff } from "@lucide/vue";
-import { RouterLink } from "vue-router";
 import { useCameraDiagnostics } from "../composables/useCameraDiagnostics";
 
 const {
@@ -23,12 +22,6 @@ function setVideoElement(element: unknown): void {
 
 <template>
   <section class="diagnostics-page">
-    <nav class="page-navigation" aria-label="Navegação da página">
-      <RouterLink class="back-link" :to="{ name: 'catalog' }">
-        <span aria-hidden="true">←</span> Voltar ao catálogo
-      </RouterLink>
-    </nav>
-
     <header class="diagnostics-header">
       <p class="eyebrow">Câmera</p>
       <h1>Configuração da câmera</h1>

@@ -207,14 +207,8 @@
   display: flex;
   width: min(1122px, 100%);
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 18px;
-}
-
-.ar-print-toolbar .back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
 }
 
 .ar-print-toolbar .button {

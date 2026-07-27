@@ -113,10 +113,11 @@ export interface MindArImageSessionOptions {
   container: HTMLElement;
   targetUrl: string;
   targetIndex?: number;
+  targetIndices?: number[];
   missTolerance?: number;
   deviceId?: string;
-  onTargetFound?: () => void;
-  onTargetLost?: () => void;
+  onTargetFound?: (targetIndex: number) => void;
+  onTargetLost?: (targetIndex: number) => void;
 }
 
 export class MindArImageSession {
@@ -127,11 +128,12 @@ export class MindArImageSession {
 
   private readonly container: HTMLElement;
   private readonly targetUrl: string;
-  private readonly targetIndex: number;
+  private readonly targetIndices: number[];
+  private readonly targetIndexSet: ReadonlySet<number>;
   private readonly missTolerance: number;
   private readonly deviceId?: string;
-  private readonly onTargetFound?: () => void;
-  private readonly onTargetLost?: () => void;
+  private readonly onTargetFound?: (targetIndex: number) => void;
+  private readonly onTargetLost?: (targetIndex: number) => void;
   private readonly video: HTMLVideoElement;
   private readonly originalContainerPosition: string;
   private readonly changedContainerPosition: boolean;
@@ -139,7 +141,7 @@ export class MindArImageSession {
 
   private controller: MindArController | null = null;
   private mediaStream: MediaStream | null = null;
-  private postMatrix: Matrix4 | null = null;
+  private readonly postMatrices = new Map<number, Matrix4>();
   private readonly targetPosition = new Vector3();
   private readonly targetQuaternion = new Quaternion();
   private readonly targetScale = new Vector3(1, 1, 1);
@@ -149,20 +151,26 @@ export class MindArImageSession {
   private resizeListenerAttached = false;
   private running = false;
   private targetVisible = false;
+  private activeTargetIndex: number | null = null;
   private poseInitialized = false;
   private disposed = false;
 
   constructor(options: MindArImageSessionOptions) {
     this.container = options.container;
     this.targetUrl = options.targetUrl;
-    this.targetIndex = options.targetIndex ?? 0;
+    this.targetIndices = [...(options.targetIndices ?? [options.targetIndex ?? 0])];
+    this.targetIndexSet = new Set(this.targetIndices);
     this.missTolerance = options.missTolerance ?? DEFAULT_TRACKING_MISS_TOLERANCE;
     this.deviceId = options.deviceId;
     this.onTargetFound = options.onTargetFound;
     this.onTargetLost = options.onTargetLost;
 
-    if (!Number.isInteger(this.targetIndex) || this.targetIndex < 0) {
-      throw new Error("O índice do alvo do MindAR deve ser um inteiro não negativo.");
+    if (
+      this.targetIndices.length === 0 ||
+      this.targetIndexSet.size !== this.targetIndices.length ||
+      this.targetIndices.some((targetIndex) => !Number.isInteger(targetIndex) || targetIndex < 0)
+    ) {
+      throw new Error("Os índices dos alvos do MindAR devem ser inteiros não negativos e únicos.");
     }
 
     if (!Number.isInteger(this.missTolerance) || this.missTolerance < 0) {
@@ -193,6 +201,10 @@ export class MindArImageSession {
 
   get isTargetVisible() {
     return this.targetVisible;
+  }
+
+  get visibleTargetIndex() {
+    return this.targetVisible ? this.activeTargetIndex : null;
   }
 
   private updateAnchorPose(deltaSeconds: number) {
@@ -245,8 +257,9 @@ export class MindArImageSession {
 
     this.running = false;
     this.targetVisible = false;
+    this.activeTargetIndex = null;
     this.poseInitialized = false;
-    this.postMatrix = null;
+    this.postMatrices.clear();
     this.anchor.visible = false;
     this.anchor.position.set(0, 0, 0);
     this.anchor.quaternion.identity();
@@ -385,7 +398,8 @@ export class MindArImageSession {
         missTolerance: this.missTolerance,
         onUpdate: (update) => this.handleControllerUpdate(update, localController, token),
       });
-      localController.interestedTargetIndex = this.targetIndex;
+      localController.interestedTargetIndex =
+        this.targetIndices.length === 1 ? this.targetIndices[0] : -1;
       this.controller = localController;
       this.resize();
 
@@ -398,11 +412,16 @@ export class MindArImageSession {
 
       const { dimensions } = localController.addImageTargetsFromBuffer(targetBuffer);
 
-      const targetDimensions = dimensions[this.targetIndex];
-      if (!targetDimensions) {
-        throw new Error(`O alvo ${this.targetIndex} não existe no arquivo do MindAR.`);
+      this.postMatrices.clear();
+
+      for (const targetIndex of this.targetIndices) {
+        const targetDimensions = dimensions[targetIndex];
+        if (!targetDimensions) {
+          throw new Error(`O alvo ${targetIndex} não existe no arquivo do MindAR.`);
+        }
+
+        this.postMatrices.set(targetIndex, this.createPostMatrix(targetDimensions));
       }
-      this.postMatrix = this.createPostMatrix(targetDimensions);
 
       await localController.dummyRun(this.video);
       this.assertActive(token, signal);
@@ -422,8 +441,9 @@ export class MindArImageSession {
         this.renderer.setAnimationLoop(null);
         this.running = false;
         this.targetVisible = false;
+        this.activeTargetIndex = null;
         this.poseInitialized = false;
-        this.postMatrix = null;
+        this.postMatrices.clear();
         this.anchor.visible = false;
         this.detachResizeListener();
         this.detachElements();
@@ -483,26 +503,46 @@ export class MindArImageSession {
   ) {
     if (
       update.type !== "updateMatrix" ||
-      update.targetIndex !== this.targetIndex ||
+      update.targetIndex === undefined ||
+      !this.targetIndexSet.has(update.targetIndex) ||
       sourceController !== this.controller ||
-      token !== this.operationToken ||
-      !this.postMatrix
+      token !== this.operationToken
     ) {
       return;
     }
 
+    const targetIndex = update.targetIndex;
+    const postMatrix = this.postMatrices.get(targetIndex);
+    if (!postMatrix) return;
+
     if (update.worldMatrix === null || update.worldMatrix === undefined) {
+      if (this.activeTargetIndex !== targetIndex) return;
+
       this.anchor.visible = false;
       this.poseInitialized = false;
       if (this.targetVisible) {
         this.targetVisible = false;
-        this.onTargetLost?.();
+        this.activeTargetIndex = null;
+        this.onTargetLost?.(targetIndex);
       }
       return;
     }
 
+    if (this.activeTargetIndex !== targetIndex) {
+      const previousTargetIndex = this.activeTargetIndex;
+      const previousTargetWasVisible = this.targetVisible;
+
+      this.activeTargetIndex = targetIndex;
+      this.targetVisible = false;
+      this.poseInitialized = false;
+
+      if (previousTargetWasVisible && previousTargetIndex !== null) {
+        this.onTargetLost?.(previousTargetIndex);
+      }
+    }
+
     const matrix = new Matrix4().fromArray(update.worldMatrix);
-    matrix.multiply(this.postMatrix);
+    matrix.multiply(postMatrix);
     matrix.decompose(this.targetPosition, this.targetQuaternion, this.targetScale);
 
     if (!this.poseInitialized) {
@@ -516,7 +556,7 @@ export class MindArImageSession {
 
     if (!this.targetVisible) {
       this.targetVisible = true;
-      this.onTargetFound?.();
+      this.onTargetFound?.(targetIndex);
     }
   }
 
