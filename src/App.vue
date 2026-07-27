@@ -52,6 +52,7 @@ onBeforeUnmount(() => {
 
         <div class="app-header__actions">
           <RouterLink class="header-link" :to="{ name: 'catalog' }">Instrumentos</RouterLink>
+          <RouterLink class="header-link" :to="{ name: 'ar-cards' }">Cards de RA</RouterLink>
 
           <details ref="themeMenu" class="theme-menu">
             <summary

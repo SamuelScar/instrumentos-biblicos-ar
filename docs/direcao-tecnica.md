@@ -64,8 +64,9 @@ ser validados sistematicamente em aparelhos Android e iOS reais.
 Na página de cada instrumento, **Com card** abre uma experiência em tela cheia com instruções,
 permissão explícita, escolha entre câmeras disponíveis, estados de busca e reconhecimento,
 interação para girar o modelo e liberação dos recursos de câmera e WebGL ao fechar. Os nove cards
-usam artes próprias. Ainda é necessário validar o reconhecimento nas três plataformas e definir um
-tamanho padronizado para impressão, acompanhado por um PDF ou kit para download.
+usam artes próprias e estão disponíveis individualmente ou em um PDF para impressão pela rota
+`/cards-ra`. O kit padroniza cada imagem em 10 × 15 cm e orienta a impressão em escala 100%. Ainda é
+necessário validar sistematicamente o reconhecimento nesse tamanho nas três plataformas.
 
 ## Organização do código
 

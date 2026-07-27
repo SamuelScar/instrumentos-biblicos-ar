@@ -47,6 +47,17 @@
   font-size: clamp(1rem, 2vw, 1.25rem);
 }
 
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.hero__actions .button {
+  gap: 8px;
+}
+
 .hero__art {
   width: min(100%, 320px);
   aspect-ratio: 1;

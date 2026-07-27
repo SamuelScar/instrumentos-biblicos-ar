@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { Download } from "@lucide/vue";
 import { computed, ref } from "vue";
+import { RouterLink } from "vue-router";
 import InstrumentCard from "../components/InstrumentCard.vue";
 import { instruments } from "../domain/instruments";
 
@@ -20,13 +22,13 @@ const sortedInstruments = computed(() => {
       return sorted.sort(
         (first, second) =>
           second.bibleRefs.length - first.bibleRefs.length ||
-          nameCollator.compare(first.name, second.name),
+          nameCollator.compare(first.name, second.name)
       );
     case "sources":
       return sorted.sort(
         (first, second) =>
           second.sources.length - first.sources.length ||
-          nameCollator.compare(first.name, second.name),
+          nameCollator.compare(first.name, second.name)
       );
     default:
       return sorted;
@@ -44,6 +46,12 @@ const sortedInstruments = computed(() => {
           Explore em 3D e conheça a história, o som e a ciência por trás dos instrumentos
           mencionados na Bíblia.
         </p>
+        <div class="hero__actions">
+          <RouterLink class="button button--secondary" :to="{ name: 'ar-cards' }">
+            <Download :size="18" aria-hidden="true" />
+            Baixar cards de RA
+          </RouterLink>
+        </div>
       </div>
 
       <div class="hero__art">
