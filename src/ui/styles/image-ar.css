@@ -206,6 +206,8 @@
   overflow: hidden;
   background: #050403;
   touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .image-ar-viewport--interactive {
@@ -248,6 +250,7 @@
   background: rgb(18 13 10 / 76%);
   font-size: 0.86rem;
   font-weight: 750;
+  pointer-events: none;
   backdrop-filter: blur(12px);
 }
 
@@ -268,6 +271,7 @@
   border-radius: 18px;
   color: #fff;
   box-shadow: 0 0 0 9999px rgb(0 0 0 / 12%);
+  pointer-events: none;
   transform: translate(-50%, -50%);
   transition:
     border-color 180ms ease,
@@ -302,6 +306,7 @@
   background: rgb(18 13 10 / 76%);
   font-size: 0.78rem;
   font-weight: 700;
+  pointer-events: none;
   backdrop-filter: blur(12px);
 }
 
