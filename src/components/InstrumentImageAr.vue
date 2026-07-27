@@ -104,21 +104,41 @@ function handleModelPointerDown(event: PointerEvent): void {
   if (
     experienceState.value !== "found" ||
     !modelPivot ||
+    !event.isPrimary ||
+    event.button !== 0 ||
     activePointerId !== null ||
     (event.target instanceof Element && event.target.closest("button, select, label"))
   ) {
     return;
   }
 
+  const target = event.currentTarget as HTMLElement;
+
+  try {
+    target.setPointerCapture(event.pointerId);
+  } catch {
+    return;
+  }
+
+  if (!target.hasPointerCapture(event.pointerId)) return;
+
+  event.preventDefault();
   activePointerId = event.pointerId;
   pointerX = event.clientX;
   pointerY = event.clientY;
-  (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
 }
 
 function handleModelPointerMove(event: PointerEvent): void {
-  if (event.pointerId !== activePointerId || !modelPivot) return;
+  const target = event.currentTarget as HTMLElement;
+  if (
+    event.pointerId !== activePointerId ||
+    !modelPivot ||
+    !target.hasPointerCapture(event.pointerId)
+  ) {
+    return;
+  }
 
+  event.preventDefault();
   const movementX = event.clientX - pointerX;
   const movementY = event.clientY - pointerY;
   pointerX = event.clientX;
@@ -138,6 +158,10 @@ function handleModelPointerEnd(event: PointerEvent): void {
   activePointerId = null;
   const target = event.currentTarget as HTMLElement;
   if (target.hasPointerCapture(event.pointerId)) target.releasePointerCapture(event.pointerId);
+}
+
+function handleModelPointerCaptureLost(event: PointerEvent): void {
+  if (event.pointerId === activePointerId) activePointerId = null;
 }
 
 function describeCameraError(error: unknown): string {
@@ -388,6 +412,7 @@ onBeforeUnmount(() => {
         @pointermove="handleModelPointerMove"
         @pointerup="handleModelPointerEnd"
         @pointercancel="handleModelPointerEnd"
+        @lostpointercapture="handleModelPointerCaptureLost"
       >
         <div class="image-ar-status" role="status" aria-live="polite">
           <LoaderCircle
@@ -410,7 +435,12 @@ onBeforeUnmount(() => {
         </div>
 
         <aside class="image-ar-card-hint">
-          <img :src="imageTracking.targetImageUrl" alt="" aria-hidden="true" />
+          <img
+            :src="imageTracking.targetImageUrl"
+            alt=""
+            aria-hidden="true"
+            :draggable="false"
+          />
           <span>{{
             experienceState === "found" ? "Card reconhecido" : "Procure esta imagem"
           }}</span>
