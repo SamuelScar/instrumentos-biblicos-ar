@@ -66,6 +66,12 @@
   background: #f0b464;
 }
 
+.image-ar-audio.audio-player--compact .audio-player__error {
+  border-color: rgb(255 154 154 / 45%);
+  color: #ffd0d0;
+  background: rgb(18 13 10 / 92%);
+}
+
 .image-ar-setup {
   display: grid;
   width: min(1040px, calc(100% - 40px));
