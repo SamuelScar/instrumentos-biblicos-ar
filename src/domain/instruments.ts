@@ -41,6 +41,7 @@ export type ImageTrackingAr = {
   targetFileUrl: string;
   targetImageUrl: string;
   targetIndex: number;
+  collectionTargetIndex: number;
   missTolerance?: number;
   modelScale: number;
   modelRotation: [number, number, number];
@@ -106,6 +107,8 @@ function parseInstrument(data: InstrumentData): Instrument {
     imageTracking &&
     (!Number.isInteger(imageTracking.targetIndex) ||
       imageTracking.targetIndex < 0 ||
+      !Number.isInteger(imageTracking.collectionTargetIndex) ||
+      imageTracking.collectionTargetIndex < 0 ||
       (imageTracking.missTolerance !== undefined &&
         (!Number.isInteger(imageTracking.missTolerance) || imageTracking.missTolerance < 0)) ||
       !imageTracking.targetFileUrl ||

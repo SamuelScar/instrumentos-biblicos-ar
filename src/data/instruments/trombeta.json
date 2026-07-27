@@ -85,6 +85,7 @@
       "targetFileUrl": "/ar/trombeta/targets.mind",
       "targetImageUrl": "/ar/trombeta/card-ra-trombeta.webp",
       "targetIndex": 6,
+      "collectionTargetIndex": 6,
       "modelScale": 1.9,
       "modelRotation": [0, 1.25, -0.5]
     }

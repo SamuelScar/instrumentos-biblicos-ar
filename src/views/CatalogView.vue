@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Download } from "@lucide/vue";
+import { Download, ScanLine } from "@lucide/vue";
 import { computed, ref } from "vue";
 import { RouterLink } from "vue-router";
 import InstrumentCard from "../components/InstrumentCard.vue";
@@ -47,6 +47,10 @@ const sortedInstruments = computed(() => {
           mencionados na Bíblia.
         </p>
         <div class="hero__actions">
+          <RouterLink class="button button--primary" :to="{ name: 'ar-hub' }">
+            <ScanLine :size="18" aria-hidden="true" />
+            Explorar em realidade aumentada
+          </RouterLink>
           <RouterLink class="button button--secondary" :to="{ name: 'ar-cards' }">
             <Download :size="18" aria-hidden="true" />
             Baixar cards de RA
