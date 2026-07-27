@@ -19,6 +19,9 @@ const duration = ref(0);
 const isPlaying = ref(false);
 const isLoading = ref(true);
 const hasError = ref(false);
+const isStartingPlayback = ref(false);
+const errorMessage = ref("");
+let playbackAttempt = 0;
 
 const progress = computed(() => {
   if (!duration.value) return 0;
@@ -45,17 +48,73 @@ function formatTime(seconds: number): string {
   return `${minutes}:${remainingSeconds}`;
 }
 
+function describePlaybackError(error: unknown): string {
+  if (error instanceof DOMException) {
+    if (error.name === "AbortError") {
+      return "A reprodução foi interrompida antes de começar. Tente novamente.";
+    }
+
+    if (error.name === "NotAllowedError") {
+      return "O navegador bloqueou a reprodução. Toque novamente para liberar o áudio.";
+    }
+
+    if (error.name === "NotSupportedError") {
+      return "Este áudio não é compatível com o navegador.";
+    }
+  }
+
+  return "Não foi possível iniciar o áudio. Tente novamente.";
+}
+
+function describeMediaError(): string {
+  switch (audioElement.value?.error?.code) {
+    case 1:
+      return "O carregamento do áudio foi interrompido. Tente novamente.";
+    case 2:
+      return "Não foi possível carregar o áudio. Verifique sua conexão.";
+    case 3:
+      return "O navegador não conseguiu processar este áudio.";
+    case 4:
+      return "Este áudio não é compatível com o navegador.";
+    default:
+      return "Não foi possível reproduzir este áudio.";
+  }
+}
+
 async function togglePlayback(): Promise<void> {
   const audio = audioElement.value;
   if (!audio || hasError.value) return;
 
+  if (isStartingPlayback.value) {
+    playbackAttempt += 1;
+    isStartingPlayback.value = false;
+    isLoading.value = false;
+    audio.pause();
+    return;
+  }
+
   if (audio.paused) {
+    const attempt = ++playbackAttempt;
+    isStartingPlayback.value = true;
+    isLoading.value = true;
+    errorMessage.value = "";
+
     try {
       await audio.play();
-    } catch {
-      hasError.value = true;
+    } catch (error) {
+      if (attempt !== playbackAttempt || audioElement.value !== audio) return;
+
+      isPlaying.value = false;
       isLoading.value = false;
+      errorMessage.value = describePlaybackError(error);
+
+      if (error instanceof DOMException && error.name === "NotSupportedError") {
+        hasError.value = true;
+      }
+    } finally {
+      if (attempt === playbackAttempt) isStartingPlayback.value = false;
     }
+
     return;
   }
 
@@ -92,12 +151,17 @@ function finishPlayback(): void {
 }
 
 function reportError(): void {
+  playbackAttempt += 1;
+  isStartingPlayback.value = false;
   hasError.value = true;
   isLoading.value = false;
   isPlaying.value = false;
+  errorMessage.value = describeMediaError();
 }
 
 onBeforeUnmount(() => {
+  playbackAttempt += 1;
+  isStartingPlayback.value = false;
   audioElement.value?.pause();
 });
 </script>
@@ -140,6 +204,10 @@ onBeforeUnmount(() => {
       <Play v-else :size="21" fill="currentColor" aria-hidden="true" />
       <span v-if="isCompact">Som</span>
     </button>
+
+    <p v-if="errorMessage" class="audio-player__error" role="alert">
+      {{ errorMessage }}
+    </p>
 
     <div v-if="!isMinimal" class="audio-player__content">
       <div v-if="!isCompact" class="audio-player__heading">
