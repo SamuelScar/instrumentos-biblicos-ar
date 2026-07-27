@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Camera, LoaderCircle, RotateCcw, ScanLine, ShieldAlert, X } from "@lucide/vue";
+import { Camera, Download, LoaderCircle, RotateCcw, ScanLine, ShieldAlert, X } from "@lucide/vue";
 import { DirectionalLight, Group, HemisphereLight, MathUtils, Texture, type Object3D } from "three";
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
-import type { ImageTrackingAr } from "../domain/instruments";
+import type { ImageTrackingAr, InstrumentId } from "../domain/instruments";
 import {
   createCameraOptions,
   enumerateMediaDevices,
@@ -20,6 +20,7 @@ import {
 import AudioPlayer from "./AudioPlayer.vue";
 
 const props = defineProps<{
+  instrumentId: InstrumentId;
   instrumentName: string;
   modelUrl: string;
   audioUrl?: string;
@@ -38,6 +39,10 @@ const experienceState = ref<ExperienceState>("idle");
 const errorMessage = ref("");
 const cameras = ref<CameraOption[]>([]);
 const selectedCameraId = ref(readCameraPreference());
+const cardDownloadLocation = computed(() => ({
+  name: "ar-cards",
+  hash: `#card-${props.instrumentId}`,
+}));
 const showsSetup = computed(
   () => experienceState.value === "idle" || experienceState.value === "error"
 );
@@ -107,7 +112,7 @@ function handleModelPointerDown(event: PointerEvent): void {
     !event.isPrimary ||
     event.button !== 0 ||
     activePointerId !== null ||
-    (event.target instanceof Element && event.target.closest("button, select, label"))
+    (event.target instanceof Element && event.target.closest("a, button, select, label"))
   ) {
     return;
   }
@@ -397,6 +402,10 @@ onBeforeUnmount(() => {
             :alt="`Card usado para reconhecer ${instrumentName}`"
           />
           <figcaption>Card de {{ instrumentName }}</figcaption>
+          <RouterLink class="image-ar-card-reference__download" :to="cardDownloadLocation">
+            <Download :size="17" aria-hidden="true" />
+            Baixar este card
+          </RouterLink>
         </figure>
       </div>
 
@@ -434,17 +443,14 @@ onBeforeUnmount(() => {
           <span v-if="experienceState !== 'found'">Enquadre o card inteiro</span>
         </div>
 
-        <aside class="image-ar-card-hint">
-          <img
-            :src="imageTracking.targetImageUrl"
-            alt=""
-            aria-hidden="true"
-            :draggable="false"
-          />
-          <span>{{
-            experienceState === "found" ? "Card reconhecido" : "Procure esta imagem"
-          }}</span>
-        </aside>
+        <RouterLink
+          class="image-ar-card-hint"
+          :to="cardDownloadLocation"
+          :aria-label="`Baixar o card de realidade aumentada de ${instrumentName}`"
+        >
+          <img :src="imageTracking.targetImageUrl" alt="" aria-hidden="true" :draggable="false" />
+          <span>Baixar card</span>
+        </RouterLink>
 
         <p v-if="experienceState === 'found'" class="image-ar-interaction-hint">
           Arraste para girar o instrumento

@@ -38,8 +38,8 @@ A aplicação possui:
 Todos os instrumentos cadastrados possuem conteúdo educacional, modelo 3D, imagem de capa, áudio
 demonstrativo e configuração para os dois modos de realidade aumentada. Para concluir o MVP, as
 próximas etapas são revisar textos e fontes, validar acessibilidade, testar sistematicamente os dois
-modos de RA em dispositivos reais, preparar os cards para impressão e registrar a procedência dos
-modelos e áudios.
+modos de RA em dispositivos reais, validar a impressão dos cards em 10 × 15 cm e registrar a
+procedência dos modelos e áudios.
 
 ## Tecnologias
 

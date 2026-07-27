@@ -14,6 +14,16 @@ export const router = createRouter({
       component: () => import("./views/InstrumentView.vue"),
     },
     {
+      path: "/cards-ra",
+      name: "ar-cards",
+      component: () => import("./views/ArCardsView.vue"),
+    },
+    {
+      path: "/cards-ra/imprimir",
+      name: "ar-cards-print",
+      component: () => import("./views/ArCardsPrintView.vue"),
+    },
+    {
       path: "/diagnostico",
       name: "diagnostics",
       component: () => import("./views/DiagnosticsView.vue"),
@@ -23,5 +33,9 @@ export const router = createRouter({
       redirect: "/",
     },
   ],
-  scrollBehavior: (_to, _from, savedPosition) => savedPosition ?? { top: 0 },
+  scrollBehavior: (to, _from, savedPosition) => {
+    if (savedPosition) return savedPosition;
+    if (to.hash) return { el: to.hash, top: 24 };
+    return { top: 0 };
+  },
 });

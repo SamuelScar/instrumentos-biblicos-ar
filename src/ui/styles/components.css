@@ -188,6 +188,33 @@
   }
 }
 
+@media (max-width: 680px) {
+  .app-header__inner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .brand {
+    min-height: 32px;
+    justify-content: center;
+  }
+
+  .app-header__actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-header__actions {
+    gap: 10px;
+  }
+
+  .header-link {
+    font-size: 0.78rem;
+  }
+}
+
 .scroll-top-button {
   position: fixed;
   z-index: 8;

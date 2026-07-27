@@ -46,7 +46,7 @@ que já existe.
 5. registrar origem, autoria e licença de todos os ativos;
 6. validar contraste, teclado e tecnologia assistiva;
 7. revisar procedência, licença e adequação dos áudios adicionados;
-8. definir o tamanho de impressão e preparar um kit dos nove cards;
+8. validar em dispositivos reais o kit de impressão dos nove cards em 10 × 15 cm;
 9. adicionar validação completa dos JSONs e cobertura automatizada dos fluxos principais;
 10. atualizar a documentação sempre que a coleção ou o estado dos ativos mudar.
 
@@ -64,17 +64,17 @@ do MindAR é servido a partir de `public/vendor/mindar/1.2.5`, sem dependência 
 funciona com webcam em computadores e câmera em Android e iOS, desde que a aplicação esteja em um
 contexto seguro, como `localhost` ou HTTPS.
 
-As artes provisórias foram substituídas, mas a validação manual do reconhecimento, da estabilidade e
-do enquadramento dos nove cards ainda está pendente nas três plataformas. Também falta definir um
-tamanho físico padronizado e preparar um kit para impressão, pois alterar o tamanho impresso muda a
-escala percebida do modelo associado ao card.
+As artes provisórias foram substituídas e estão disponíveis para download individual e em um kit PDF
+pela rota `/cards-ra`. Cada card foi padronizado em 10 × 15 cm, com impressão em escala 100%. A
+validação manual do reconhecimento, da estabilidade, do enquadramento e da escala percebida nesse
+tamanho ainda está pendente nas três plataformas.
 
 Para ampliar a experiência, será necessário:
 
 - confirmar as dimensões físicas dos nove modelos;
 - validar posicionamento em Android e iOS compatíveis;
 - validar os nove cards em PC, Android e iOS;
-- definir o tamanho de impressão e disponibilizar um kit dos cards;
+- validar o kit de impressão em 10 × 15 cm nas três plataformas;
 - garantir HTTPS no ambiente publicado para liberar o acesso à câmera;
 - preparar os formatos e ativos exigidos por cada plataforma;
 - decidir, depois dos testes, se as duas experiências podem ser apresentadas como recursos estáveis.

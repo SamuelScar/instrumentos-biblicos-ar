@@ -37,6 +37,7 @@ const imageArExperience = computed(() => {
   if (!currentInstrument || !modelUrl || !imageTracking?.enabled) return null;
 
   return {
+    instrumentId: currentInstrument.id,
     instrumentName: currentInstrument.name,
     modelUrl,
     imageTracking,
@@ -179,6 +180,7 @@ watch(instrument, () => {
 
     <InstrumentImageAr
       v-if="showImageAr && imageArExperience"
+      :instrument-id="imageArExperience.instrumentId"
       :instrument-name="imageArExperience.instrumentName"
       :model-url="imageArExperience.modelUrl"
       :audio-url="instrument.assets.audioUrl ?? undefined"
